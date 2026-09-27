@@ -1,0 +1,94 @@
+<p align="center">
+  <img src="docs/images/banner.png" alt="beatcode — Play your code as a rhythm game." width="880">
+</p>
+
+<p align="center">
+  <b>English</b> · <a href="README.ja.md">日本語</a>
+</p>
+
+`beatcode` is a rhythm game for the terminal. The notes are the tokens of real source code. They fall
+down lanes by kind (keyword, identifier, operator, literal), and you hit them on the judgment line.
+Finish a song and you have typed out a function.
+
+<!-- TODO: replace with the demo video -->
+> 🎬 **Demo video coming soon.**
+
+This repository holds the install scripts and release binaries. The source code is not public.
+
+## Install
+
+macOS 11 or later, Apple silicon or Intel.
+
+**Homebrew**
+
+```sh
+brew tap yukihirop/beatcode https://github.com/yukihirop/beatcode
+brew install beatcode
+```
+
+**npm**
+
+```sh
+npx beatcode            # run without installing
+npm install -g beatcode # or install the command
+```
+
+The first run downloads the binary for your Mac from GitHub Releases, checks its SHA-256, and keeps it
+in `~/.cache/beatcode/npm/<version>/`. Node.js 18 or later.
+
+**Install script**
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh | sh
+```
+
+It puts `beatcode` in `~/.local/bin`. Set `BEATCODE_INSTALL_DIR` to put it somewhere else, or
+`BEATCODE_VERSION=0.1.0` to pick a version.
+
+Check with `beatcode --version`.
+
+## Get started
+
+| | |
+| --- | --- |
+| **Play** | `beatcode` (song select) or `beatcode path/to/file.rs` |
+| **Set up** | `beatcode skills`, then **`/beatcode-setup`** in Claude Code or Codex |
+| **Connect Spotify / YouTube Music / AI** | `beatcode setup` |
+| **See every command** | `beatcode --help` |
+
+Default keys are **D F J K** for the four lanes. Switch your input method to plain ASCII before you play:
+with a Japanese IME on, the keys never reach the game.
+
+- **Any code is a chart.** Play the bundled songs, the git repos on your machine, your own GitHub repos,
+  or a chart an AI writes for you on the spot. Long files are cut into one chart per function
+- **Six languages.** Rust, Python, Go, TypeScript / JavaScript, Ruby and PHP (comments are not notes).
+  Plain text works too: Japanese and English `.md` / `.txt`
+- **Play along to Spotify.** Your liked songs play inside beatcode, and the tempo and note positions come
+  from analyzing the song's audio on your machine. Nothing is sent anywhere. YouTube Music works too (by driving the Pear Desktop app)
+- **4, 6 or 8 lanes, NORMAL or HARD.** More lanes split tokens into finer kinds. HARD packs the same code
+  into 16th notes, with chords and hold notes
+- **It remembers.** Every finished play goes to your history; pick one to play the same song and chart again
+
+The combo voice (VOICEVOX / AivisSpeech) plays through `afplay`.
+
+## Uninstall
+
+`/beatcode-teardown` in Claude Code or Codex removes the settings, history and caches beatcode keeps
+(`~/.config/beatcode/`, `~/.cache/beatcode/`). Then remove the command the way you installed it:
+
+| Installed with | Remove with |
+| --- | --- |
+| Homebrew | `brew uninstall beatcode && brew untap yukihirop/beatcode` |
+| npm | `npm uninstall -g beatcode` (the downloaded binary is in `~/.cache/beatcode/npm/`) |
+| Install script | `rm ~/.local/bin/beatcode` |
+
+---
+
+<sub>Spotify playback uses [librespot](https://github.com/librespot-org/librespot), an unofficial client. It needs Premium, may break when Spotify changes things, and is a gray area under Spotify's terms.</sub>
+
+## License
+
+`beatcode` is proprietary software. All rights are reserved. No permission is
+granted to use, copy, modify, distribute, publish, sublicense, sell, or provide
+it as part of a product or hosted service without prior written permission.
+See [LICENSE](LICENSE) for the complete terms.
