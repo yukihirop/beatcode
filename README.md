@@ -102,7 +102,9 @@ They go to `~/.local/share/beatcode/plugins/`.
 
 ## License
 
-`beatcode` is proprietary software. All rights are reserved. No permission is
-granted to use, copy, modify, distribute, publish, sublicense, sell, or provide
-it as part of a product or hosted service without prior written permission.
-See [LICENSE](LICENSE) for the complete terms.
+`beatcode` is proprietary software. All rights are reserved. You may install and run the
+official binaries (from the Releases of yukihirop/beatcode, its Homebrew formula,
+the npm package `beatcode`, or `beatcode plugins install`) for personal,
+non-commercial use. Redistributing, publishing, sharing, selling, sublicensing,
+modifying, reverse engineering, or providing it as part of a product or hosted
+service is not permitted. See [LICENSE](LICENSE) for the complete terms.
