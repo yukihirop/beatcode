@@ -71,10 +71,24 @@ with a Japanese IME on, the keys never reach the game.
 
 The combo voice (VOICEVOX / AivisSpeech) plays through `afplay`.
 
+## Plugins
+
+More languages (C, C#, CSS, HTML, JSON, Shell, TOML, YAML, Zig, Chinese prose) and AI providers (Ollama, Google AI Studio)
+come as plugins, released together with beatcode:
+
+```sh
+beatcode plugins install        # list them
+beatcode plugins install c zh   # install C and Chinese prose
+beatcode plugins uninstall c
+beatcode plugins                # check what is loaded
+```
+
+They go to `~/.local/share/beatcode/plugins/`.
+
 ## Uninstall
 
 `/beatcode-teardown` in Claude Code or Codex removes the settings, history and caches beatcode keeps
-(`~/.config/beatcode/`, `~/.cache/beatcode/`). Then remove the command the way you installed it:
+(`~/.config/beatcode/`, `~/.cache/beatcode/`) and the plugins (`~/.local/share/beatcode/`). Then remove the command the way you installed it:
 
 | Installed with | Remove with |
 | --- | --- |

@@ -69,10 +69,24 @@ curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh 
 
 コンボの声(VOICEVOX / AivisSpeech)は `afplay` で鳴らします。
 
+## プラグイン
+
+ほかの言語(C・C#・CSS・HTML・JSON・Shell・TOML・YAML・Zig・中国語の文章)と AI の頼む先(Ollama・Google AI Studio)は
+プラグインで足せます。beatcode と一緒に配っています。
+
+```sh
+beatcode plugins install        # 一覧
+beatcode plugins install c zh   # C と中国語の文章を入れる
+beatcode plugins uninstall c
+beatcode plugins                # 読めたか確かめる
+```
+
+入れたものは `~/.local/share/beatcode/plugins/` に置きます。
+
 ## やめ方
 
 Claude Code か Codex で `/beatcode-teardown` を打つと、beatcode が置いた設定・履歴・キャッシュ
-(`~/.config/beatcode/`・`~/.cache/beatcode/`)を片付けます。そのあと、入れた方法に合わせてコマンドを消します。
+(`~/.config/beatcode/`・`~/.cache/beatcode/`)と入れたプラグイン(`~/.local/share/beatcode/`)を片付けます。そのあと、入れた方法に合わせてコマンドを消します。
 
 | 入れた方法 | 消し方 |
 | --- | --- |
