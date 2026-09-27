@@ -1,0 +1,34 @@
+{
+  "name": "beatcode",
+  "version": "0.1.0",
+  "description": "A rhythm game for the terminal where the notes are the tokens of real source code",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://github.com/yukihirop/beatcode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukihirop/beatcode.git"
+  },
+  "bin": {
+    "beatcode": "bin/beatcode.js"
+  },
+  "files": [
+    "bin/beatcode.js",
+    "LICENSE"
+  ],
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "arm64",
+    "x64"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "rhythm-game",
+    "terminal",
+    "tui",
+    "game"
+  ]
+}
