@@ -17,7 +17,7 @@
 
 ## 入れ方
 
-macOS 11 以降(Apple シリコン・Intel)。
+macOS 11 以降(Apple シリコン・Intel)と、Linux の x86_64 / arm64(glibc 2.35 以降。Ubuntu 22.04・Debian 12 以降)。Linux では音に ALSA(`libasound2`。たいていのデスクトップには入っています)、HTTPS に OpenSSL 3(`libssl3`)が要ります。インカメは macOS だけです。
 
 **Homebrew**
 
@@ -33,7 +33,7 @@ npx beatcode            # 入れずに動かす
 npm install -g beatcode # コマンドとして入れる
 ```
 
-初めて動かしたときに、その Mac に合うバイナリを GitHub Releases から落とし、SHA-256 を確かめて
+初めて動かしたときに、そのマシンに合うバイナリを GitHub Releases から落とし、SHA-256 を確かめて
 `~/.cache/beatcode/npm/<版>/` に置きます。Node.js 18 以降。
 
 **入れるスクリプト**

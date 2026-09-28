@@ -20,9 +20,10 @@ function fail(message) {
 }
 
 function target() {
-  if (process.platform !== "darwin") fail(`only macOS is supported for now (got ${process.platform})`);
-  if (process.arch === "arm64") return "aarch64-apple-darwin";
-  if (process.arch === "x64") return "x86_64-apple-darwin";
+  const os = { darwin: "apple-darwin", linux: "unknown-linux-gnu" }[process.platform];
+  if (!os) fail(`only macOS and Linux are supported (got ${process.platform})`);
+  if (process.arch === "arm64") return `aarch64-${os}`;
+  if (process.arch === "x64") return `x86_64-${os}`;
   fail(`unsupported CPU: ${process.arch}`);
 }
 

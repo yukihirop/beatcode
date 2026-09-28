@@ -16,12 +16,13 @@ say() { printf '%s\n' "$*"; }
 fail() { printf 'beatcode install: %s\n' "$*" >&2; exit 1; }
 
 case "$(uname -s)" in
-  Darwin) ;;
-  *) fail "only macOS is supported for now (got $(uname -s))" ;;
+  Darwin) os="apple-darwin" ;;
+  Linux) os="unknown-linux-gnu" ;;
+  *) fail "only macOS and Linux are supported (got $(uname -s))" ;;
 esac
 case "$(uname -m)" in
-  arm64 | aarch64) target="aarch64-apple-darwin" ;;
-  x86_64) target="x86_64-apple-darwin" ;;
+  arm64 | aarch64) target="aarch64-$os" ;;
+  x86_64 | amd64) target="x86_64-$os" ;;
   *) fail "unsupported CPU: $(uname -m)" ;;
 esac
 
@@ -43,7 +44,11 @@ curl -fsSL "$base/$archive" -o "$tmp/$archive" || fail "could not download $base
 curl -fsSL "$base/$archive.sha256" -o "$tmp/$archive.sha256" || fail "could not download the checksum"
 
 expected="$(cut -d' ' -f1 "$tmp/$archive.sha256")"
-actual="$(shasum -a 256 "$tmp/$archive" | cut -d' ' -f1)"
+if command -v sha256sum >/dev/null; then
+  actual="$(sha256sum "$tmp/$archive" | cut -d' ' -f1)"
+else
+  actual="$(shasum -a 256 "$tmp/$archive" | cut -d' ' -f1)"
+fi
 [ "$expected" = "$actual" ] || fail "checksum mismatch (expected $expected, got $actual)"
 
 tar -xzf "$tmp/$archive" -C "$tmp"
@@ -53,6 +58,6 @@ say "Installed $("$install_dir/beatcode" --version) to $install_dir/beatcode"
 
 case ":$PATH:" in
   *":$install_dir:"*) ;;
-  *) say "Add $install_dir to your PATH, e.g.: echo 'export PATH=\"$install_dir:\$PATH\"' >> ~/.zshrc" ;;
+  *) say "Add $install_dir to your PATH, e.g.: echo 'export PATH=\"$install_dir:\$PATH\"' >> ~/.$(basename "${SHELL:-sh}")rc" ;;
 esac
 say "Run: beatcode"

@@ -17,7 +17,7 @@ This repository holds the install scripts and release binaries. The source code 
 
 ## Install
 
-macOS 11 or later, Apple silicon or Intel.
+macOS 11 or later (Apple silicon or Intel), or Linux on x86_64 / arm64 with glibc 2.35 or later (Ubuntu 22.04, Debian 12 or newer). On Linux, sound needs ALSA (`libasound2`, present on most desktops) and HTTPS needs OpenSSL 3 (`libssl3`). The front camera panel is macOS only.
 
 **Homebrew**
 
@@ -33,7 +33,7 @@ npx beatcode            # run without installing
 npm install -g beatcode # or install the command
 ```
 
-The first run downloads the binary for your Mac from GitHub Releases, checks its SHA-256, and keeps it
+The first run downloads the binary for your machine from GitHub Releases, checks its SHA-256, and keeps it
 in `~/.cache/beatcode/npm/<version>/`. Node.js 18 or later.
 
 **Install script**

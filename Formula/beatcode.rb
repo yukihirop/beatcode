@@ -16,7 +16,16 @@ class Beatcode < Formula
     end
   end
 
-  depends_on :macos
+  on_linux do
+    on_arm do
+      url "https://github.com/yukihirop/beatcode/releases/download/v#{version}/beatcode-aarch64-unknown-linux-gnu.tar.gz"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+    end
+    on_intel do
+      url "https://github.com/yukihirop/beatcode/releases/download/v#{version}/beatcode-x86_64-unknown-linux-gnu.tar.gz"
+      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+    end
+  end
 
   def install
     bin.install "beatcode"
