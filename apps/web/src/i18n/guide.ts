@@ -35,7 +35,7 @@ export const guide: Record<Lang, Guide> = {
     heading: "How to play",
     lede: "From song select to the results screen, then the settings worth knowing. Each step shows the screen you’ll see.",
     recorded:
-      "Recorded with beatcode record on a fresh install with no music connected, so every song here is Silent: no music, and the judgment line flashes on each beat.",
+      "Recorded with beatcode record, playing シャイニングスター (Shining Star, ♩=158, 4:36) by 魔王魂 through YouTube Music in the Pear Desktop app, with the bundled Rust charts. A small bot that reads the screen did the hitting, so the scores aren’t a person’s. Music: 魔王魂 (maou.audio).",
     menuLabel: "Steps",
     keysLabel: "Keys on this screen",
     steps: [
@@ -44,13 +44,14 @@ export const guide: Record<Lang, Guide> = {
         menu: "Pick a song",
         title: "Pick a song and a chart",
         body: [
-          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right.",
+          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of YouTube Music (or Spotify).",
           "The bundled source has three songs in each of Rust, Python, Go, TypeScript, Ruby and PHP. Your local git repos and GitHub repos are other sources; switch with [ and ].",
         ],
         cmd: "beatcode",
         keys: [
           ["Tab", "Move between songs, charts and code"],
           ["↑ ↓", "Pick"],
+          ["/", "Find a song (on songs)"],
           ["← →", "Language"],
           ["Space", "Play the selected pair now"],
           ["Enter", "On charts, choose what the lower right shows, then play"],
@@ -59,8 +60,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "select",
-            alt: "The song select screen: Silent at BPM 100 is selected, NORMAL and 4 lanes are highlighted, and the code of fizzbuzz.rs is on the right.",
-            caption: "Song select with fizzbuzz.rs, the first bundled Rust chart.",
+            alt: "The song select screen: the songs are filtered by シャイニング, leaving one, シャイニングスター by 魔王魂 and 森田交一 (4:36). NORMAL and 4 lanes are highlighted, and the code of fizzbuzz.rs is on the right.",
+            caption: "Songs filtered with / and シャイニング. The chart is fizzbuzz.rs, the first bundled Rust chart.",
           },
         ],
       },
@@ -81,8 +82,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready",
-            alt: "The ready screen: the glowing beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start.",
-            caption: "The lanes are labelled KW, ID, OP and LIT across the top.",
+            alt: "The ready screen: シャイニングスター — 魔王魂, 森田交一 and 0:00 / 4:36 at the top, the glowing beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start. The panel shows NOTES 0/1240 and BPM 158.",
+            caption: "The lanes are labelled KW, ID, OP and LIT across the top. The chart repeats until the song ends, so the 15-line fizzbuzz.rs comes to 1240 notes.",
           },
         ],
       },
@@ -102,7 +103,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "play",
-            alt: "Twelve seconds in: a combo of 13 in the lanes, the score panel showing PERFECT 24 and MISS 5, and the played tokens highlighted in the code.",
+            alt: "Eleven seconds into the song (0:11 / 4:36): a combo of 3 in the lanes, the score panel showing PERFECT 28 and MISS 7, and the played tokens highlighted in the code.",
             caption: "Twelve seconds of play. The code on the right lights up as each token is hit.",
           },
         ],
@@ -124,8 +125,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "The results screen: rank AAA, score 152 of 166 (91.6%), PERFECT 76, MISS 7, with the score graph and a strip of judgments on the right.",
-            caption: "AAA at 91.6%. The red marks in the strip are the seven misses.",
+            alt: "The results screen for シャイニングスター: rank AA, score 2018 of 2458 (82.1%), PERFECT 1009, MISS 220, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
+            caption: "AA at 82.1%. Each slice of the strip takes its worst judgment, so over a whole song any slice with a single miss turns red.",
           },
         ],
       },
@@ -167,9 +168,9 @@ export const guide: Record<Lang, Guide> = {
         ],
         shots: [
           {
-            file: "select8",
-            alt: "Song select with HARD and 8 lanes highlighted. fizzbuzz.rs now shows 83 notes in 0:15.",
-            caption: "HARD and 8 lanes: the same 83 notes in half the time.",
+            file: "ready8",
+            alt: "The ready screen on HARD with 8 lanes labelled KW, ID, TY, OP, brackets, STR, NUM and separators: A keyword, S identifier, D type, F operator, J bracket, K string, L numbers and booleans, ; separator. NOTES 0/2858.",
+            caption: "HARD with 8 lanes: the same song now has 2858 notes instead of 1240.",
           },
           {
             file: "play8",
@@ -195,13 +196,13 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "The history screen with one row: just now, AAA 91.6%, 4 lanes, Silent at BPM 100, Rust fizzbuzz.rs, with its code on the right.",
+            alt: "The history screen with one row: just now, AA 82.1%, N4, ★ ♫ シャイニング, Rust fizzbuzz.rs, with its code on the right.",
             caption: "One play so far.",
           },
           {
             file: "box",
-            alt: "A dialog over the history: What should the lower right show while playing? Code is selected; Cover art is dimmed, only with a song; Camera.",
-            caption: "Cover art needs a song, so it’s dimmed while playing Silent.",
+            alt: "A dialog over the history: What should the lower right show while playing? Code is selected; the others are Cover art and Camera.",
+            caption: "A song is playing, so Cover art can be picked too (with no song it’s dimmed).",
           },
         ],
       },
@@ -235,7 +236,7 @@ export const guide: Record<Lang, Guide> = {
     heading: "使い方",
     lede: "曲選びから結果の画面まで。そのあと、知っておくと便利な設定。手順ごとに、実際の画面を載せています。",
     recorded:
-      "画面は、曲をつないでいない入れたての状態で beatcode record を使って撮りました。なので曲はすべて無音です(曲は流さず、判定ラインが拍の頭で光ります)。",
+      "画面は beatcode record で撮りました。曲は YouTube Music(アプリ Pear Desktop)で流した魔王魂の「シャイニングスター」(♩=158、4:36)、譜面は同梱の Rust です。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
     menuLabel: "手順",
     keysLabel: "この画面のキー",
     steps: [
@@ -244,13 +245,14 @@ export const guide: Record<Lang, Guide> = {
         menu: "曲を選ぶ",
         title: "曲と譜面を選ぶ",
         body: [
-          "引数なしで beatcode を打ちます。左上が曲、左下が譜面、右が選んだ譜面のコードです。",
+          "引数なしで beatcode を打ちます。左上が曲、左下が譜面、右が選んだ譜面のコードです。曲は / で探せます。字を打つと曲名・アーティストで絞り込み、最後の行で YouTube Music(Spotify)全体を探します。",
           "同梱の譜面は Rust・Python・Go・TypeScript・Ruby・PHP に 3 曲ずつ。手元の git repo や GitHub の repo も譜面になります。出どころは [ と ] で替えます。",
         ],
         cmd: "beatcode",
         keys: [
           ["Tab", "曲 → 譜面 → コードと移る"],
           ["↑ ↓", "選ぶ"],
+          ["/", "曲を探す(曲の欄で)"],
           ["← →", "言語"],
           ["Space", "選んでいる組み合わせをすぐ遊ぶ"],
           ["Enter", "譜面の上では、右下に出すものを選んでから遊ぶ"],
@@ -259,8 +261,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "select",
-            alt: "曲選びの画面。無音 BPM 100 を選び、NORMAL と 4 列が光っている。右に fizzbuzz.rs のコード。",
-            caption: "同梱の Rust の 1 曲目、fizzbuzz.rs を選んだところ。",
+            alt: "曲選びの画面。曲の欄で「シャイニング」と絞り込み、シャイニングスター(魔王魂、森田交一、4:36)が 1 曲だけ出ている。NORMAL と 4 列が光り、右に fizzbuzz.rs のコード。",
+            caption: "/ で「シャイニング」と打って絞り込んだところ。譜面は同梱の Rust の 1 曲目、fizzbuzz.rs。",
           },
         ],
       },
@@ -281,8 +283,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready",
-            alt: "始める前の画面。列の上に beatcode のロゴ、D=キーワード F=識別子 J=演算子・括弧 K=リテラル、Space / Enter で始める。",
-            caption: "列の上に KW・ID・OP・LIT と種類が出ています。",
+            alt: "始める前の画面。上にシャイニングスター — 魔王魂、森田交一 と 0:00 / 4:36。列の上に beatcode のロゴ、D=キーワード F=識別子 J=演算子・括弧 K=リテラル、Space / Enter で始める。右の欄に NOTES 0/1240、BPM 158。",
+            caption: "列の上に KW・ID・OP・LIT と種類が出ています。譜面は曲の終わりまでくり返すので、15 行の fizzbuzz.rs でも 1240 ノーツになります。",
           },
         ],
       },
@@ -302,7 +304,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "play",
-            alt: "プレイ中。列に 13 コンボ、右の欄に PERFECT 24・MISS 5、叩いたトークンがコードの中で光っている。",
+            alt: "プレイ中、0:11 / 4:36。列に 19 コンボ、右の欄に PERFECT 29・MISS 6、叩いたトークンがコードの中で光っている。",
             caption: "プレイ中の 12 秒。叩いたトークンが、右のコードで順に光っていきます。",
           },
         ],
@@ -324,8 +326,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "結果の画面。ランク AAA、SCORE 152 / 166(91.6%)、PERFECT 76・MISS 7。右に曲の流れのグラフと判定の帯。",
-            caption: "91.6% で AAA。帯の赤が 7 つの MISS です。",
+            alt: "結果の画面。シャイニングスター、ランク AA、SCORE 2008 / 2458(81.7%)、PERFECT 1004・MISS 225。右に曲の流れのグラフと判定の帯、左下にランキング。",
+            caption: "81.7% で AA。帯は区切りごとにいちばん悪い判定の色なので、1 曲通すと MISS が 1 つでもある区切りが赤くなります。",
           },
         ],
       },
@@ -367,9 +369,9 @@ export const guide: Record<Lang, Guide> = {
         ],
         shots: [
           {
-            file: "select8",
-            alt: "曲選びで HARD と 8 列が光っている。fizzbuzz.rs は 83 notes・0:15 になった。",
-            caption: "HARD・8 列。同じ 83 ノーツが半分の長さに詰まります。",
+            file: "ready8",
+            alt: "HARD・8 列の始める前の画面。列は KW・ID・TY・OP・括弧・STR・NUM・区切り、A=キーワード S=識別子 D=型 F=演算子 J=括弧 K=文字列 L=数値・真偽 ;=区切り。NOTES 0/2858。",
+            caption: "HARD・8 列。同じ曲で、ノーツは 1240 から 2858 に増えます。",
           },
           {
             file: "play8",
@@ -395,13 +397,13 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "遊んだ履歴の画面。1 行だけ:たった今、AAA 91.6%、4 列、無音 BPM 100、Rust fizzbuzz.rs。右にそのコード。",
+            alt: "遊んだ履歴の画面。1 行だけ:たった今、AA 81.7%、N4、★ ♫ シャイニング、Rust fizzbuzz.rs。右にそのコード。",
             caption: "まだ 1 回分。",
           },
           {
             file: "box",
-            alt: "履歴の上に出た問い:プレイ中の右下に何を出しますか? コードを選んでいる。ジャケットは曲を流すときだけなので薄い。インカメ。",
-            caption: "ジャケットは曲を流すときだけ。無音では選べません。",
+            alt: "履歴の上に出た問い:プレイ中の右下に何を出しますか? コードを選んでいる。ほかにジャケット、インカメ。",
+            caption: "曲を流しているので、ジャケットも選べます(無音のときは薄くなって選べません)。",
           },
         ],
       },

@@ -31,7 +31,7 @@ const posters = new Map(
   ),
 );
 const num = (i: number) => String(i + 1).padStart(2, "0");
-// "Space / Enter" → [Space] / [Enter]; "D F J K" → [D] [F] [J] [K]
+// "Space / Enter" → [Space] / [Enter]; "D F J K" → [D] [F] [J] [K]; "/" alone is the key itself
 const keyCaps = (keys: string) => keys.split(" ");
 const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
 ---
@@ -77,7 +77,7 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
                 {s.keys.map(([keys, does]) => (
                   <div class="step__key">
                     <dt>
-                      {keyCaps(keys).map((k) => (k === "/" ? <span class="step__or">/</span> : <kbd>{k}</kbd>))}
+                      {keyCaps(keys).map((k, i, all) => (k === "/" && all.length > 1 ? <span class="step__or">/</span> : <kbd>{k}</kbd>))}
                     </dt>
                     <dd>{does}</dd>
                   </div>
