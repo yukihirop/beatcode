@@ -256,13 +256,13 @@ export function mountHighway(root: HTMLElement): void {
     if (lastJudge && now - lastJudge.at < 0.5 && phase === "playing") {
       ctx.globalAlpha = 1 - (now - lastJudge.at) / 0.5;
       ctx.fillStyle = lastJudge.judge === "MISS" ? colors.muted : colors.ink;
-      ctx.font = `700 ${Math.min(34, width / 9)}px ${fonts.display}`;
+      ctx.font = `400 ${Math.min(32, width / 12)}px ${fonts.display}`;
       ctx.fillText(lastJudge.judge, width / 2, judgeY * 0.42);
       ctx.globalAlpha = 1;
     }
     if (combo >= 2 && phase === "playing") {
       ctx.fillStyle = colors.ink;
-      ctx.font = `700 ${Math.min(30, width / 10)}px ${fonts.display}`;
+      ctx.font = `400 ${Math.min(24, width / 16)}px ${fonts.display}`;
       ctx.fillText(`${combo} COMBO`, width / 2, judgeY * 0.42 + 40);
     }
   }

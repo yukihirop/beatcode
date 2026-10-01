@@ -54,6 +54,7 @@ export type Strings = {
     license: string;
     spotify: string;
     links: { label: string; href: string }[];
+    copyright: string;
   };
 };
 
@@ -168,6 +169,7 @@ export const strings: Record<Lang, Strings> = {
         { label: "Releases", href: `${repo}/releases` },
         { label: "LICENSE", href: `${repo}/blob/main/LICENSE` },
       ],
+      copyright: "© 2026 yukihirop",
     },
   },
   ja: {
@@ -261,6 +263,7 @@ export const strings: Record<Lang, Strings> = {
         { label: "Releases", href: `${repo}/releases` },
         { label: "LICENSE", href: `${repo}/blob/main/LICENSE` },
       ],
+      copyright: "© 2026 yukihirop",
     },
   },
 };

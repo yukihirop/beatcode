@@ -1,0 +1,47 @@
+---
+// The beatcode wordmark, drawn on a pixel grid to match the banner's letterforms
+// exactly rather than borrowing a font's. Each glyph is
+// 11 rows: 3 for ascenders, 8 for the x-height. "#" is a filled pixel.
+const glyphs: Record<string, string[]> = {
+  b: ["##.....", "##.....", "##.....", "######.", "#######", "##...##", "##...##", "##...##", "##...##", "#######", "######."],
+  e: [".......", ".......", ".......", ".#####.", "#######", "##...##", "#######", "#######", "##.....", "#######", ".######"],
+  a: [".......", ".......", ".......", "######.", "#######", ".....##", ".######", "#######", "##...##", "#######", ".######"],
+  t: ["......", ".##...", ".##...", "######", "######", ".##...", ".##...", ".##...", ".##...", ".#####", "..####"],
+  c: [".......", ".......", ".......", ".######", "#######", "##.....", "##.....", "##.....", "##.....", "#######", ".######"],
+  o: [".......", ".......", ".......", ".#####.", "#######", "##...##", "##...##", "##...##", "##...##", "#######", ".#####."],
+  d: [".....##", ".....##", ".....##", ".######", "#######", "##...##", "##...##", "##...##", "##...##", "#######", ".######"],
+};
+
+const GAP = 1;
+type Run = { x: number; y: number; w: number };
+
+function layout(word: string, start: number): { runs: Run[]; end: number } {
+  const runs: Run[] = [];
+  let x = start;
+  for (const ch of word) {
+    const rows = glyphs[ch];
+    rows.forEach((row, y) => {
+      // Merge each row's filled pixels into horizontal runs: fewer rects, no seams.
+      let i = 0;
+      while (i < row.length) {
+        if (row[i] !== "#") { i++; continue; }
+        let j = i;
+        while (row[j] === "#") j++;
+        runs.push({ x: x + i, y, w: j - i });
+        i = j;
+      }
+    });
+    x += rows[0].length + GAP;
+  }
+  return { runs, end: x };
+}
+
+const beat = layout("beat", 0);
+const code = layout("code", beat.end);
+const width = code.end - GAP;
+---
+
+<svg class="wordmark__svg" viewBox={`0 0 ${width} 11`} role="img" aria-label="beatcode" shape-rendering="crispEdges">
+  <g class="wordmark__beat">{beat.runs.map((r) => <rect x={r.x} y={r.y} width={r.w} height="1" />)}</g>
+  <g class="wordmark__code">{code.runs.map((r) => <rect x={r.x} y={r.y} width={r.w} height="1" />)}</g>
+</svg>

@@ -19,7 +19,7 @@ importers:
       '@fontsource/dotgothic16':
         specifier: ^5.3.0
         version: 5.3.0
-      '@fontsource/pixelify-sans':
+      '@fontsource/press-start-2p':
         specifier: ^5.3.0
         version: 5.3.0
       astro:
@@ -366,8 +366,8 @@ packages:
   '@fontsource/dotgothic16@5.3.0':
     resolution: {integrity: sha512-HYOA4yd61tGyjFvDXG0dzvCdXjmPIVuqDFCaMk2ok0G/eWbub6nJ9NlrHaGOUKUWiypGIoz6vZuzm11uFNdm8w==}
 
-  '@fontsource/pixelify-sans@5.3.0':
-    resolution: {integrity: sha512-4RCe9nXbi7wUu5+H0FNX1sgPZ2kJ1MmY1uTkEfvQIzzqhoS8zGKJaJfdK8oreE0OU+5gM+NdurFi3H3FJRBvyw==}
+  '@fontsource/press-start-2p@5.3.0':
+    resolution: {integrity: sha512-gxWFxdeDglPhEYSwEeooomcaFK8kSQYLQwVxfnOJeYRj2sPEHXjpVtFgEaYfqzOjuAJGrIcJOipu2KY5YkbyuQ==}
 
   '@img/colour@1.1.0':
     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
@@ -1639,7 +1639,7 @@ snapshots:
 
   '@fontsource/dotgothic16@5.3.0': {}
 
-  '@fontsource/pixelify-sans@5.3.0': {}
+  '@fontsource/press-start-2p@5.3.0': {}
 
   '@img/colour@1.1.0':
     optional: true

@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import Highway from "./Highway.astro";
 import Install from "./Install.astro";
+import Wordmark from "./Wordmark.astro";
 import type { Strings } from "../i18n/strings";
 
 interface Props {
@@ -19,7 +20,7 @@ const repo = t.footer.links[0].href;
 
 <Base t={t}>
   <header class="nav">
-    <a class="wordmark" href={base} aria-label="beatcode">beat<span>code</span></a>
+    <a class="wordmark" href={base}><Wordmark /></a>
     <nav class="nav__end" aria-label="Site">
       <a class="nav__link" href={`${base}${t.otherLang.href}`} lang={t.htmlLang === "en" ? "ja" : "en"}>{t.otherLang.label}</a>
       <a class="btn btn--ghost" href={repo}>{t.github}</a>
@@ -116,5 +117,6 @@ const repo = t.footer.links[0].href;
     <p class="foot__links">
       {t.footer.links.map((l) => <a href={l.href}>{l.label}</a>)}
     </p>
+    <p class="foot__copy"><small>{t.footer.copyright}</small></p>
   </footer>
 </Base>

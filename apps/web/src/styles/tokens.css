@@ -28,9 +28,9 @@
   --lane-op: oklch(72% 0.2 345);
   --lane-literal: oklch(82% 0.19 145);
 
-  /* Type: a pixel display face (with a Japanese pixel face behind it),
-   * a sans for reading, a mono for every token and command. */
-  --font-display: "Pixelify Sans", "DotGothic16", ui-monospace, monospace;
+  /* Type: a pixel display face whose "e" matches the banner (with a Japanese
+   * pixel face behind it), a sans for reading, a mono for every token and command. */
+  --font-display: "Press Start 2P", "DotGothic16", ui-monospace, monospace;
   --font-body: "Geist Variable", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
   --font-mono: "JetBrains Mono Variable", "Hiragino Sans", ui-monospace, monospace;
 
@@ -38,8 +38,8 @@
   --text-sm: 0.8125rem;
   --text-base: 1rem;
   --text-md: 1.25rem;
-  --text-xl: clamp(1.75rem, 2vw + 1rem, 2.4rem);
-  --text-display: clamp(2.75rem, 5vw + 1rem, 5.25rem);
+  --text-xl: clamp(1.25rem, 1vw + 0.9rem, 1.625rem);
+  --text-display: clamp(1.75rem, 2.4vw + 1rem, 3.25rem);
 
   /* 4pt spacing. */
   --space-2xs: 0.25rem;
