@@ -96,8 +96,6 @@ Claude Code か Codex で `/beatcode-teardown` を打つと、beatcode が置い
 
 ---
 
-<sub>Spotify の再生には非公式のクライアント [librespot](https://github.com/librespot-org/librespot) を使っています。Premium が要り、Spotify の仕様変更で動かなくなることがあり、規約の面ではグレーです。</sub>
-
 ## ライセンス
 
 `beatcode` は著作権者がすべての権利を持つソフトウェアです。公式の配布元(この repo の Releases・Homebrew の formula・

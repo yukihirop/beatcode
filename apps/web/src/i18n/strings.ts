@@ -61,7 +61,6 @@ export type Strings = {
   };
   footer: {
     license: string;
-    spotify: string;
     links: { label: string; href: string }[];
     copyright: string;
   };
@@ -180,8 +179,6 @@ export const strings: Record<Lang, Strings> = {
     footer: {
       license:
         "beatcode is proprietary software. The official binaries are free to install and run for personal, non-commercial use; the source code is not public. See LICENSE for the complete terms.",
-      spotify:
-        "Spotify playback uses librespot, an unofficial client. It needs Premium, may break when Spotify changes things, and is a gray area under Spotify’s terms.",
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },
@@ -283,8 +280,6 @@ export const strings: Record<Lang, Strings> = {
     footer: {
       license:
         "beatcode は著作権者がすべての権利を持つソフトウェアです。公式のバイナリを、個人が非商用で入れて動かすことは許可しています。ソースコードは公開していません。詳しい条件は LICENSE を確認してください。",
-      spotify:
-        "Spotify の再生には非公式のクライアント librespot を使っています。Premium が要り、Spotify の仕様変更で動かなくなることがあり、規約の面ではグレーです。",
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },

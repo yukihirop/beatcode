@@ -98,8 +98,6 @@ They go to `~/.local/share/beatcode/plugins/`.
 
 ---
 
-<sub>Spotify playback uses [librespot](https://github.com/librespot-org/librespot), an unofficial client. It needs Premium, may break when Spotify changes things, and is a gray area under Spotify's terms.</sub>
-
 ## License
 
 `beatcode` is proprietary software. All rights are reserved. You may install and run the
