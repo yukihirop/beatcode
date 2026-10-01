@@ -103,7 +103,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "play",
-            alt: "Eleven seconds into the song (0:11 / 4:36): a combo of 3 in the lanes, the score panel showing PERFECT 28 and MISS 7, and the played tokens highlighted in the code.",
+            alt: "Twelve seconds into the song (0:12 / 4:36): a combo of 3 in the lanes, the score panel showing PERFECT 27 and MISS 8, and the played tokens highlighted in the code.",
             caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. Music: 魔王魂.",
           },
         ],
@@ -125,8 +125,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "The results screen for シャイニングスター: rank AA, score 2018 of 2458 (82.1%), PERFECT 1009, MISS 220, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
-            caption: "AA at 82.1%. Each slice of the strip takes its worst judgment, so over a whole song any slice with a single miss turns red.",
+            alt: "The results screen for シャイニングスター: rank AA, score 2000 of 2458 (81.4%), PERFECT 1000, MISS 229, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
+            caption: "AA at 81.4%. Each slice of the strip stacks its judgments by share, MISS at the bottom, then GREAT, then PERFECT, so the red rises where the misses pile up.",
           },
         ],
       },
@@ -146,7 +146,7 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "A preview of the post from beatcode: Got AA (85.5% 2052/2398) on \"シャイニングスター\", the beatcode URL and #beatcode, with the result card attached showing the cover art, シャイニングスター by 魔王魂 and 森田交一, YouTube Music, NORMAL, 4 lanes, AA, 85.5%, PERFECT 1026, MISS 173, max combo 31 and the score graph.",
+            alt: "A preview of the post from beatcode: Got AA (86.0% 2064/2398) on \"シャイニングスター\", the beatcode URL and #beatcode, with the result card attached showing the cover art, シャイニングスター by 魔王魂 and 森田交一, YouTube Music, NORMAL, 4 lanes, AA, 86.0%, PERFECT 1032, MISS 167, max combo 31 and the score graph.",
             caption: "The card is the one beatcode made for this play of シャイニングスター through YouTube Music; the post around it is a preview, not a screenshot of X. The chart came from a local repo, so there’s no chart link, and the ranking line is turned off. Music: 魔王魂 (maou.audio).",
           },
         ],
@@ -196,7 +196,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "The history screen with one row: just now, AA 82.1%, N4, ★ ♫ シャイニング, Rust fizzbuzz.rs, with its code on the right.",
+            alt: "The history screen with one row: just now, AA 81.4%, N4, ★ ♫ シャイニング, Rust fizzbuzz.rs, with its code on the right.",
             caption: "One play so far.",
           },
           {
@@ -304,7 +304,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "play",
-            alt: "プレイ中、0:11 / 4:36。列に 19 コンボ、右の欄に PERFECT 29・MISS 6、叩いたトークンがコードの中で光っている。",
+            alt: "プレイ中、0:12 / 4:36。列に 3 コンボ、右の欄に PERFECT 27・MISS 8、叩いたトークンがコードの中で光っている。",
             caption: "プレイ中の 12 秒。曲の音つきです(スピーカーのボタンで鳴ります)。叩いたトークンが、右のコードで順に光っていきます。音楽：魔王魂。",
           },
         ],
@@ -326,8 +326,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "結果の画面。シャイニングスター、ランク AA、SCORE 2008 / 2458(81.7%)、PERFECT 1004・MISS 225。右に曲の流れのグラフと判定の帯、左下にランキング。",
-            caption: "81.7% で AA。帯は区切りごとにいちばん悪い判定の色なので、1 曲通すと MISS が 1 つでもある区切りが赤くなります。",
+            alt: "結果の画面。シャイニングスター、ランク AA、SCORE 2032 / 2458(82.7%)、PERFECT 1016・MISS 213。右に曲の流れのグラフと判定の帯、左下にランキング。",
+            caption: "82.7% で AA。帯は区切りごとの判定を割合で下から MISS・GREAT・PERFECT と積むので、MISS が多いところほど赤が高くなります。",
           },
         ],
       },
@@ -347,7 +347,7 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "beatcode の投稿のプレビュー。「シャイニングスター」で AA (84.6% | 2030/2398)を取りました、beatcode の URL、#beatcode。添えたカードにはジャケット、シャイニングスター(魔王魂、森田交一)、YouTube Music・NORMAL・4 LANES、AA・84.6%・PERFECT 1015・MISS 184・最大コンボ 40 と点数のグラフ。",
+            alt: "beatcode の投稿のプレビュー。「シャイニングスター」で AA (83.7% | 2008/2398)を取りました、beatcode の URL、#beatcode。添えたカードにはジャケット、シャイニングスター(魔王魂、森田交一)、YouTube Music・NORMAL・4 LANES、AA・83.7%・PERFECT 1004・MISS 195・最大コンボ 23 と点数のグラフ。",
             caption: "カードは YouTube Music でシャイニングスターを流して遊んだときに beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。譜面は手元の repo のものなので譜面のリンクはなく、ランキングの印は外しています。音楽：魔王魂(maou.audio)。",
           },
         ],
@@ -397,7 +397,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "遊んだ履歴の画面。1 行だけ:たった今、AA 81.7%、N4、★ ♫ シャイニング、Rust fizzbuzz.rs。右にそのコード。",
+            alt: "遊んだ履歴の画面。1 行だけ:たった今、AA 82.7%、N4、★ ♫ シャイニング、Rust fizzbuzz.rs。右にそのコード。",
             caption: "まだ 1 回分。",
           },
           {
