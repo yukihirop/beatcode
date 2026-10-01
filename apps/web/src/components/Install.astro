@@ -1,0 +1,90 @@
+---
+import { installs, type Strings } from "../i18n/strings";
+
+interface Props {
+  t: Strings["hero"];
+}
+const { t } = Astro.props;
+---
+
+<section class="install" aria-labelledby="install-heading" data-install data-copied={t.copied}>
+  <h2 id="install-heading" class="visually-hidden">{t.installHeading}</h2>
+  <div class="install__tabs" role="tablist" aria-label={t.installHeading}>
+    {installs.map((m, i) => (
+      <button
+        type="button"
+        role="tab"
+        id={`tab-${m.id}`}
+        aria-controls={`panel-${m.id}`}
+        aria-selected={i === 0 ? "true" : "false"}
+        tabindex={i === 0 ? 0 : -1}
+        class="install__tab"
+      >{m.label}</button>
+    ))}
+  </div>
+  {installs.map((m, i) => (
+    <div
+      class="install__panel"
+      role="tabpanel"
+      id={`panel-${m.id}`}
+      aria-labelledby={`tab-${m.id}`}
+      hidden={i !== 0}
+    >
+      <pre><code>{m.lines.map((l) => <span class="install__line">{l}</span>)}</code></pre>
+      <button type="button" class="btn btn--ghost install__copy" data-copy={m.lines.join("\n")}>
+        <span data-label>{t.copy}</span>
+      </button>
+    </div>
+  ))}
+  <p class="install__note" data-npm-note hidden>{t.npmNote}</p>
+  <p class="install__note">{t.platforms}</p>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-install]");
+  if (root) {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>("[role=tab]"));
+    const npmNote = root.querySelector<HTMLElement>("[data-npm-note]")!;
+
+    const select = (tab: HTMLButtonElement, focus: boolean) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute("aria-selected", String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")!)!.hidden = !on;
+      }
+      npmNote.hidden = tab.id !== "tab-npm";
+      if (focus) tab.focus({ preventScroll: true });
+    };
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => select(tab, false));
+      tab.addEventListener("keydown", (e) => {
+        const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!step) return;
+        e.preventDefault();
+        select(tabs[(i + step + tabs.length) % tabs.length], true);
+      });
+    });
+
+    for (const btn of root.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+      const label = btn.querySelector<HTMLElement>("[data-label]")!;
+      const idle = label.textContent;
+      let timer = 0;
+      btn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(btn.dataset.copy!);
+        } catch {
+          return;
+        }
+        label.textContent = root.dataset.copied!;
+        btn.dataset.state = "success";
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          label.textContent = idle;
+          delete btn.dataset.state;
+        }, 1600);
+      });
+    }
+  }
+</script>

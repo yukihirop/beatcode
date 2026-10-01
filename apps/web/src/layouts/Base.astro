@@ -1,0 +1,37 @@
+---
+import "@fontsource/pixelify-sans/700.css";
+import "@fontsource/dotgothic16/400.css";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/jetbrains-mono";
+import "../styles/tokens.css";
+import "../styles/site.css";
+import type { Strings } from "../i18n/strings";
+
+interface Props {
+  t: Strings;
+}
+const { t } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+---
+
+<!doctype html>
+<html lang={t.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+    <meta name="theme-color" content="oklch(15% 0.03 265)" />
+    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="alternate" hreflang="en" href={base} />
+    <link rel="alternate" hreflang="ja" href={`${base}ja/`} />
+    <meta property="og:title" content={t.title} />
+    <meta property="og:description" content={t.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL(`${base}og.png`, Astro.site ?? Astro.url).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

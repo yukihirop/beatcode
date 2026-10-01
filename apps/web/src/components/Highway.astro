@@ -1,0 +1,63 @@
+---
+import { source } from "../scripts/chart";
+import type { Strings } from "../i18n/strings";
+
+interface Props {
+  t: Strings["highway"];
+}
+const { t } = Astro.props;
+
+const laneClass = ["kw", "id", "op", "lit"];
+let noteIndex = 0;
+const lines = source.map((line) =>
+  line.map((piece) =>
+    typeof piece === "string"
+      ? { text: piece }
+      : { text: piece[0], lane: laneClass[piece[1]], index: noteIndex++ },
+  ),
+);
+---
+
+<div class="highway" data-highway data-phase="idle" data-auto={t.auto} data-you={t.you}>
+  <div class="highway__stage">
+    <canvas role="img" aria-label={t.label}></canvas>
+    <p class="highway__mode" data-mode="auto" aria-hidden="true">{t.auto}</p>
+
+    <div class="highway__start">
+      <button type="button" class="btn btn--solid" data-start>{t.play}</button>
+    </div>
+
+    <div class="highway__result" data-result>
+      <p class="highway__clear"><span>{t.result}</span> <span class="highway__who" data-who></span></p>
+      <dl class="highway__counts">
+        <div><dt>PERFECT</dt><dd data-perfect>0</dd></div>
+        <div><dt>GREAT</dt><dd data-great>0</dd></div>
+        <div><dt>GOOD</dt><dd data-good>0</dd></div>
+        <div><dt>MISS</dt><dd data-miss>0</dd></div>
+        <div class="highway__max"><dt>{t.maxCombo}</dt><dd data-max>0</dd></div>
+      </dl>
+      <button type="button" class="btn btn--solid" data-replay>{t.replay}</button>
+    </div>
+  </div>
+
+  <p class="highway__hint">{t.hint}</p>
+
+  <figure class="typed">
+    <figcaption>{t.codeLabel}</figcaption>
+    <pre><code>{lines.map((line) => (
+      <span class="typed__line">{line.map((p) =>
+        "lane" in p
+          ? <span class={`tok tok--${p.lane}`} data-note={p.index} data-state="pending">{p.text}</span>
+          : p.text
+      )}</span>
+    ))}</code></pre>
+  </figure>
+
+  <p class="visually-hidden" aria-live="polite" data-live></p>
+</div>
+
+<script>
+  import { mountHighway } from "../scripts/highway";
+  const el = document.querySelector<HTMLElement>("[data-highway]");
+  if (el) mountHighway(el);
+</script>
