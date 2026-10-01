@@ -81,7 +81,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready",
-            alt: "The ready screen: the beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start.",
+            alt: "The ready screen: the glowing beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start.",
             caption: "The lanes are labelled KW, ID, OP and LIT across the top.",
           },
         ],
@@ -179,8 +179,8 @@ export const guide: Record<Lang, Guide> = {
           },
           {
             file: "box",
-            alt: "A dialog over the history: What should the lower right show while playing? Code is selected; Cover art is dimmed because the terminal can’t show images; Camera.",
-            caption: "Cover art is dimmed here because the recording terminal can’t show images.",
+            alt: "A dialog over the history: What should the lower right show while playing? Code is selected; Cover art is dimmed, only with a song; Camera.",
+            caption: "Cover art needs a song, so it’s dimmed while playing Silent.",
           },
         ],
       },
@@ -358,8 +358,8 @@ export const guide: Record<Lang, Guide> = {
           },
           {
             file: "box",
-            alt: "履歴の上に出た問い:プレイ中の右下に何を出しますか? コードを選んでいる。ジャケットは画像を出せない端末なので薄い。インカメ。",
-            caption: "撮った端末が画像を出せないので、ジャケットは選べない表示です。",
+            alt: "履歴の上に出た問い:プレイ中の右下に何を出しますか? コードを選んでいる。ジャケットは曲を流すときだけなので薄い。インカメ。",
+            caption: "ジャケットは曲を流すときだけ。無音では選べません。",
           },
         ],
       },
