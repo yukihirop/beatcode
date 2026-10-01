@@ -1,0 +1,23 @@
+---
+import Wordmark from "./Wordmark.astro";
+import type { Strings } from "../i18n/strings";
+
+interface Props {
+  t: Strings;
+  /** The page's path under the language root: "" for the top page, "guide/" for the guide. */
+  path?: string;
+}
+const { t, path = "" } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+const home = `${base}${t.htmlLang === "ja" ? "ja/" : ""}`;
+const repo = t.footer.links[0].href;
+---
+
+<header class="nav">
+  <a class="wordmark" href={home}><Wordmark /></a>
+  <nav class="nav__end" aria-label="Site">
+    <a class="nav__link" href={`${home}guide/`} aria-current={path === "guide/" ? "page" : undefined}>{t.nav.guide}</a>
+    <a class="nav__link" href={`${base}${t.otherLang.href}${path}`} lang={t.htmlLang === "en" ? "ja" : "en"}>{t.otherLang.label}</a>
+    <a class="btn btn--ghost" href={repo}>{t.github}</a>
+  </nav>
+</header>

@@ -1,0 +1,152 @@
+---
+import { Image, getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import Base from "../layouts/Base.astro";
+import SiteFooter from "./SiteFooter.astro";
+import SiteHeader from "./SiteHeader.astro";
+import { guide } from "../i18n/guide";
+import { strings, type Lang } from "../i18n/strings";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = strings[lang];
+const g = guide[lang];
+const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+
+// Screenshots recorded with `beatcode record`, one folder per UI language.
+const files = import.meta.glob<{ default: ImageMetadata }>("../assets/guide/*/*.png", { eager: true });
+const shot = (file: string) => {
+  const found = files[`../assets/guide/${lang}/${file}.png`];
+  if (!found) throw new Error(`missing screenshot: ${lang}/${file}.png`);
+  return found.default;
+};
+// A step with a recording shows it in place of its first shot, which becomes the poster.
+const posters = new Map(
+  await Promise.all(
+    g.steps
+      .filter((s) => s.video)
+      .map(async (s) => [s.id, await getImage({ src: shot(s.shots[0].file), format: "webp", width: 1320 })] as const),
+  ),
+);
+const num = (i: number) => String(i + 1).padStart(2, "0");
+// "Space / Enter" → [Space] / [Enter]; "D F J K" → [D] [F] [J] [K]
+const keyCaps = (keys: string) => keys.split(" ");
+const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
+---
+
+<Base t={t} title={g.title} description={g.description} path="guide/">
+  <SiteHeader t={t} path="guide/" />
+
+  <main class="guide">
+    <header class="guide__head">
+      <h1>{g.heading}</h1>
+      <p class="guide__lede">{g.lede}</p>
+      <p class="muted">{g.recorded}</p>
+    </header>
+
+    <div class="guide__body">
+      <nav class="guide__menu" aria-label={g.menuLabel}>
+        <p class="guide__menu-label">{g.menuLabel}</p>
+        <ol>
+          {g.steps.map((s, i) => (
+            <li>
+              <a href={`#${s.id}`} data-step-link={s.id}>
+                <span class="guide__num">{num(i)}</span>
+                <span>{s.menu}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      <div class="guide__steps">
+        {g.steps.map((s, i) => (
+          <section class="step" id={s.id} aria-labelledby={`${s.id}-heading`} data-step>
+            <h2 id={`${s.id}-heading`}>
+              <span class="step__num">{num(i)}</span>
+              <span>{s.title}</span>
+            </h2>
+            <div class="step__text">
+              {s.body.map((p) => <p>{p}</p>)}
+            </div>
+            {s.cmd && <pre class="step__cmd"><code>{s.cmd}</code></pre>}
+            {s.keys && (
+              <dl class="step__keys" aria-label={g.keysLabel}>
+                {s.keys.map(([keys, does]) => (
+                  <div class="step__key">
+                    <dt>
+                      {keyCaps(keys).map((k) => (k === "/" ? <span class="step__or">/</span> : <kbd>{k}</kbd>))}
+                    </dt>
+                    <dd>{does}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            {s.video && (
+              <figure class="shot">
+                <video
+                  class="shot__media"
+                  src={`${base}guide/${lang}/play.mp4`}
+                  poster={posters.get(s.id)?.src}
+                  width="1320"
+                  height="1000"
+                  muted
+                  loop
+                  playsinline
+                  controls
+                  preload="none"
+                  aria-label={s.video.label}
+                  data-autoplay
+                ></video>
+                <figcaption>{s.shots[0].caption}</figcaption>
+              </figure>
+            )}
+            {(s.video ? s.shots.slice(1) : s.shots).map((sh) => (
+              <figure class="shot">
+                <Image class="shot__media" src={shot(sh.file)} alt={sh.alt} widths={[660, 1320]} sizes={sizes} format="webp" loading="lazy" />
+                <figcaption>{sh.caption}</figcaption>
+              </figure>
+            ))}
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <SiteFooter t={t} />
+</Base>
+
+<script>
+  // Mark the step being read in the menu.
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>("[data-step-link]")].map((a) => [a.dataset.stepLink, a]),
+  );
+  const seen = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        for (const a of links.values()) a.removeAttribute("aria-current");
+        links.get(e.target.id)?.setAttribute("aria-current", "step");
+      }
+    },
+    { rootMargin: "-30% 0px -60% 0px" },
+  );
+  document.querySelectorAll<HTMLElement>("[data-step]").forEach((s) => seen.observe(s));
+
+  // Play the recording only while it's on screen, and never under reduced motion.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const play = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const v = e.target as HTMLVideoElement;
+          if (e.isIntersecting) v.play().catch(() => {});
+          else v.pause();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    document.querySelectorAll<HTMLVideoElement>("video[data-autoplay]").forEach((v) => play.observe(v));
+  }
+</script>

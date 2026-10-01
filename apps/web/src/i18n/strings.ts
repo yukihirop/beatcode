@@ -8,6 +8,7 @@ export type Strings = {
   title: string;
   description: string;
   otherLang: { label: string; href: string };
+  nav: { guide: string };
   github: string;
   hero: {
     title: string;
@@ -45,6 +46,7 @@ export type Strings = {
     keysHeading: string;
     keys: string;
     ime: string;
+    guide: string;
   };
   runs: {
     heading: string;
@@ -84,6 +86,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "A rhythm game for the terminal. The notes are the tokens of real source code, and clearing a song types out a function.",
     otherLang: { label: "日本語", href: "ja/" },
+    nav: { guide: "Guide" },
     github: "GitHub",
     hero: {
       title: "Play your code.",
@@ -148,6 +151,7 @@ export const strings: Record<Lang, Strings> = {
       keysHeading: "Keys",
       keys: "D F J K play the four lanes.",
       ime: "Switch your input method to plain ASCII before you play. With a Japanese IME on, the keys never reach the game.",
+      guide: "Read the guide",
     },
     runs: {
       heading: "Where it runs",
@@ -178,6 +182,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "ターミナルで遊ぶ音ゲー。落ちてくるノーツは本物のソースコードのトークンで、1 曲叩き切ると関数が 1 つ書き上がります。",
     otherLang: { label: "English", href: "" },
+    nav: { guide: "使い方" },
     github: "GitHub",
     hero: {
       title: "コードを、音ゲーとして叩く。",
@@ -242,6 +247,7 @@ export const strings: Record<Lang, Strings> = {
       keysHeading: "キー",
       keys: "4 列は D F J K で叩きます。",
       ime: "遊ぶ前に日本語入力を英数にしてください。日本語入力のままだと、キーがゲームに届きません。",
+      guide: "使い方を見る",
     },
     runs: {
       heading: "動く環境",
