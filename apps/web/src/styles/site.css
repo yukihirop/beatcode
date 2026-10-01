@@ -216,6 +216,15 @@ body::before {
   white-space: nowrap;
 }
 
+/* The GitHub mark alone, sized like the text links beside it and named by aria-label */
+.nav__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
+
 /* Hero · split: text left, the highway right ------------------------------- */
 
 .hero {
