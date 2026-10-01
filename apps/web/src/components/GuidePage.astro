@@ -104,7 +104,7 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
               </figure>
             )}
             {(s.video ? s.shots.slice(1) : s.shots).map((sh) => (
-              <figure class="shot">
+              <figure class:list={["shot", { "shot--narrow": sh.narrow }]}>
                 <Image class="shot__media" src={shot(sh.file)} alt={sh.alt} widths={[660, 1320]} sizes={sizes} format="webp" loading="lazy" />
                 <figcaption>{sh.caption}</figcaption>
               </figure>

@@ -1,7 +1,7 @@
 import type { Lang } from "./strings";
 
 /** A screenshot in src/assets/guide/<lang>/<file>.png */
-type Shot = { file: string; alt: string; caption: string };
+type Shot = { file: string; alt: string; caption: string; /** A portrait image (the X post), shown narrower. */ narrow?: boolean };
 
 type Step = {
   id: string;
@@ -126,6 +126,27 @@ export const guide: Record<Lang, Guide> = {
             file: "result",
             alt: "The results screen: rank AAA, score 152 of 166 (91.6%), PERFECT 76, MISS 7, with the score graph and a strip of judgments on the right.",
             caption: "AAA at 91.6%. The red marks in the strip are the seven misses.",
+          },
+        ],
+      },
+      {
+        id: "share",
+        menu: "Share on X",
+        title: "Show it off on X",
+        body: [
+          "On the results screen, x draws a result card — a 1200×675 PNG with the rank, percentage, judgment counts, graph, difficulty, lanes and language — copies it to the clipboard and opens X’s post page with a draft. Paste the card with ⌘V, then post.",
+          "The draft has the rank and score, the chart’s gist URL, the beatcode URL, a ranking line (bc1:…) and #beatcode. A bundled, AI or Gist chart that isn’t published yet asks secret or public and goes to a gist first. The card is also kept in ~/.cache/beatcode/share/.",
+        ],
+        keys: [
+          ["x", "Make the card and open X (on the results screen)"],
+          ["⌘ V", "Paste the card into the post"],
+        ],
+        shots: [
+          {
+            file: "share",
+            narrow: true,
+            alt: "A preview of the post: Got AAA (91.5% 152/166) on \"Rust chart\", the beatcode URL, the bc1 ranking line and #beatcode, with the result card attached showing AAA, 91.5%, PERFECT 76, MISS 7, max combo 40 and the score graph.",
+            caption: "The card is the one beatcode made for this play; the post around it is a preview, not a screenshot of X. This play was a file given on the command line, so the title reads “Rust chart” and there’s no chart link.",
           },
         ],
       },
@@ -305,6 +326,27 @@ export const guide: Record<Lang, Guide> = {
             file: "result",
             alt: "結果の画面。ランク AAA、SCORE 152 / 166(91.6%)、PERFECT 76・MISS 7。右に曲の流れのグラフと判定の帯。",
             caption: "91.6% で AAA。帯の赤が 7 つの MISS です。",
+          },
+        ],
+      },
+      {
+        id: "share",
+        menu: "X で見せびらかす",
+        title: "X で見せびらかす",
+        body: [
+          "結果の画面で x を押すと、結果のカード(ランク・%・判定の数・グラフ・難しさ・列数・言語が入った 1200×675 の PNG)を作ってクリップボードに入れ、X の投稿画面を下書き入りで開きます。⌘V でカードを貼って投稿します。",
+          "下書きには、ランクと点、譜面の gist の URL、beatcode の URL、ランキングの印(bc1: の行)、#beatcode が入ります。同梱・AI・Gist の譜面でまだ公開していないものは、secret か public かを聞いて、先に gist へ公開します。カードは ~/.cache/beatcode/share/ にも残ります。",
+        ],
+        keys: [
+          ["x", "カードを作って X を開く(結果の画面で)"],
+          ["⌘ V", "投稿にカードを貼る"],
+        ],
+        shots: [
+          {
+            file: "share",
+            narrow: true,
+            alt: "投稿のプレビュー。「Rust の譜面」で AAA (91.5% | 152/166)を取りました、beatcode の URL、bc1 のランキングの印、#beatcode。添えたカードには AAA・91.5%・PERFECT 76・MISS 7・最大コンボ 40 と点数のグラフ。",
+            caption: "カードはこのプレイで beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。コマンドでファイルを指定して遊んだので、題は「Rust の譜面」で、譜面のリンクはありません。",
           },
         ],
       },
