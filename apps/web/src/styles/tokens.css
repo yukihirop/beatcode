@@ -37,6 +37,12 @@
   --eq-5: oklch(68% 0.2 305);
   --eq-6: oklch(68% 0.25 325);
 
+  /* Background blooms: the wordmark cyan behind the highway, the equalizer's
+   * magenta low on the left. Mixed from the colours above, kept faint enough
+   * that text contrast doesn't move. */
+  --bloom-cyan: color-mix(in oklch, var(--color-accent) 16%, transparent);
+  --bloom-magenta: color-mix(in oklch, var(--eq-6) 10%, transparent);
+
   /* Type: a pixel display face whose "e" matches the banner (with a Japanese
    * pixel face behind it), a sans for reading, a mono for every token and command. */
   --font-display: "Press Start 2P", "DotGothic16", ui-monospace, monospace;

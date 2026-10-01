@@ -2,6 +2,7 @@
  * theme: custom · vibe: "late-night arcade, neon lanes, source code" · paper: oklch(15% 0.03 265) · accent: oklch(84% 0.13 205)
  * display: Press Start 2P (+ DotGothic16 for Japanese) · body: Geist · mono: JetBrains Mono · axes: dark / display-pixel / cool
  * lane colours: categorical (token kinds), notes + code only · enrichment: playable canvas demo · nav: N9 · footer: Ft4
+ * canvas: two fixed radial blooms (cyan top-right, magenta bottom-left), static
  * studied: no · context: user-provided (Astro · banner world · install CTA · en + ja)
  */
 
@@ -94,6 +95,18 @@ kbd {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
+}
+
+/* Background blooms — fixed to the viewport, behind everything, never animated. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 45% 55% at 78% 22%, var(--bloom-cyan), transparent 70%),
+    radial-gradient(ellipse 40% 45% at 6% 88%, var(--bloom-magenta), transparent 70%);
 }
 
 /* Buttons ---------------------------------------------------------------- */
