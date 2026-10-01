@@ -99,12 +99,12 @@ export const guide: Record<Lang, Guide> = {
           ["D F J K", "Hit"],
           ["Esc", "Pause"],
         ],
-        video: { label: "A 12-second recording of the play screen: tokens fall and are hit on the judgment line while the combo climbs." },
+        video: { label: "A 12-second recording of the play screen with シャイニングスター playing: tokens fall and are hit on the judgment line while the combo climbs." },
         shots: [
           {
             file: "play",
             alt: "Eleven seconds into the song (0:11 / 4:36): a combo of 3 in the lanes, the score panel showing PERFECT 28 and MISS 7, and the played tokens highlighted in the code.",
-            caption: "Twelve seconds of play. The code on the right lights up as each token is hit.",
+            caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. Music: 魔王魂.",
           },
         ],
       },
@@ -300,12 +300,12 @@ export const guide: Record<Lang, Guide> = {
           ["D F J K", "叩く"],
           ["Esc", "一時停止"],
         ],
-        video: { label: "プレイ中の画面を 12 秒録ったもの。トークンが落ちてきて判定ラインで叩かれ、コンボが増えていく。" },
+        video: { label: "シャイニングスターを流しながらプレイ中の画面を 12 秒録ったもの。トークンが落ちてきて判定ラインで叩かれ、コンボが増えていく。" },
         shots: [
           {
             file: "play",
             alt: "プレイ中、0:11 / 4:36。列に 19 コンボ、右の欄に PERFECT 29・MISS 6、叩いたトークンがコードの中で光っている。",
-            caption: "プレイ中の 12 秒。叩いたトークンが、右のコードで順に光っていきます。",
+            caption: "プレイ中の 12 秒。曲の音つきです(スピーカーのボタンで鳴ります)。叩いたトークンが、右のコードで順に光っていきます。音楽：魔王魂。",
           },
         ],
       },
