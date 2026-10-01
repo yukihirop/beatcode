@@ -339,6 +339,27 @@ kbd {
   gap: var(--space-sm);
 }
 
+/* Equalizer: kicks on every hit, settles when the song stops. */
+.eq {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(2px, 0.6vw, 6px);
+  height: 3rem;
+}
+
+.eq__bar {
+  flex: 1;
+  height: 100%;
+  transform-origin: bottom;
+}
+
+.eq__bar--1 { background: var(--eq-1); }
+.eq__bar--2 { background: var(--eq-2); }
+.eq__bar--3 { background: var(--eq-3); }
+.eq__bar--4 { background: var(--eq-4); }
+.eq__bar--5 { background: var(--eq-5); }
+.eq__bar--6 { background: var(--eq-6); }
+
 .highway__stage {
   position: relative;
   border-radius: var(--radius-md);

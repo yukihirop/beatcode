@@ -27,6 +27,9 @@ export function mountHighway(root: HTMLElement): void {
   const live = root.querySelector<HTMLElement>("[data-live]")!;
   const codeTokens = Array.from(root.querySelectorAll<HTMLElement>("[data-note]"));
   const labels = { auto: root.dataset.auto!, you: root.dataset.you! };
+  const bars = Array.from(root.querySelectorAll<HTMLElement>(".eq__bar"));
+  const rest = bars.map((b) => Number(b.dataset.rest));
+  const levels = [...rest];
 
   const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -97,8 +100,28 @@ export function mountHighway(root: HTMLElement): void {
       combo += 1;
       maxCombo = Math.max(maxCombo, combo);
       flashes.push({ lane: note.lane, at: now });
+      kick(note.lane, j);
     }
     lastJudge = { judge: j, at: now };
+  }
+
+  // Each hit kicks the bars nearest its lane hardest; better judgements kick higher.
+  function kick(lane: number, j: Judge) {
+    const power = j === "PERFECT" ? 1 : j === "GREAT" ? 0.8 : 0.6;
+    const center = ((lane + 0.5) / 4) * bars.length;
+    bars.forEach((_, i) => {
+      const near = Math.max(0, 1 - Math.abs(i + 0.5 - center) / (bars.length * 0.45));
+      const target = Math.min(1, rest[i] + power * near * (0.55 + Math.random() * 0.45));
+      levels[i] = Math.max(levels[i], target);
+    });
+  }
+
+  function drawBars(dt: number) {
+    bars.forEach((bar, i) => {
+      // Fall back toward rest at a steady rate, like a level meter's decay.
+      levels[i] = Math.max(rest[i], levels[i] - dt * 1.6);
+      bar.style.transform = `scaleY(${levels[i].toFixed(3)})`;
+    });
   }
 
   function start() {
@@ -134,10 +157,13 @@ export function mountHighway(root: HTMLElement): void {
       else if (mode === "you" && now - note.time > MISS_AFTER) judge(note, "MISS");
     }
     if (now >= songEnd) {
+      for (let i = 0; i < bars.length; i++) levels[i] = rest[i];
+      drawBars(0);
       finish();
       return;
     }
     draw();
+    if (!reduceMotion) drawBars(dt);
     raf = requestAnimationFrame(tick);
   }
 

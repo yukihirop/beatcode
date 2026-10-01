@@ -8,6 +8,9 @@ interface Props {
 const { t } = Astro.props;
 
 const laneClass = ["kw", "id", "op", "lit"];
+const BARS = 24;
+// Resting heights, fixed so the server render and the first frame agree.
+const rest = Array.from({ length: BARS }, (_, i) => 0.18 + 0.14 * Math.abs(Math.sin(i * 1.7)));
 let noteIndex = 0;
 const lines = source.map((line) =>
   line.map((piece) =>
@@ -19,6 +22,11 @@ const lines = source.map((line) =>
 ---
 
 <div class="highway" data-highway data-phase="idle" data-auto={t.auto} data-you={t.you}>
+  <div class="eq" aria-hidden="true">
+    {rest.map((r, i) => (
+      <span class={`eq__bar eq__bar--${1 + Math.floor((i * 6) / BARS)}`} data-rest={r.toFixed(3)} style={`transform: scaleY(${r.toFixed(3)})`}></span>
+    ))}
+  </div>
   <div class="highway__stage">
     <canvas role="img" aria-label={t.label}></canvas>
     <p class="highway__mode" data-mode="auto" aria-hidden="true">{t.auto}</p>

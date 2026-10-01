@@ -28,6 +28,15 @@
   --lane-op: oklch(72% 0.2 345);
   --lane-literal: oklch(82% 0.19 145);
 
+  /* Equalizer bars, stepping cyan → blue → violet → magenta as in the banner.
+   * Discrete steps per bar, never a gradient fill. */
+  --eq-1: oklch(88% 0.12 200);
+  --eq-2: oklch(80% 0.13 230);
+  --eq-3: oklch(70% 0.16 255);
+  --eq-4: oklch(62% 0.2 280);
+  --eq-5: oklch(68% 0.2 305);
+  --eq-6: oklch(68% 0.25 325);
+
   /* Type: a pixel display face whose "e" matches the banner (with a Japanese
    * pixel face behind it), a sans for reading, a mono for every token and command. */
   --font-display: "Press Start 2P", "DotGothic16", ui-monospace, monospace;
