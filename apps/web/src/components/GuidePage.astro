@@ -4,15 +4,18 @@ import type { ImageMetadata } from "astro";
 import Base from "../layouts/Base.astro";
 import SiteFooter from "./SiteFooter.astro";
 import SiteHeader from "./SiteHeader.astro";
-import { guide } from "../i18n/guide";
+import type { Guide } from "../i18n/guide";
 import { strings, type Lang } from "../i18n/strings";
 
 interface Props {
   lang: Lang;
+  g: Guide;
+  /** The page's path under the language root, like "guide/". */
+  path: string;
 }
-const { lang } = Astro.props;
+const { lang, g, path } = Astro.props;
 const t = strings[lang];
-const g = guide[lang];
+const home = lang === "ja" ? "ja/" : "";
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 
 // Screenshots recorded with `beatcode record`, one folder per UI language.
@@ -36,8 +39,8 @@ const keyCaps = (keys: string) => keys.split(" ");
 const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
 ---
 
-<Base t={t} title={g.title} description={g.description} path="guide/">
-  <SiteHeader t={t} path="guide/" />
+<Base t={t} title={g.title} description={g.description} path={path}>
+  <SiteHeader t={t} path={path} />
 
   <main class="guide">
     <header class="guide__head">
@@ -71,7 +74,9 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
             <div class="step__text">
               {s.body.map((p) => <p>{p}</p>)}
             </div>
-            {s.cmd && <pre class="step__cmd"><code>{s.cmd}</code></pre>}
+            {s.cmd && (
+              <pre class="step__cmd"><code>{[s.cmd].flat().map((c) => <span class="step__line">{c}</span>)}{s.out?.map((o) => <span class="step__out">{o}</span>)}</code></pre>
+            )}
             {s.keys && (
               <dl class="step__keys" aria-label={g.keysLabel}>
                 {s.keys.map(([keys, does]) => (
@@ -83,6 +88,20 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
                   </div>
                 ))}
               </dl>
+            )}
+            {s.table && (
+              <div class="step__table">
+                <table>
+                  <thead>
+                    <tr>{s.table.head.map((h) => <th scope="col">{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {s.table.rows.map((r) => (
+                      <tr>{r.map((c, i) => (i === 0 ? <th scope="row">{c}</th> : <td>{c}</td>))}</tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
             {s.video && (
               <figure class="shot">
@@ -111,6 +130,7 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
             ))}
           </section>
         ))}
+        {g.next && <a class="guide__next" href={`${base}${home}${g.next.href}`}>{g.next.label}</a>}
       </div>
     </div>
   </main>

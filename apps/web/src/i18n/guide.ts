@@ -9,9 +9,13 @@ type Step = {
   menu: string;
   title: string;
   body: string[];
-  /** A command to type, shown above the keys. */
-  cmd?: string;
+  /** Commands to type, shown above the keys. */
+  cmd?: string | string[];
+  /** What the command prints, shown under it. */
+  out?: string[];
   keys?: [string, string][];
+  /** A small reference table under the keys. */
+  table?: { head: string[]; rows: string[][] };
   shots: Shot[];
   /** Show the recorded clip (public/guide/<lang>/play.mp4) in place of the first shot, which becomes its poster. */
   video?: { label: string };
@@ -25,6 +29,8 @@ export type Guide = {
   recorded: string;
   menuLabel: string;
   keysLabel: string;
+  /** A link to the other guide page, after the last step. */
+  next?: { href: string; label: string };
   steps: Step[];
 };
 
@@ -38,6 +44,7 @@ export const guide: Record<Lang, Guide> = {
       "Recorded with beatcode record, playing シャイニングスター (Shining Star, ♩=158, 4:36) by 魔王魂 through YouTube Music in the Pear Desktop app, with the bundled Rust charts. A small bot that reads the screen did the hitting, so the scores aren’t a person’s. Music: 魔王魂 (maou.audio).",
     menuLabel: "Steps",
     keysLabel: "Keys on this screen",
+    next: { href: "guide/more/", label: "More: AI charts, gists, config.toml and languages →" },
     steps: [
       {
         id: "select",
@@ -239,6 +246,7 @@ export const guide: Record<Lang, Guide> = {
       "画面は beatcode record で撮りました。曲は YouTube Music(アプリ Pear Desktop)で流した魔王魂の「シャイニングスター」(♩=158、4:36)、譜面は同梱の Rust です。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
     menuLabel: "手順",
     keysLabel: "この画面のキー",
+    next: { href: "guide/more/", label: "詳しい使い方: AI の譜面・gist・config.toml・言語 →" },
     steps: [
       {
         id: "select",
