@@ -25,10 +25,11 @@ const sample: [string, number][] = [
       <div class="hero__text">
         <h1 class="hero__title">{t.hero.title}</h1>
         <p class="hero__lede">{t.hero.lede}</p>
-        <Install t={t.hero} />
       </div>
       <div class="hero__proof">
-        <Highway t={t.highway} />
+        <Highway t={t.highway}>
+          <Install t={t.hero} />
+        </Highway>
       </div>
     </section>
 

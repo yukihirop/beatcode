@@ -22,44 +22,49 @@ const lines = source.map((line) =>
 ---
 
 <div class="highway" data-highway data-phase="idle" data-auto={t.auto} data-you={t.you}>
-  <div class="eq" aria-hidden="true">
-    {rest.map((r, i) => (
-      <span class={`eq__bar eq__bar--${1 + Math.floor((i * 6) / BARS)}`} data-rest={r.toFixed(3)} style={`transform: scaleY(${r.toFixed(3)})`}></span>
-    ))}
-  </div>
-  <div class="highway__stage">
-    <canvas role="img" aria-label={t.label}></canvas>
-    <p class="highway__mode" data-mode="auto" aria-hidden="true">{t.auto}</p>
+  <div class="highway__play">
+    <div class="eq" aria-hidden="true">
+      {rest.map((r, i) => (
+        <span class={`eq__bar eq__bar--${1 + Math.floor((i * 6) / BARS)}`} data-rest={r.toFixed(3)} style={`transform: scaleY(${r.toFixed(3)})`}></span>
+      ))}
+    </div>
+    <div class="highway__stage">
+      <canvas role="img" aria-label={t.label}></canvas>
+      <p class="highway__mode" data-mode="auto" aria-hidden="true">{t.auto}</p>
 
-    <div class="highway__start">
-      <button type="button" class="btn btn--solid" data-start>{t.play}</button>
+      <div class="highway__start">
+        <button type="button" class="btn btn--solid" data-start>{t.play}</button>
+      </div>
+
+      <div class="highway__result" data-result>
+        <p class="highway__clear"><span>{t.result}</span> <span class="highway__who" data-who></span></p>
+        <dl class="highway__counts">
+          <div><dt>PERFECT</dt><dd data-perfect>0</dd></div>
+          <div><dt>GREAT</dt><dd data-great>0</dd></div>
+          <div><dt>GOOD</dt><dd data-good>0</dd></div>
+          <div><dt>MISS</dt><dd data-miss>0</dd></div>
+          <div class="highway__max"><dt>{t.maxCombo}</dt><dd data-max>0</dd></div>
+        </dl>
+        <button type="button" class="btn btn--solid" data-replay>{t.replay}</button>
+      </div>
     </div>
 
-    <div class="highway__result" data-result>
-      <p class="highway__clear"><span>{t.result}</span> <span class="highway__who" data-who></span></p>
-      <dl class="highway__counts">
-        <div><dt>PERFECT</dt><dd data-perfect>0</dd></div>
-        <div><dt>GREAT</dt><dd data-great>0</dd></div>
-        <div><dt>GOOD</dt><dd data-good>0</dd></div>
-        <div><dt>MISS</dt><dd data-miss>0</dd></div>
-        <div class="highway__max"><dt>{t.maxCombo}</dt><dd data-max>0</dd></div>
-      </dl>
-      <button type="button" class="btn btn--solid" data-replay>{t.replay}</button>
-    </div>
+    <p class="highway__hint">{t.hint}</p>
   </div>
 
-  <p class="highway__hint">{t.hint}</p>
-
-  <figure class="typed">
-    <figcaption>{t.codeLabel}</figcaption>
-    <pre><code>{lines.map((line) => (
-      <span class="typed__line">{line.map((p) =>
-        "lane" in p
-          ? <span class={`tok tok--${p.lane}`} data-note={p.index} data-state="pending">{p.text}</span>
-          : p.text
-      )}</span>
-    ))}</code></pre>
-  </figure>
+  <div class="highway__side">
+    <figure class="typed">
+      <figcaption>{t.codeLabel}</figcaption>
+      <pre><code>{lines.map((line) => (
+        <span class="typed__line">{line.map((p) =>
+          "lane" in p
+            ? <span class={`tok tok--${p.lane}`} data-note={p.index} data-state="pending">{p.text}</span>
+            : p.text
+        )}</span>
+      ))}</code></pre>
+    </figure>
+    <slot />
+  </div>
 
   <p class="visually-hidden" aria-live="polite" data-live></p>
 </div>

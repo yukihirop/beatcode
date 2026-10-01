@@ -89,7 +89,7 @@ export const strings: Record<Lang, Strings> = {
     nav: { guide: "Guide" },
     github: "GitHub",
     hero: {
-      title: "Play your code.",
+      title: "Play your\u00a0code.",
       lede: "A rhythm game for the terminal. The notes are the tokens of real source code — keywords, names, operators, literals — falling down their own lanes. Clear the song and you’ve typed out a function.",
       installHeading: "Install",
       copy: "Copy",
