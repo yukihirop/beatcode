@@ -8,7 +8,7 @@ export type Strings = {
   title: string;
   description: string;
   otherLang: { label: string; href: string };
-  nav: { guide: string };
+  nav: { guide: string; plugins: string };
   github: string;
   hero: {
     title: string;
@@ -86,7 +86,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "A rhythm game for the terminal. The notes are the tokens of real source code, and clearing a song types out a function.",
     otherLang: { label: "日本語", href: "ja/" },
-    nav: { guide: "Guide" },
+    nav: { guide: "Guide", plugins: "Plugins" },
     github: "GitHub",
     hero: {
       title: "Play your\u00a0code.",
@@ -182,7 +182,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "ターミナルで遊ぶ音ゲー。落ちてくるノーツは本物のソースコードのトークンで、1 曲叩き切ると関数が 1 つ書き上がります。",
     otherLang: { label: "English", href: "" },
-    nav: { guide: "使い方" },
+    nav: { guide: "使い方", plugins: "プラグイン" },
     github: "GitHub",
     hero: {
       title: "コードを、音ゲーとして叩く。",

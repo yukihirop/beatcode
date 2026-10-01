@@ -16,7 +16,8 @@ const repo = t.footer.links[0].href;
 <header class="nav">
   <a class="wordmark" href={home}><Wordmark /></a>
   <nav class="nav__end" aria-label="Site">
-    <a class="nav__link" href={`${home}guide/`} aria-current={path === "guide/" ? "page" : path.startsWith("guide/") ? "true" : undefined}>{t.nav.guide}</a>
+    <a class="nav__link" href={`${home}guide/`} aria-current={path === "guide/" ? "page" : path === "guide/more/" ? "true" : undefined}>{t.nav.guide}</a>
+    <a class="nav__link" href={`${home}guide/plugins/`} aria-current={path === "guide/plugins/" ? "page" : undefined}>{t.nav.plugins}</a>
     <a class="nav__link" href={`${base}${t.otherLang.href}${path}`} lang={t.htmlLang === "en" ? "ja" : "en"}>{t.otherLang.label}</a>
     <a class="btn btn--ghost" href={repo}>{t.github}</a>
   </nav>

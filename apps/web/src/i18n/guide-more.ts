@@ -13,7 +13,7 @@ export const guideMore: Record<Lang, Guide> = {
       "Recorded with beatcode record. The AI chart is a real one, written by openai/gpt-6-luna through OpenRouter; the gist dialog was closed with Esc, so nothing was published.",
     menuLabel: "Topics",
     keysLabel: "Keys on this screen",
-    next: { href: "guide/", label: "← How to play: one song from start to finish" },
+    next: { href: "guide/plugins/", label: "Plugins: more languages, AI providers and beatcode record →" },
     steps: [
       {
         id: "ai",
@@ -133,8 +133,8 @@ export const guideMore: Record<Lang, Guide> = {
         title: "Add a language",
         body: [
           "Built in: Rust, Python, Go, TypeScript, Ruby and PHP, plus Japanese and English prose. More can be added without rebuilding beatcode; they line up after the built-in tabs and work for your repos too.",
-          "beatcode plugins install c zh downloads plugins from the Releases of the same version as beatcode, checks the SHA-256 and puts them in ~/.local/share/beatcode/plugins/. beatcode plugins uninstall c removes one.",
-          "Or describe a language yourself in ~/.config/beatcode/langs/<id>.toml: keywords, comments and strings (beatcode plugins example prints one for Lua). beatcode plugins lists every language and why an external one failed to load.",
+          "beatcode plugins install c adds one from the Releases; the Plugins page lists all of them.",
+          "Describe a language in ~/.config/beatcode/langs/<id>.toml: keywords, comments and strings (beatcode plugins example prints one for Lua). beatcode plugins lists every language and why an external one failed to load.",
         ],
         cmd: "beatcode plugins",
         out: [
@@ -160,7 +160,7 @@ export const guideMore: Record<Lang, Guide> = {
       "画面は beatcode record で撮りました。AI の譜面は OpenRouter の openai/gpt-6-luna に実際に書いてもらったものです。gist の画面は Esc で閉じていて、公開はしていません。",
     menuLabel: "話題",
     keysLabel: "この画面のキー",
-    next: { href: "guide/", label: "← 使い方: 1 曲を通して遊ぶ流れ" },
+    next: { href: "guide/plugins/", label: "プラグイン: 言語・AI の頼む先・beatcode record を足す →" },
     steps: [
       {
         id: "ai",
@@ -280,8 +280,8 @@ export const guideMore: Record<Lang, Guide> = {
         title: "言語を足す",
         body: [
           "同梱の言語は Rust・Python・Go・TypeScript・Ruby・PHP と、日本語・英語の文章です。beatcode を作り直さずに言語を足せます。足した言語は言語のタブの後ろに並び、手元の repo の譜面にも使われます。",
-          "beatcode plugins install c zh は、beatcode と同じ版の Releases からプラグインを落とし、SHA-256 を確かめて ~/.local/share/beatcode/plugins/ に置きます。外すのは beatcode plugins uninstall c。",
-          "自分で書くなら ~/.config/beatcode/langs/<id>.toml に、キーワード・コメント・文字列の書き方を書きます(beatcode plugins example で Lua の見本)。beatcode plugins で、使える言語と、読めなかった外部の言語の理由が出ます。",
+          "beatcode plugins install c で Releases から入れられます。入れられるものは「プラグイン」のページに並べています。",
+          "~/.config/beatcode/langs/<id>.toml に、キーワード・コメント・文字列の書き方を書きます(beatcode plugins example で Lua の見本)。beatcode plugins で、使える言語と、読めなかった外部の言語の理由が出ます。",
         ],
         cmd: "beatcode plugins",
         out: [
