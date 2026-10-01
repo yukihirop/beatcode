@@ -135,7 +135,7 @@ export const guide: Record<Lang, Guide> = {
         title: "Show it off on X",
         body: [
           "On the results screen, x draws a result card — a 1200×675 PNG with the rank, percentage, judgment counts, graph, difficulty, lanes and language — copies it to the clipboard and opens X’s post page with a draft. Paste the card with ⌘V, then post.",
-          "The draft has the rank and score, the chart’s gist URL, the beatcode URL, a ranking line (bc1:…) and #beatcode. A bundled, AI or Gist chart that isn’t published yet asks secret or public and goes to a gist first. The card is also kept in ~/.cache/beatcode/share/.",
+          "The draft has the rank and score, the chart’s gist URL, the beatcode URL, a ranking line (bc1:…; [share] rank = false in config.toml leaves it out) and #beatcode. A bundled, AI or Gist chart that isn’t published yet asks secret or public and goes to a gist first. The card is also kept in ~/.cache/beatcode/share/.",
         ],
         keys: [
           ["x", "Make the card and open X (on the results screen)"],
@@ -145,8 +145,8 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "A preview of the post: Got AAA (91.5% 152/166) on \"Rust chart\", the beatcode URL, the bc1 ranking line and #beatcode, with the result card attached showing AAA, 91.5%, PERFECT 76, MISS 7, max combo 40 and the score graph.",
-            caption: "The card is the one beatcode made for this play; the post around it is a preview, not a screenshot of X. This play was a file given on the command line, so the title reads “Rust chart” and there’s no chart link.",
+            alt: "A preview of the post from beatcode: Got AA (85.5% 2052/2398) on \"シャイニングスター\", the beatcode URL and #beatcode, with the result card attached showing the cover art, シャイニングスター by 魔王魂 and 森田交一, YouTube Music, NORMAL, 4 lanes, AA, 85.5%, PERFECT 1026, MISS 173, max combo 31 and the score graph.",
+            caption: "The card is the one beatcode made for this play of シャイニングスター through YouTube Music; the post around it is a preview, not a screenshot of X. The chart came from a local repo, so there’s no chart link, and the ranking line is turned off. Music: 魔王魂 (maou.audio).",
           },
         ],
       },
@@ -335,7 +335,7 @@ export const guide: Record<Lang, Guide> = {
         title: "X で見せびらかす",
         body: [
           "結果の画面で x を押すと、結果のカード(ランク・%・判定の数・グラフ・難しさ・列数・言語が入った 1200×675 の PNG)を作ってクリップボードに入れ、X の投稿画面を下書き入りで開きます。⌘V でカードを貼って投稿します。",
-          "下書きには、ランクと点、譜面の gist の URL、beatcode の URL、ランキングの印(bc1: の行)、#beatcode が入ります。同梱・AI・Gist の譜面でまだ公開していないものは、secret か public かを聞いて、先に gist へ公開します。カードは ~/.cache/beatcode/share/ にも残ります。",
+          "下書きには、ランクと点、譜面の gist の URL、beatcode の URL、ランキングの印(bc1: の行。config.toml の [share] rank = false で外せます)、#beatcode が入ります。同梱・AI・Gist の譜面でまだ公開していないものは、secret か public かを聞いて、先に gist へ公開します。カードは ~/.cache/beatcode/share/ にも残ります。",
         ],
         keys: [
           ["x", "カードを作って X を開く(結果の画面で)"],
@@ -345,8 +345,8 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "投稿のプレビュー。「Rust の譜面」で AAA (91.5% | 152/166)を取りました、beatcode の URL、bc1 のランキングの印、#beatcode。添えたカードには AAA・91.5%・PERFECT 76・MISS 7・最大コンボ 40 と点数のグラフ。",
-            caption: "カードはこのプレイで beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。コマンドでファイルを指定して遊んだので、題は「Rust の譜面」で、譜面のリンクはありません。",
+            alt: "beatcode の投稿のプレビュー。「シャイニングスター」で AA (84.6% | 2030/2398)を取りました、beatcode の URL、#beatcode。添えたカードにはジャケット、シャイニングスター(魔王魂、森田交一)、YouTube Music・NORMAL・4 LANES、AA・84.6%・PERFECT 1015・MISS 184・最大コンボ 40 と点数のグラフ。",
+            caption: "カードは YouTube Music でシャイニングスターを流して遊んだときに beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。譜面は手元の repo のものなので譜面のリンクはなく、ランキングの印は外しています。音楽：魔王魂(maou.audio)。",
           },
         ],
       },
