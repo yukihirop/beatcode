@@ -55,6 +55,14 @@ export const philosophy: Record<Lang, Philosophy> = {
         label: "Your code stays with you.",
         body: "Code in your local repos is turned into charts on your machine. Even when an AI writes a chart, none of your code is sent.",
       },
+      {
+        label: "It works with what you already use.",
+        body: "The music you already listen to on Spotify or YouTube Music, the editor you already use, the repos you already have.",
+      },
+      {
+        label: "Anyone, anywhere, gets the rules.",
+        body: "Notes fall; hit them on the line. No need to read the code, and no language barrier to playing.",
+      },
     ],
   },
   ja: {
@@ -96,6 +104,8 @@ export const philosophy: Record<Lang, Philosophy> = {
       { label: "ターミナルの中で完結する。", body: "いつもの作業の場所から離れずに遊べる。" },
       { label: "自分のコードが譜面になる。", body: "同梱の曲だけでなく、手元の repo や gist のコードも叩ける。" },
       { label: "コードは外に出さない。", body: "手元の repo のコードは手元で譜面にする。AI に書いてもらうときも、手元のコードは送らない。" },
+      { label: "普段使っているもので使える。", body: "いつも Spotify や YouTube Music で聴いている曲、いつものエディタ、手元にある repo で遊べる。" },
+      { label: "世界中の誰でも分かるルールで楽しめる。", body: "落ちてくるノーツを、判定ラインで叩くだけ。コードが読めなくても、どこの国の人でも遊べる。" },
     ],
   },
 };
