@@ -18,6 +18,7 @@ const repo = t.footer.links[0].href;
   <nav class="nav__pages" aria-label="Site">
     <a class="nav__link" href={`${home}guide/`} aria-current={path === "guide/" ? "page" : path === "guide/more/" ? "true" : undefined}>{t.nav.guide}</a>
     <a class="nav__link" href={`${home}guide/plugins/`} aria-current={path === "guide/plugins/" ? "page" : undefined}>{t.nav.plugins}</a>
+    <a class="nav__link" href={`${home}guide/ranking-server/`} aria-current={path === "guide/ranking-server/" ? "page" : undefined}>{t.nav.rankingServer}</a>
   </nav>
   <div class="nav__end">
     <a class="nav__link nav__lang" href={`${base}${t.otherLang.href}${path}`} lang={t.htmlLang === "en" ? "ja" : "en"}>

@@ -46,7 +46,7 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
     <header class="guide__head">
       <h1>{g.heading}</h1>
       <p class="guide__lede">{g.lede}</p>
-      <p class="muted">{g.recorded}</p>
+      {g.recorded && <p class="muted">{g.recorded}</p>}
     </header>
 
     <div class="guide__body">
@@ -74,6 +74,12 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
             <div class="step__text">
               {s.body.map((p) => <p>{p}</p>)}
             </div>
+            {s.file && (
+              <figure class="step__file">
+                <figcaption>{s.file.name}</figcaption>
+                <pre class="step__cmd"><code>{s.file.lines.map((l) => <span class="step__out step__out--file">{l || " "}</span>)}</code></pre>
+              </figure>
+            )}
             {s.cmd && (
               <pre class="step__cmd"><code>{[s.cmd].flat().map((c) => <span class="step__line">{c}</span>)}{s.out?.map((o) => <span class="step__out">{o}</span>)}</code></pre>
             )}

@@ -13,6 +13,8 @@ type Step = {
   cmd?: string | string[];
   /** What the command prints, shown under it. */
   out?: string[];
+  /** A file to write (like compose.yaml), shown under its name without the prompt. */
+  file?: { name: string; lines: string[] };
   keys?: [string, string][];
   /** A small reference table under the keys. */
   table?: { head: string[]; rows: string[][] };
@@ -26,7 +28,8 @@ export type Guide = {
   description: string;
   heading: string;
   lede: string;
-  recorded: string;
+  /** How the screenshots were taken; left out on a page without them. */
+  recorded?: string;
   menuLabel: string;
   keysLabel: string;
   /** A link to the other guide page, after the last step. */
