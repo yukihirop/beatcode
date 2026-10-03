@@ -8,7 +8,7 @@ const { t } = Astro.props;
 ---
 
 <footer class="foot">
-  <p>{t.footer.license}</p>
+  <p>{t.footer.license.map((line, i) => (i === 0 ? line : <><br />{line}</>))}</p>
   <p class="foot__links">
     {t.footer.links.map((l) => <a href={l.href}>{l.label}</a>)}
   </p>

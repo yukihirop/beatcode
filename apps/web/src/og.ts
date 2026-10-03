@@ -8,6 +8,7 @@ import { guideConfig } from "./i18n/guide-config";
 import { guideMore } from "./i18n/guide-more";
 import { guidePlugins } from "./i18n/guide-plugins";
 import { guideRankingServer } from "./i18n/guide-ranking-server";
+import { philosophy } from "./i18n/philosophy";
 import { strings, type Lang } from "./i18n/strings";
 
 export const OG_WIDTH = 1200;
@@ -37,6 +38,7 @@ for (const lang of ["en", "ja"] as const) {
   for (const [path, g] of guides) {
     ogCards[`${lang}/${path}`] = { kicker: lang === "ja" ? "ガイド" : "Guide", heading: g[lang].heading, lede: g[lang].description };
   }
+  ogCards[`${lang}/philosophy`] = { kicker: "", heading: philosophy[lang].heading, lede: philosophy[lang].description };
 }
 
 /** The og/ slug of a page, from its language and its path under the language root ("" or "guide/config/") */

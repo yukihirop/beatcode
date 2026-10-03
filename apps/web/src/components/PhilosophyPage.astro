@@ -1,0 +1,49 @@
+---
+import Base from "../layouts/Base.astro";
+import SiteFooter from "./SiteFooter.astro";
+import SiteHeader from "./SiteHeader.astro";
+import { philosophy } from "../i18n/philosophy";
+import { strings, type Lang } from "../i18n/strings";
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = strings[lang];
+const p = philosophy[lang];
+const path = "philosophy/";
+---
+
+<Base t={t} title={p.title} description={p.description} path={path}>
+  <SiteHeader t={t} path={path} />
+
+  <main class="guide essay">
+    <header class="guide__head">
+      <h1>{p.heading}</h1>
+      <p class="essay__lede">{p.lede}</p>
+    </header>
+
+    <div class="essay__body">
+      {p.sections.map((s) => (
+        <section class="essay__section" id={s.id} aria-labelledby={`${s.id}-heading`}>
+          <h2 id={`${s.id}-heading`}>{s.heading}</h2>
+          {s.body.map((b) => <p>{b}</p>)}
+        </section>
+      ))}
+
+      <section class="essay__section" id="principles" aria-labelledby="principles-heading">
+        <h2 id="principles-heading">{p.principlesHeading}</h2>
+        <ul class="essay__principles">
+          {p.principles.map((x) => (
+            <li>
+              <strong>{x.label}</strong>
+              <span>{x.body}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <SiteFooter t={t} />
+</Base>

@@ -8,7 +8,7 @@ export type Strings = {
   title: string;
   description: string;
   otherLang: { label: string; href: string };
-  nav: { guide: string; config: string; plugins: string; rankingServer: string };
+  nav: { guide: string; config: string; plugins: string; rankingServer: string; philosophy: string };
   github: string;
   hero: {
     title: string;
@@ -60,7 +60,8 @@ export type Strings = {
     rows: Row[];
   };
   footer: {
-    license: string;
+    /** One line each */
+    license: string[];
     links: { label: string; href: string }[];
     copyright: string;
   };
@@ -92,7 +93,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "A rhythm game for the terminal. The notes are the tokens of real source code, and clearing a song types out a function.",
     otherLang: { label: "日本語", href: "ja/" },
-    nav: { guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server" },
+    nav: { guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server", philosophy: "Philosophy" },
     github: "GitHub",
     hero: {
       title: "Play your\u00a0code.",
@@ -178,7 +179,7 @@ export const strings: Record<Lang, Strings> = {
     },
     footer: {
       license:
-        "beatcode is proprietary software. See LICENSE for the complete terms.",
+        ["beatcode is proprietary software.", "See LICENSE for the complete terms."],
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },
@@ -193,7 +194,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "ターミナルで遊ぶ音ゲー。落ちてくるノーツは本物のソースコードのトークンで、1 曲叩き切ると関数が 1 つ書き上がります。",
     otherLang: { label: "English", href: "" },
-    nav: { guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー" },
+    nav: { guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー", philosophy: "フィロソフィー" },
     github: "GitHub",
     hero: {
       title: "コードを、音ゲーとして叩く。",
@@ -279,7 +280,7 @@ export const strings: Record<Lang, Strings> = {
     },
     footer: {
       license:
-        "beatcode は著作権者がすべての権利を持つソフトウェアです。詳しい条件は LICENSE を確認してください。",
+        ["beatcode は著作権者がすべての権利を持つソフトウェアです。", "詳しい条件は LICENSE を確認してください。"],
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },
