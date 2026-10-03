@@ -10,11 +10,9 @@
 down lanes by kind (keyword, identifier, operator, literal), and you hit them on the judgment line.
 Finish a song and you have typed out a function.
 
-<p align="center">
-  <a href="https://github.com/user-attachments/assets/5e694914-460f-4a3f-a2e9-caf85bf29777"><img src="docs/images/demo-en.png" alt="beatcode playing シャイニングスター: tokens of a Rust function fall down four lanes toward the judgment line" width="880"></a>
-</p>
+https://github.com/user-attachments/assets/5e694914-460f-4a3f-a2e9-caf85bf29777
 
-<p align="center"><sub>▶ Click for the 30-second demo with sound: シャイニングスター (Shining Star, ♩=158) on the bundled Rust charts. A small bot that reads the screen did the hitting. Music: <a href="https://maou.audio/">魔王魂</a></sub></p>
+<p align="center"><sub>30 seconds with sound: シャイニングスター (Shining Star, ♩=158) on the bundled Rust charts. A small bot that reads the screen did the hitting. Music: <a href="https://maou.audio/">魔王魂</a></sub></p>
 
 This repository holds the install scripts and release binaries. The source code is not public.
 

@@ -10,11 +10,9 @@
 種類ごと(キーワード・識別子・演算子・リテラル)の列を流れてきます。判定ラインで叩いて、
 1 曲叩き切ると関数が 1 つ書き上がります。
 
-<p align="center">
-  <a href="https://github.com/user-attachments/assets/080aa2af-de00-4f89-b1c4-124ac10cd027"><img src="docs/images/demo-ja.png" alt="シャイニングスターで beatcode を遊んでいるところ: Rust の関数のトークンが 4 つの列を判定ラインへ流れてくる" width="880"></a>
-</p>
+https://github.com/user-attachments/assets/080aa2af-de00-4f89-b1c4-124ac10cd027
 
-<p align="center"><sub>▶ クリックで 30 秒のデモ(音あり): 魔王魂の「シャイニングスター」(♩=158)を同梱の Rust の譜面で。叩いているのは画面を読む小さなボットです。音楽: <a href="https://maou.audio/">魔王魂</a></sub></p>
+<p align="center"><sub>30 秒のデモ(音あり): 魔王魂の「シャイニングスター」(♩=158)を同梱の Rust の譜面で。叩いているのは画面を読む小さなボットです。音楽: <a href="https://maou.audio/">魔王魂</a></sub></p>
 
 この repo には入れるためのスクリプトと、リリースのバイナリを置いています。ソースコードは公開していません。
 
