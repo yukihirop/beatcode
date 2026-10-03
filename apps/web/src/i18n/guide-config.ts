@@ -433,7 +433,7 @@ export const guideConfig: Record<Lang, Guide> = {
         body: [
           "The prompts for AI charts are Markdown files in ~/.config/beatcode/prompts/, one per file. The first time you press a, the seven bundled ones are written there: standard, song mood, symbol-heavy, rhythm-first and textbook for code, and standard and song mood for prose. They are read again each time you press a, so edits show at once.",
           "When a new beatcode bundles a new prompt, only that one is added. Prompts you deleted don’t come back, and files you edited aren’t overwritten.",
-          "{lang}, {topic} and {lines} in the body are replaced (for prose, {lines} is the number of sentences). {difficulty} becomes how tokens are placed at the selected difficulty, and {lanes} the token kinds in each lane. If the body has {topic}, only the body is sent; otherwise the body becomes the instructions and the topic, language and length go separately.",
+          "{lang}, {topic} and {lines} in the body are replaced (for prose, {lines} is the number of sentences). {difficulty} becomes how tokens are placed at the selected difficulty, and {lanes} the token kinds in each lane. {title}, {artist}, {bpm} and {duration} come from the selected song (empty when unknown), {ui_lang} is Japanese or English (the UI language), and {date} is today's date. If the body has {topic}, only the body is sent; otherwise the body becomes the instructions and the topic, language and length go separately.",
           "beatcode adds one instruction to every prompt: write 2–4 sentences about the feelings behind the code. They show under the graph on the result screen.",
         ],
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFile },
@@ -744,7 +744,7 @@ export const guideConfig: Record<Lang, Guide> = {
         body: [
           "AI に譜面を書いてもらうときのプロンプトは ~/.config/beatcode/prompts/ の Markdown のファイルで、1 ファイル 1 つです。初めて a を押したときに同梱の 7 つ(コードの 標準・曲の雰囲気・記号だらけ・音ゲー特化・教科書風、文章の 標準・曲の雰囲気)を書き出します。a を押すたびに読み直すので、書き換えはすぐに効きます。",
           "beatcode の新しい版で同梱のプロンプトが増えたときは、増えたものだけを書き足します。消したプロンプトは戻さず、書き換えたファイルは上書きしません。",
-          "本文の {lang} {topic} {lines}(文章は文の数)は置き換えます。{difficulty} は選んでいる難しさでトークンがどう並ぶかに、{lanes} は列ごとに落ちるトークンの種類になります。本文に {topic} があれば本文だけを送り、無ければ本文を指示にしてお題・言語・長さを別に送ります。",
+          "本文の {lang} {topic} {lines}(文章は文の数)は置き換えます。{difficulty} は選んでいる難しさでトークンがどう並ぶかに、{lanes} は列ごとに落ちるトークンの種類になります。{title} {artist} {bpm} {duration} は選んでいる曲の名前・アーティスト・BPM・長さ(分からなければ空)、{ui_lang} は画面の言葉(Japanese / English)、{date} は今日の日付です。本文に {topic} があれば本文だけを送り、無ければ本文を指示にしてお題・言語・長さを別に送ります。",
           "どのプロンプトにも、どんな思いで書いたかを 2〜4 文で書いてもらう指示を beatcode が足します。結果の画面のグラフの下に出ます。",
         ],
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFileJa },

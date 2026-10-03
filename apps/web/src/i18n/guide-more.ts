@@ -22,7 +22,7 @@ export const guideMore: Record<Lang, Guide> = {
         body: [
           "On song select, press a, type a topic and press Enter. The AI writes code in the language you picked, and that code becomes the chart. You can keep picking and playing other charts while it writes.",
           "With a song picked, the topic starts as the song title and artist. ↑ ↓ picks a prompt (standard, song mood, symbol-heavy, rhythm-first, textbook), ← → a language.",
-          "Write your own prompt with beatcode prompts new. It opens $EDITOR (--template mood starts from a copy of song mood); save and close it, give it a name, and it shows up in ↑ ↓. beatcode prompts list shows them all, and beatcode prompts edit <name> changes one.",
+          "Write your own prompt with beatcode prompts new. Pick a blank skeleton or a prompt to start from with ↑ ↓ (or name one with --template mood), and it opens in $EDITOR with the replacements you can use listed as comments at the top; save and close it, give it a name, and it shows up in ↑ ↓. beatcode prompts list shows them all, and beatcode prompts edit <name> changes one.",
           "Only the prompt, the topic, the language and a rough length are sent — never code from your repos. The cost shows on screen; with the default model it came to $0.0004 to $0.0005 a chart in these recordings. beatcode ai clean removes the charts the AI wrote.",
           "First, paste an API key with beatcode setup ai. beatcode checks that it works, then saves it readable only by you. Switch where it asks with beatcode provider ai <id>.",
         ],
@@ -170,7 +170,7 @@ export const guideMore: Record<Lang, Guide> = {
         body: [
           "曲選びで a を押し、お題を打って Enter。選んでいる言語のコードを AI が書き、それがそのまま譜面になります。書いている間も、ほかの譜面を選んだり遊んだりできます。",
           "曲を選んでいれば、お題には曲名とアーティストが入っています。↑↓ でプロンプト(標準・曲の雰囲気・記号だらけ・音ゲー特化・教科書風)を、←→ で言語を選べます。",
-          "自分のプロンプトは beatcode prompts new で作れます。$EDITOR が開き(--template mood なら曲の雰囲気の写しから)、保存して閉じて名前を付けると ↑↓ に並びます。一覧は beatcode prompts list、直すのは beatcode prompts edit <名前> です。",
+          "自分のプロンプトは beatcode prompts new で作れます。元にする空の雛形かプロンプトを ↑↓ で選ぶと(--template mood で名指しもできます)、使える置き換えの説明がコメントで入った下書きが $EDITOR で開きます。保存して閉じて名前を付けると ↑↓ に並びます。一覧は beatcode prompts list、直すのは beatcode prompts edit <名前> です。",
           "送るのはプロンプト・お題・言語・長さの目安だけで、手元の repo のコードは送りません。かかったお金は画面に出ます。既定のモデルで、この撮影では 1 回 $0.0004〜$0.0005 でした。書いてもらった譜面は beatcode ai clean で消せます。",
           "初めに beatcode setup ai で API キーを貼ります。使えるか確かめてから、自分だけが読める権限で保存します。頼む先は beatcode provider ai <id> で替えます。",
         ],
