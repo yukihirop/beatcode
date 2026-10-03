@@ -20,12 +20,21 @@ export const philosophy: Record<Lang, Philosophy> = {
     lede: "Giving sleeping code a beat again.",
     sections: [
       {
+        id: "agents",
+        heading: "I stopped writing code",
+        body: [
+          "These days I hardly write code myself.",
+          "I tell Claude Code or Codex what I want, wait a little, and working code comes back, tests passing. It almost never gets it wrong.",
+          "It's fast, and it's right. Still, something went missing: the fun of writing it by hand, getting stuck, and finally seeing it run.",
+        ],
+      },
+      {
         id: "old-code",
         heading: "Code that had gone to sleep",
         body: [
-          "Tidying the files on my PC, I kept finding code I had written long ago.",
+          "Then, tidying the files on my PC, I kept finding code I had written long ago.",
           "Scripts I no longer ran, projects I had stopped halfway, functions I had once fought hard to get right. Reading them again, the way I thought back then and the habits I had were all still there. Too good to delete, yet with nowhere left to use them.",
-          "Could this code be put to some use?",
+          "Code I had written by hand, one line at a time. Could it be put to some use?",
         ],
       },
       {
@@ -72,12 +81,21 @@ export const philosophy: Record<Lang, Philosophy> = {
     lede: "眠っているコードに、もう一度音を。",
     sections: [
       {
+        id: "agents",
+        heading: "書かなくなった",
+        body: [
+          "ここ最近、コードはほとんど自分で書いていません。",
+          "Claude Code や Codex に、やりたいことを伝える。少し待つと、動くコードが返ってくる。テストも通っている。しかも、ほとんど間違えない。",
+          "速いし、正しい。それでも、何かが足りなくなりました。手を動かして書き、詰まって、やっと動いたときの、あの楽しさです。",
+        ],
+      },
+      {
         id: "old-code",
         heading: "眠っているコード",
         body: [
-          "PC のファイルを整理していて、昔の自分が書いたコードがたくさん出てきました。",
+          "そんなころ、PC のファイルを整理していて、昔の自分が書いたコードがたくさん出てきました。",
           "もう動かさないスクリプト、途中で止めたプロジェクト、そのときは必死に書いた関数。読み返すと、当時の考え方や癖がそのまま残っています。消すには惜しい。けれど、もう一度使う場面もない。",
-          "このコードを、何かに生かせないか。",
+          "一行ずつ、自分の手で書いたコード。これを、何かに生かせないか。",
         ],
       },
       {
