@@ -70,6 +70,7 @@ const actions: [string, string, string][] = [
   ["difficulty", "select", "d"],
   ["lanes", "select", "w"],
   ["panel", "select", "v"],
+  ["provider", "select", "m"],
   ["history", "select", "p"],
   ["retap", "select", "t"],
   ["bpm_down", "select", "-"],
