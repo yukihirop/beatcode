@@ -62,6 +62,7 @@ function guideText(p: Page): string[] {
   for (const s of g.steps) {
     out.push(`### ${s.title}`, "");
     for (const b of s.body) out.push(b, "");
+    if (s.example) out.push(`${s.example.label}: ${s.example.href} — ${s.example.note}`, "");
     if (s.cmd) out.push("```sh", ...(Array.isArray(s.cmd) ? s.cmd : [s.cmd]), "```", "");
     if (s.out) out.push("```", ...s.out, "```", "");
     if (s.file) out.push(`${s.file.name}:`, "", "```", ...s.file.lines, "```", "");

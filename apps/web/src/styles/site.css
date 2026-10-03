@@ -1138,6 +1138,35 @@ kbd {
   gap: var(--space-sm);
 }
 
+/* A real example (a published chart) under the step's text: label, link, then what it is */
+.step__example {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-left: var(--rule-thick) solid var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+}
+
+.step__example-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+}
+
+.step__example a {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+.step__example-note {
+  flex-basis: 100%;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
 .step__cmd {
   margin: 0;
   padding: var(--space-sm) var(--space-md);

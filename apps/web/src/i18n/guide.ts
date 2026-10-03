@@ -16,6 +16,8 @@ type Step = {
   /** A file to write (like compose.yaml), shown under its name without the prompt. */
   file?: { name: string; lines: string[] };
   keys?: [string, string][];
+  /** A link to a real example (like a published chart), under the body. */
+  example?: { label: string; href: string; note: string };
   /** A small reference table under the keys. */
   table?: { head: string[]; rows: string[][] };
   shots: Shot[];

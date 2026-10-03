@@ -73,6 +73,13 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
             </h2>
             <div class="step__text">
               {s.body.map((p) => <p>{p}</p>)}
+              {s.example && (
+                <p class="step__example">
+                  <span class="step__example-label">{s.example.label}</span>
+                  <a href={s.example.href}>{s.example.href.replace(/^https:\/\//, "")}</a>
+                  <span class="step__example-note">{s.example.note}</span>
+                </p>
+              )}
             </div>
             {s.file && (
               <figure class="step__file">

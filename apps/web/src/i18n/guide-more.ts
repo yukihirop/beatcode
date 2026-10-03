@@ -87,6 +87,11 @@ export const guideMore: Record<Lang, Guide> = {
           "To play one, press G on song select, paste the gist URL or ID and press Enter. It lands in the Gist source with the author’s difficulty, lanes and song (d and w still change them), and starts playing. Typing it after / on the chart row fetches it too, without playing.",
           "Charts from a public GitHub repo can be published too, as long as the files match what’s pushed. beatcode doesn’t check the license, so make sure the code may be shared.",
         ],
+        example: {
+          label: "Example",
+          href: "https://gist.github.com/yukihirop/bf0269cdd3f7e408bdd89d08e8195e74",
+          note: "R.Y.U.S.E.I. (J SOUL BROTHERS III) on Spotify, NORMAL, 4 lanes: the code (.ts) and its notes (.bme). Paste the URL with G to play it.",
+        },
         keys: [
           ["g", "Publish to a gist"],
           ["← →", "secret or public"],
@@ -235,6 +240,11 @@ export const guideMore: Record<Lang, Guide> = {
           "受け取る側は、曲選びで G を押して gist の URL か ID を貼り、Enter。出どころ「Gist」に入り、難しさ・列の数・曲は作者のものになって(d / w で替えられます)、そのまま遊べます。譜面の段の / に打っても取ってこられます(遊ばずに選ぶだけ)。",
           "公開の GitHub repo の譜面も、push 済みの中身と同じなら公開できます。ライセンスは確かめないので、渡してよいコードかは自分で確かめてください。",
         ],
+        example: {
+          label: "例",
+          href: "https://gist.github.com/yukihirop/bf0269cdd3f7e408bdd89d08e8195e74",
+          note: "Spotify の R.Y.U.S.E.I.(J SOUL BROTHERS III)・NORMAL・4 列の譜面。コード(.ts)とノーツ(.bme)の 2 つ。G で URL を貼れば遊べます。",
+        },
         keys: [
           ["g", "gist に公開"],
           ["← →", "secret か public"],
