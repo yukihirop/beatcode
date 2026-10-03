@@ -112,7 +112,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "Settings",
         body: [
           "The server is plain HTTP. For HTTPS, put your own proxy (Caddy, nginx or a hosting service’s) in front of it and set PUBLIC_URL to the https address.",
-          "beatcode sends the player’s GitHub token (gh auth token) with each play, so serve it over HTTPS anywhere but your own machine.",
+          "beatcode sends the player’s GitHub token (read:user only, from beatcode setup rank) with each play, so serve it over HTTPS anywhere but your own machine.",
         ],
         table: {
           head: ["Variable", "Default", "Meaning"],
@@ -130,7 +130,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "Send plays to it",
         body: [
           "Put the page’s address in config.toml. Each time you finish a song, the results screen sends the play and says how it went; R there opens the board it went on.",
-          "Only put in a server you trust: it gets your GitHub token.",
+          "Then sign in once with beatcode setup rank (a code to enter on github.com). The token it gets can only read your profile (read:user), but it goes to that server, so only put in a server you trust.",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: config },
         shots: [],
@@ -234,7 +234,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "設定",
         body: [
           "サーバーは HTTP だけです。HTTPS にするには、前に自分のプロキシ(Caddy・nginx・ホスティングのサービスのもの)を置き、PUBLIC_URL を https のアドレスにします。",
-          "beatcode は遊んだ人の GitHub のトークン(gh auth token)を記録と一緒に送るので、自分のマシンの中以外では HTTPS で出してください。",
+          "beatcode は遊んだ人の GitHub のトークン(beatcode setup rank で取った read:user だけのもの)を記録と一緒に送るので、自分のマシンの中以外では HTTPS で出してください。",
         ],
         table: {
           head: ["環境変数", "既定", "意味"],
@@ -252,7 +252,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "記録を送る",
         body: [
           "config.toml にページのアドレスを書きます。遊び終えるたびに結果の画面が記録を送り、どうなったかを出します。そこで R を押すと、記録が載ったボードのページが開きます。",
-          "書くのは信用できるサーバーだけにしてください。GitHub のトークンがそこへ渡ります。",
+          "そのあと一度 beatcode setup rank でサインインします(github.com でコードを打つ)。取ったトークンはプロフィールを読めるだけ(read:user)ですが、そのサーバーへ渡るので、書くのは信用できるサーバーだけにしてください。",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: config },
         shots: [],
