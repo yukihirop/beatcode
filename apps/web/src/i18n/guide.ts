@@ -194,7 +194,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "History",
         title: "Play one again from history",
         body: [
-          "Press p on song select to list finished plays, newest first. A ★ marks your best for that song and chart.",
+          "Press p on song select to list finished plays, newest first. A ★ marks your best for that song and chart. Only plays on the current music provider (and silent ones) are listed.",
           "Enter asks what the lower right shows while you play, then starts the same song, chart, difficulty and lanes again. Plays of a file given on the command line aren’t kept.",
         ],
         keys: [
@@ -396,7 +396,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "履歴",
         title: "履歴からもう一度",
         body: [
-          "曲選びで p を押すと、遊び終えた回が新しい順に並びます。★ はその曲と譜面での自己ベストです。",
+          "曲選びで p を押すと、遊び終えた回が新しい順に並びます。★ はその曲と譜面での自己ベストです。並ぶのは今の流す先の曲(と無音)の回だけです。",
           "Enter で右下に出すものを聞かれ、同じ曲・譜面・難しさ・列数でもう一度始まります。コマンドでファイルを指定して遊んだ回は残りません。",
         ],
         keys: [
