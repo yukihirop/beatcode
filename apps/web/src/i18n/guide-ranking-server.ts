@@ -30,10 +30,27 @@ export const guideRankingServer: Record<Lang, Guide> = {
     description: "Run your own ranking server for beatcode from one Docker image: the ranking page and the API, with the plays in SQLite.",
     heading: "Ranking server",
     lede: "Put a ranking server in config.toml and beatcode sends each finished play to it. The server is one Docker image: the ranking page and the API on one address, with the plays in one SQLite file.",
+    recorded: "The screenshots were taken from a ranking server running on this machine, filled with made-up plays (pnpm db:seed). The players are not real accounts.",
     menuLabel: "Topics",
     keysLabel: "Keys on this screen",
     next: { href: "guide/", label: "← How to play: one song from start to finish" },
     steps: [
+      {
+        id: "page",
+        menu: "What you get",
+        title: "What you get",
+        body: [
+          "Every chart anyone plays gets its own board. The page lists them with the song’s cover, how many have played and when, and you can narrow them to Spotify, YouTube Music or silent play.",
+          "A board puts the top three on a podium with their score, accuracy and grade, and the rest in a table with their judgements and max combo. When the chart came from a gist, the play preview plays the notes by itself, and Play this chart copies the chart’s gist URL: paste it after / on beatcode’s chart list to play the same chart.",
+          "Each player has a page with their best on every chart and where it ranks. Press R on beatcode’s result screen to jump straight to the board the play went on.",
+        ],
+        shots: [
+          { file: "ranking-list", alt: "The ranking page listing charts with covers, sources, difficulty, lanes, player avatars and how long ago they were played", caption: "The list of boards, newest play first" },
+          { file: "ranking-board", alt: "A board for Never Gonna Give You Up on HARD with 8 lanes: a podium for the top three and a table for 4th to 7th", caption: "A board: the podium and the rest of the ranking" },
+          { file: "ranking-preview", alt: "A board with the play preview: notes falling down four lanes KW, ID, OP and LIT, with PERFECT and the combo in the middle", caption: "The play preview of a chart from a gist" },
+          { file: "ranking-player", alt: "A player page with the pixel avatar, the number of charts and plays, and their best on each chart with its rank", caption: "A player’s bests and ranks" },
+        ],
+      },
       {
         id: "login",
         menu: "Sign in to GHCR",
@@ -122,10 +139,27 @@ export const guideRankingServer: Record<Lang, Guide> = {
     description: "beatcode のランキングのサーバーを、Docker の image 1 つで自分で立てます。ランキングのページと API、記録は SQLite に。",
     heading: "ランキングサーバー",
     lede: "config.toml にランキングのサーバーを書くと、遊び終えるたびに beatcode が記録をそこへ送ります。サーバーは Docker の image 1 つで、ランキングのページと API を 1 つのアドレスで出し、記録は SQLite の 1 つのファイルに置きます。",
+    recorded: "スクリーンショットは手元で動かしたランキングサーバーに、作り物の記録(pnpm db:seed)を入れて撮りました。プレイヤーは実在のアカウントではありません。",
     menuLabel: "項目",
     keysLabel: "この画面のキー",
     next: { href: "guide/", label: "← 使い方: 1 曲を通して遊ぶ流れ" },
     steps: [
+      {
+        id: "page",
+        menu: "どんなページか",
+        title: "どんなページか",
+        body: [
+          "誰かが遊んだ譜面ごとに、ボードが 1 つできます。一覧には曲のジャケット・遊んだ人数・最後に遊ばれた時が並び、Spotify・YouTube Music・無音で絞れます。",
+          "ボードでは上位 3 人が表彰台に立ち、点・精度・ランクが出ます。4 位から下は、判定の割合と最大コンボの表です。gist から取った譜面なら、プレイプレビューでノーツが自動で流れ、「この曲で遊ぶ」で譜面の gist の URL をコピーできます。beatcode の譜面の段で / を押して貼れば、同じ譜面で遊べます。",
+          "プレイヤーごとのページには、譜面ごとの自己ベストと順位が並びます。beatcode の結果の画面で R を押せば、その記録が載ったボードへすぐ飛べます。",
+        ],
+        shots: [
+          { file: "ranking-list", alt: "ランキングの一覧。曲のジャケット・出どころ・難しさ・列の数・遊んだ人のアイコン・何時間前かが並ぶ", caption: "ボードの一覧(最近遊ばれた順)" },
+          { file: "ranking-board", alt: "Never Gonna Give You Up の HARD・8 列のボード。上位 3 人の表彰台と、4〜7 位の表", caption: "ボード: 表彰台と、その下の順位" },
+          { file: "ranking-preview", alt: "プレイプレビューのあるボード。KW・ID・OP・LIT の 4 列にノーツが落ち、真ん中に PERFECT とコンボ数", caption: "gist から取った譜面のプレイプレビュー" },
+          { file: "ranking-player", alt: "プレイヤーのページ。ドット絵のアイコン・譜面の数とプレイ回数・譜面ごとの自己ベストと順位", caption: "プレイヤーの自己ベストと順位" },
+        ],
+      },
       {
         id: "login",
         menu: "GHCR にサインイン",
