@@ -83,7 +83,7 @@ export const guideMore: Record<Lang, Guide> = {
         body: [
           "Bundled charts, charts the AI wrote and charts taken from a gist can go up as a gist for someone else to play. beatcode talks to gists through gh, so you need gh auth login with the gist scope.",
           "Pick the chart and press g. ← → picks secret (anyone with the URL; the default) or public (searchable), Enter publishes. The code and the notes (.bme) go into one gist, and the URL shows at the bottom.",
-          "To play one, press / on the chart row, type the gist URL or ID and press Enter. It lands in the Gist source with the author’s difficulty, lanes and song (d and w still change them).",
+          "To play one, press G on song select, paste the gist URL or ID and press Enter. It lands in the Gist source with the author’s difficulty, lanes and song (d and w still change them), and starts playing. Typing it after / on the chart row fetches it too, without playing.",
           "Charts from a public GitHub repo can be published too, as long as the files match what’s pushed. beatcode doesn’t check the license, so make sure the code may be shared.",
         ],
         keys: [
@@ -91,7 +91,7 @@ export const guideMore: Record<Lang, Guide> = {
           ["← →", "secret or public"],
           ["Enter", "Publish"],
           ["Esc", "Cancel"],
-          ["/", "Open a gist (on the chart row)"],
+          ["G", "Paste a gist and play it"],
         ],
         shots: [
           {
@@ -230,7 +230,7 @@ export const guideMore: Record<Lang, Guide> = {
         body: [
           "同梱・AI が書いた譜面・gist から取ってきた譜面は、gist に公開してほかの人に渡せます。gist とのやり取りは gh に任せるので、gh auth login 済みで gist の権限が要ります。",
           "譜面を選んで g。←→ で secret(URL を知っている人だけ。既定)か public(検索で見つかる)を選び、Enter で公開します。コードとノーツ(.bme)を 1 つの gist に入れ、URL が画面の下に出ます。",
-          "受け取る側は、譜面の段で / を押して gist の URL か ID を打ち、Enter。出どころ「Gist」に入り、難しさ・列の数・曲は作者のものになります(d / w で替えられます)。",
+          "受け取る側は、曲選びで G を押して gist の URL か ID を貼り、Enter。出どころ「Gist」に入り、難しさ・列の数・曲は作者のものになって(d / w で替えられます)、そのまま遊べます。譜面の段の / に打っても取ってこられます(遊ばずに選ぶだけ)。",
           "公開の GitHub repo の譜面も、push 済みの中身と同じなら公開できます。ライセンスは確かめないので、渡してよいコードかは自分で確かめてください。",
         ],
         keys: [
@@ -238,7 +238,7 @@ export const guideMore: Record<Lang, Guide> = {
           ["← →", "secret か public"],
           ["Enter", "公開する"],
           ["Esc", "やめる"],
-          ["/", "gist を取ってくる(譜面の段で)"],
+          ["G", "gist を貼って遊ぶ"],
         ],
         shots: [
           {

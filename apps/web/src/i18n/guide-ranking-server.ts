@@ -65,7 +65,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "What you get",
         body: [
           "Every chart anyone plays gets its own board. The page lists them with the song’s cover, how many have played and when, and you can narrow them to Spotify, YouTube Music or silent play.",
-          "A board puts the top three on a podium with their score, accuracy and grade, and the rest in a table with their judgements and max combo. When the chart came from a gist, the play preview plays the notes by itself, and Play this chart copies the chart’s gist URL: paste it after / on beatcode’s chart list to play the same chart.",
+          "A board puts the top three on a podium with their score, accuracy and grade, and the rest in a table with their judgements and max combo. When the chart came from a gist, the play preview plays the notes by itself, and Play this chart copies the chart’s gist URL: press G on beatcode’s song select and paste it to play the same chart.",
           "Each player has a page with their best on every chart and where it ranks. Press R on beatcode’s result screen to jump straight to the board the play went on.",
         ],
         shots: [
@@ -188,7 +188,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "どんなページか",
         body: [
           "誰かが遊んだ譜面ごとに、ボードが 1 つできます。一覧には曲のジャケット・遊んだ人数・最後に遊ばれた時が並び、Spotify・YouTube Music・無音で絞れます。",
-          "ボードでは上位 3 人が表彰台に立ち、点・精度・ランクが出ます。4 位から下は、判定の割合と最大コンボの表です。gist から取った譜面なら、プレイプレビューでノーツが自動で流れ、「この曲で遊ぶ」で譜面の gist の URL をコピーできます。beatcode の譜面の段で / を押して貼れば、同じ譜面で遊べます。",
+          "ボードでは上位 3 人が表彰台に立ち、点・精度・ランクが出ます。4 位から下は、判定の割合と最大コンボの表です。gist から取った譜面なら、プレイプレビューでノーツが自動で流れ、「この曲で遊ぶ」で譜面の gist の URL をコピーできます。beatcode の曲選びで G を押して貼れば、同じ譜面で遊べます。",
           "プレイヤーごとのページには、譜面ごとの自己ベストと順位が並びます。beatcode の結果の画面で R を押せば、その記録が載ったボードへすぐ飛べます。",
         ],
         shots: [
