@@ -23,6 +23,23 @@ const repo = t.footer.links[0].href;
     <a class="nav__link" href={`${home}philosophy/`} aria-current={path === "philosophy/" ? "page" : undefined}>{t.nav.philosophy}</a>
   </nav>
   <div class="nav__end">
+    <details class="llms" data-llms data-copied={t.llms.copied} data-failed={t.llms.failed}>
+      <summary class="nav__link llms__toggle">{t.llms.label}</summary>
+      <ul class="llms__menu">
+        {t.llms.files.map((f) => (
+          <li class="llms__item">
+            <span class="llms__file">{f.file}</span>
+            <span class="llms__note">{f.note}</span>
+            <span class="llms__actions">
+              <a class="llms__action" href={`${base}${f.file}`} download={f.file}>{t.llms.download}</a>
+              <button type="button" class="llms__action" data-copy-file={`${base}${f.file}`}>
+                <span data-label>{t.llms.copy}</span>
+              </button>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </details>
     <a class="nav__link nav__lang" href={`${base}${t.otherLang.href}${path}`} lang={t.htmlLang === "en" ? "ja" : "en"}>
       <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
         <g fill="none" stroke="currentColor" stroke-width="1.25">
@@ -40,3 +57,35 @@ const repo = t.footer.links[0].href;
     </a>
   </div>
 </header>
+
+<script>
+  // llms.txt menu: copy a file's whole text, close on Esc or a click outside
+  for (const menu of document.querySelectorAll<HTMLDetailsElement>("[data-llms]")) {
+    for (const btn of menu.querySelectorAll<HTMLButtonElement>("[data-copy-file]")) {
+      const label = btn.querySelector<HTMLElement>("[data-label]")!;
+      const idle = label.textContent;
+      let timer = 0;
+      btn.addEventListener("click", async () => {
+        try {
+          const res = await fetch(btn.dataset.copyFile!);
+          if (!res.ok) throw new Error(String(res.status));
+          await navigator.clipboard.writeText(await res.text());
+          label.textContent = menu.dataset.copied!;
+        } catch {
+          label.textContent = menu.dataset.failed!;
+        }
+        clearTimeout(timer);
+        timer = window.setTimeout(() => (label.textContent = idle), 1600);
+      });
+    }
+    document.addEventListener("click", (e) => {
+      if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
+    });
+    menu.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && menu.open) {
+        menu.open = false;
+        menu.querySelector("summary")!.focus();
+      }
+    });
+  }
+</script>

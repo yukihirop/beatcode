@@ -256,6 +256,106 @@ body::before {
   min-height: 1.5rem;
 }
 
+/* llms.txt menu: a disclosure at the end of the nav, opening a small panel under it */
+.llms {
+  position: relative;
+}
+
+.llms__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  cursor: pointer;
+  list-style: none;
+}
+
+.llms__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.llms__toggle::after {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  border-right: var(--rule-hair) solid currentColor;
+  border-bottom: var(--rule-hair) solid currentColor;
+  transform: translateY(-0.15em) rotate(45deg);
+  transition: transform var(--dur-micro) var(--ease-out);
+}
+
+.llms[open] > .llms__toggle::after {
+  transform: translateY(0.1em) rotate(-135deg);
+}
+
+.llms__menu {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  right: 0;
+  z-index: 10;
+  width: min(23rem, calc(100vw - 2 * var(--page-gutter)));
+  margin: 0;
+  padding: var(--space-xs) 0;
+  list-style: none;
+  background: var(--color-paper);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.25);
+}
+
+.llms__item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "file actions"
+    "note actions";
+  align-items: center;
+  gap: 0 var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+}
+
+.llms__item + .llms__item {
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.llms__file {
+  grid-area: file;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.llms__note {
+  grid-area: note;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.llms__actions {
+  grid-area: actions;
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.llms__action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 var(--space-sm);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.llms__action:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
 /* Demo · the real screen, full width under the hero ---------------------------- */
 
 .demo {

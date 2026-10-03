@@ -10,6 +10,8 @@ export type Strings = {
   otherLang: { label: string; href: string };
   nav: { guide: string; config: string; plugins: string; rankingServer: string; philosophy: string };
   github: string;
+  /** The llms.txt menu at the end of the nav: each file can be downloaded or copied whole, to hand to an AI */
+  llms: { label: string; download: string; copy: string; copied: string; failed: string; files: { file: string; note: string }[] };
   hero: {
     title: string;
     lede: string;
@@ -95,6 +97,17 @@ export const strings: Record<Lang, Strings> = {
     otherLang: { label: "日本語", href: "ja/" },
     nav: { guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server", philosophy: "Philosophy" },
     github: "GitHub",
+    llms: {
+      label: "llms.txt",
+      download: "Download",
+      copy: "Copy",
+      copied: "Copied",
+      failed: "Couldn’t copy",
+      files: [
+        { file: "llms.txt", note: "A short map of the site, for an AI" },
+        { file: "llms-full.txt", note: "Every page in one file" },
+      ],
+    },
     hero: {
       title: "Play your\u00a0code.",
       lede: "A rhythm game for the terminal. The notes are the tokens of real source code — keywords, names, operators, literals — falling down their own lanes. Clear the song and you’ve typed out a function.",
@@ -196,6 +209,17 @@ export const strings: Record<Lang, Strings> = {
     otherLang: { label: "English", href: "" },
     nav: { guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー", philosophy: "フィロソフィー" },
     github: "GitHub",
+    llms: {
+      label: "llms.txt",
+      download: "ダウンロード",
+      copy: "コピー",
+      copied: "コピーしました",
+      failed: "コピーできませんでした",
+      files: [
+        { file: "llms.txt", note: "AI 向けのサイトの案内(短い版)" },
+        { file: "llms-full.txt", note: "全ページを 1 つにまとめたもの" },
+      ],
+    },
     hero: {
       title: "コードを、音ゲーとして叩く。",
       lede: "beatcode はターミナルで遊ぶ音ゲーです。落ちてくるノーツは本物のソースコードのトークン。キーワード・識別子・演算子・リテラルが、それぞれの列を流れてきます。1 曲叩き切ると、関数が 1 つ書き上がります。",
