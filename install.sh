@@ -41,9 +41,10 @@ trap 'rm -rf "$tmp"' EXIT INT TERM
 archive="beatcode-$target.tar.gz"
 say "Downloading $archive"
 curl -fsSL "$base/$archive" -o "$tmp/$archive" || fail "could not download $base/$archive"
-curl -fsSL "$base/$archive.sha256" -o "$tmp/$archive.sha256" || fail "could not download the checksum"
+curl -fsSL "$base/SHA256SUMS" -o "$tmp/SHA256SUMS" || fail "could not download the checksums"
 
-expected="$(cut -d' ' -f1 "$tmp/$archive.sha256")"
+expected="$(awk -v f="$archive" '$2 == f || $2 == "*" f { print $1 }' "$tmp/SHA256SUMS")"
+[ -n "$expected" ] || fail "SHA256SUMS has no line for $archive"
 if command -v sha256sum >/dev/null; then
   actual="$(sha256sum "$tmp/$archive" | cut -d' ' -f1)"
 else

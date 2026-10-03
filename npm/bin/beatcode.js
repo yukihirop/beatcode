@@ -43,8 +43,11 @@ async function install(dir, bin) {
   const base = process.env.BEATCODE_DOWNLOAD_URL || `https://github.com/${REPO}/releases/download/v${version}`;
   const archive = `beatcode-${t}.tar.gz`;
   process.stderr.write(`beatcode (npm): downloading ${archive} (v${version})\n`);
-  const [data, sum] = await Promise.all([download(`${base}/${archive}`), download(`${base}/${archive}.sha256`)]);
-  const expected = sum.toString("utf8").trim().split(/\s+/)[0];
+  const [data, sums] = await Promise.all([download(`${base}/${archive}`), download(`${base}/SHA256SUMS`)]);
+  // SHA256SUMS: one "<hex>  <file>" line per release file
+  const line = sums.toString("utf8").split("\n").map((l) => l.trim().split(/\s+/)).find(([, f]) => f === archive || f === `*${archive}`);
+  if (!line) throw new Error(`SHA256SUMS has no line for ${archive}`);
+  const expected = line[0].toLowerCase();
   const actual = crypto.createHash("sha256").update(data).digest("hex");
   if (expected !== actual) throw new Error(`checksum mismatch (expected ${expected}, got ${actual})`);
 

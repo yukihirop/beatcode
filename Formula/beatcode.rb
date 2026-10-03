@@ -17,6 +17,9 @@ class Beatcode < Formula
   end
 
   on_linux do
+    # beatcode links libasound (ALSA) for sound
+    depends_on "alsa-lib"
+
     on_arm do
       url "https://github.com/yukihirop/beatcode/releases/download/v#{version}/beatcode-aarch64-unknown-linux-gnu.tar.gz"
       sha256 "0000000000000000000000000000000000000000000000000000000000000000"
@@ -28,7 +31,13 @@ class Beatcode < Formula
   end
 
   def install
-    bin.install "beatcode"
+    if OS.linux?
+      # The prebuilt binary looks for libasound.so.2 in the system's paths, not Homebrew's
+      libexec.install "beatcode"
+      (bin/"beatcode").write_env_script libexec/"beatcode", LD_LIBRARY_PATH: Formula["alsa-lib"].opt_lib
+    else
+      bin.install "beatcode"
+    end
   end
 
   test do
