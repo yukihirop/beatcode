@@ -178,7 +178,7 @@ export const strings: Record<Lang, Strings> = {
     },
     footer: {
       license:
-        "beatcode is proprietary software. The official binaries are free to install and run for personal, non-commercial use; the source code is not public. See LICENSE for the complete terms.",
+        "beatcode is proprietary software. See LICENSE for the complete terms.",
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },
@@ -279,7 +279,7 @@ export const strings: Record<Lang, Strings> = {
     },
     footer: {
       license:
-        "beatcode は著作権者がすべての権利を持つソフトウェアです。公式のバイナリを、個人が非商用で入れて動かすことは許可しています。ソースコードは公開していません。詳しい条件は LICENSE を確認してください。",
+        "beatcode は著作権者がすべての権利を持つソフトウェアです。詳しい条件は LICENSE を確認してください。",
       links: [
         { label: "GitHub", href: repo },
         { label: "Releases", href: `${repo}/releases` },
