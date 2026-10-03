@@ -246,7 +246,7 @@ export const guideConfig: Record<Lang, Guide> = {
       {
         id: "display",
         menu: "[display]",
-        title: "[display] — language, icons and logo",
+        title: "[display] — language, icons, logo and token text",
         body: [
           "The environment variables BEATCODE_ICONS and BEATCODE_LANG win over icons and language, so you can try a setting for one run without editing the file.",
           "The logo shows at startup (a 1 s splash), in the song select and history titles, above the ready screen’s guide, on the tap-the-tempo screen, in the quit box, above the rank on the result screen, in the top-right box while playing, and at the top of beatcode --help.",
@@ -257,6 +257,7 @@ export const guideConfig: Record<Lang, Guide> = {
             ["icons", '"nerd"', 'Icons for repos, files and places. "text" uses letters like gh / 1st, "none" shows none'],
             ["language", '"auto"', 'Screen language: "auto" / "ja" / "en". auto picks Japanese when LC_ALL / LC_MESSAGES / LANG starts with ja, English otherwise'],
             ["note_text", "true", "Write the token on each falling note. false draws plain colored bars; the big next token and the code pane stay as they are"],
+            ["next_token", "true", "Show the next token to hit large in the middle of the lanes. false hides it; the text on notes and the code pane stay as they are"],
             ["logo", '"auto"', 'auto shows the image on terminals that can show images (kitty graphics, iTerm2 or sixel; not inside tmux or in Terminal.app) and a ▀▄█ text logo elsewhere. "text" always uses the text logo, "none" shows no logo and no splash'],
           ],
         },
@@ -556,7 +557,7 @@ export const guideConfig: Record<Lang, Guide> = {
       {
         id: "display",
         menu: "[display]",
-        title: "[display] — 言葉・アイコン・ロゴ",
+        title: "[display] — 言葉・アイコン・ロゴ・トークンの字",
         body: [
           "icons と language は、環境変数 BEATCODE_ICONS と BEATCODE_LANG のほうが優先です。ファイルを書き換えずに 1 回だけ試せます。",
           "ロゴが出るのは、起動の画面(1 秒)・曲選びと遊んだ履歴の見出し・待機画面の案内の上・テンポを叩く画面・閉じるかの枠・結果の画面のランクの上・プレイ中の右上の枠・beatcode --help の頭です。",
@@ -567,6 +568,7 @@ export const guideConfig: Record<Lang, Guide> = {
             ["icons", '"nerd"', 'repo・ファイル・順位のアイコン。"text" は gh / 1st のような字、"none" は出さない'],
             ["language", '"auto"', '画面の言葉。"auto" / "ja" / "en"。auto は LC_ALL / LC_MESSAGES / LANG が ja で始まれば日本語、ほかは英語'],
             ["note_text", "true", "落ちてくるノーツにトークンの字を書く。false なら色の帯だけ(列の真ん中に大きく出す次のトークンと、右のコードの欄はそのまま)"],
+            ["next_token", "true", "次に叩くトークンを列の真ん中に大きく出す。false なら出さない(ノーツの字と右のコードの欄はそのまま)"],
             ["logo", '"auto"', 'auto は画像を出せる端末(kitty の画像・iTerm2・sixel。tmux の中と Terminal.app は除く)で画像、ほかは ▀▄█ の字のロゴ。"text" はいつも字、"none" は出さない(起動の画面も出さない)'],
           ],
         },
