@@ -23,6 +23,30 @@ const compose = [
 const run = `docker run -d --name beatcode-ranking --restart unless-stopped -p 8080:8787 -v beatcode-ranking:/data ${image}:latest`;
 const login = "gh auth token | docker login ghcr.io -u <your GitHub login> --password-stdin";
 const config = ["[share]", 'ranking_server_url = "https://ranking.example.com"'];
+// A Raspberry Pi at home, reached only through a Cloudflare Tunnel: no ports published, on the Pi or the router
+const piCompose = [
+  "services:",
+  "  ranking:",
+  `    image: ${image}:latest`,
+  "    restart: unless-stopped",
+  "    environment:",
+  "      PUBLIC_URL: https://ranking.example.com",
+  "    volumes:",
+  "      - /mnt/ssd/beatcode-ranking:/data",
+  "  cloudflared:",
+  "    image: cloudflare/cloudflared:latest",
+  "    restart: unless-stopped",
+  "    command: tunnel --no-autoupdate run",
+  "    environment:",
+  "      TUNNEL_TOKEN: ${TUNNEL_TOKEN}",
+];
+const piCmds = [
+  "curl -fsSL https://get.docker.com | sh",
+  "echo <token with read:packages> | docker login ghcr.io -u <your GitHub login> --password-stdin",
+  "echo 'TUNNEL_TOKEN=<the tunnel token>' > .env && chmod 600 .env",
+  "docker compose up -d",
+  "curl https://ranking.example.com/healthz",
+];
 
 export const guideRankingServer: Record<Lang, Guide> = {
   en: {
@@ -119,6 +143,19 @@ export const guideRankingServer: Record<Lang, Guide> = {
           `A host that runs a Docker image can run it as is: the image ${image}, a volume (a persistent disk) at /data, and PUBLIC_URL. While the image is private, the host needs a sign-in to GHCR too.`,
           "SQLite is one file on that one disk, so run one copy, not several.",
         ],
+        shots: [],
+      },
+      {
+        id: "pi",
+        menu: "Raspberry Pi + Cloudflare Tunnel",
+        title: "On a Raspberry Pi with Cloudflare Tunnel",
+        body: [
+          "A Raspberry Pi 4 or 5 with a 64-bit OS runs the image too: it is built for arm64. A Cloudflare Tunnel gives it an https address without opening a port on the Pi or your router, and keeps your home IP out of sight. It needs a domain on Cloudflare; a Quick Tunnel (trycloudflare.com) changes its address every time, so it doesn’t suit a ranking.",
+          "In Cloudflare’s dashboard, create a tunnel under Networking → Tunnels, pick Docker and keep only the token from the command it shows. Then add a route: Published application, your subdomain and domain, and the service URL http://ranking:8787 — the service name and port inside the compose file below.",
+          "The compose file has no ports at all: the tunnel is the only way in. Keep the token in .env next to it, readable only by you. Put /data on a USB SSD rather than the SD card, which wears out under SQLite’s writes, and copy ranking.db somewhere else now and then (Update and back up, below). With restart: unless-stopped, both come back on their own after a power cut.",
+        ],
+        cmd: piCmds,
+        file: { name: "compose.yaml", lines: piCompose },
         shots: [],
       },
       {
@@ -228,6 +265,19 @@ export const guideRankingServer: Record<Lang, Guide> = {
           `Docker の image を動かせるサービスなら、そのまま動きます。image に ${image}、/data に volume(消えないディスク)、それに PUBLIC_URL。image が private の間は、サービスにも GHCR へのサインインが要ります。`,
           "SQLite はそのディスクの上の 1 つのファイルなので、動かすのは 1 つだけにして、複数にしないでください。",
         ],
+        shots: [],
+      },
+      {
+        id: "pi",
+        menu: "ラズパイ + Cloudflare Tunnel",
+        title: "ラズパイと Cloudflare Tunnel で",
+        body: [
+          "64 ビットの OS の Raspberry Pi 4 / 5 でも、image はそのまま動きます(arm64 でも作っています)。Cloudflare Tunnel を使えば、Pi にもルーターにもポートを開けずに https のアドレスを持て、家の IP も表に出ません。Cloudflare に載せたドメインが要ります。ドメイン無しの Quick Tunnel(trycloudflare.com)は作るたびにアドレスが変わるので、ランキングには向きません。",
+          "Cloudflare のダッシュボードの Networking → Tunnels でトンネルを作り、Docker を選んで、出てくるコマンドのトークンだけを控えます。続けて Route を足します。Published application で、サブドメインとドメイン、サービスの URL は http://ranking:8787(下の compose の中のサービス名とポート)です。",
+          "compose には ports を書きません。入口はトンネルだけです。トークンは同じ場所の .env に置き、自分だけが読めるようにします。/data は SD カードではなく USB の SSD に置いてください(SQLite の書き込みで SD カードは傷みます)。ranking.db はときどき別の場所へ写します(下の「新しくする・バックアップ」)。restart: unless-stopped なので、停電のあとも両方とも自分で戻ります。",
+        ],
+        cmd: piCmds,
+        file: { name: "compose.yaml", lines: piCompose },
         shots: [],
       },
       {
