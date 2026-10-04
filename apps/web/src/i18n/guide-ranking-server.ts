@@ -4,6 +4,8 @@ import type { Lang } from "./strings";
 // The fourth guide page: running the ranking server beatcode sends plays to, from its image on GHCR.
 // The same as beatcode-private's docs/ranking-server.md; the image is built by beatcode-private-tools.
 const image = "ghcr.io/yukihirop/beatcode-ranking";
+// The whole site in one file, for the agent to read first
+const llmsFull = `${(import.meta.env.SITE ?? "https://stg-ngk7v9hb.vercel.app").replace(/\/?$/, "/")}llms-full.txt`;
 
 const compose = [
   "services:",
@@ -74,6 +76,33 @@ export const guideRankingServer: Record<Lang, Guide> = {
           { file: "ranking-preview", alt: "A board with the play preview: notes falling down four lanes KW, ID, OP and LIT, with PERFECT and the combo in the middle", caption: "The play preview of a chart from a gist" },
           { file: "ranking-player", alt: "A player page with the pixel avatar, the number of charts and plays, and their best on each chart with its rank", caption: "A player’s bests and ranks" },
         ],
+      },
+      {
+        id: "agent",
+        menu: "Let an agent do it",
+        title: "Let a coding agent set it up",
+        body: [
+          "Copy this prompt into a coding agent (Claude Code, Codex and the like) on the machine that will run the server, or the one you reach it from. It reads this site, asks where to run it, writes the compose file and points your beatcode at it.",
+          "It asks before starting anything, and leaves the sign-ins (gh, beatcode setup rank) and the Cloudflare tunnel token for you. Tokens are only checked for, never read.",
+        ],
+        file: {
+          name: "Prompt for your coding agent",
+          copy: true,
+          lines: [
+            "Set up a ranking server for beatcode, a rhythm game that runs in the terminal, and point my beatcode at it.",
+            "",
+            `1. Read ${llmsFull} first. It is the whole beatcode site; follow its Ranking server page.`,
+            "2. Ask me where to run it: on this machine with Docker, on a Raspberry Pi with Cloudflare Tunnel, or on a hosting service. Ask for the https address people will open (PUBLIC_URL) too, if there is one.",
+            "3. Look without changing anything: whether docker and docker compose work, whether gh is signed in with the read:packages scope (gh auth status), and my ~/.config/beatcode/config.toml.",
+            "4. The image ghcr.io/yukihirop/beatcode-ranking is private. If the scope is missing, give me gh auth refresh -s read:packages to run myself, then sign docker in to GHCR without printing the token.",
+            "5. Write compose.yaml as the page shows, with /data on a volume (on a Raspberry Pi, on a USB SSD). For Cloudflare Tunnel, make .env readable only by me (chmod 600) and let me paste the tunnel token into it myself. Show me the file and ask before starting it, then check that /healthz answers {\"ok\":true}.",
+            "6. Add ranking_server_url under [share] in my config.toml (read it first and add to [share] if it is there), then run beatcode --help to check it still loads.",
+            "7. Give me beatcode setup rank to run myself. It signs in on github.com.",
+            "8. Never read or print tokens: gh's, the tunnel's or beatcode's. Only check whether they exist.",
+            "9. At the end, tell me the page's address, where ranking.db is and how to back it up, and anything left undone.",
+          ],
+        },
+        shots: [],
       },
       {
         id: "login",
@@ -197,6 +226,33 @@ export const guideRankingServer: Record<Lang, Guide> = {
           { file: "ranking-preview", alt: "プレイプレビューのあるボード。KW・ID・OP・LIT の 4 列にノーツが落ち、真ん中に PERFECT とコンボ数", caption: "gist から取った譜面のプレイプレビュー" },
           { file: "ranking-player", alt: "プレイヤーのページ。ドット絵のアイコン・譜面の数とプレイ回数・譜面ごとの自己ベストと順位", caption: "プレイヤーの自己ベストと順位" },
         ],
+      },
+      {
+        id: "agent",
+        menu: "エージェントに任せる",
+        title: "コーディングエージェントに任せる",
+        body: [
+          "サーバーを動かすマシン(か、そこへつなぐマシン)のコーディングエージェント(Claude Code・Codex など)に、このプロンプトを渡します。このサイトを読み、どこで動かすかを聞き、compose を書いて、beatcode の送り先まで設定してくれます。",
+          "何かを起動する前には聞きます。サインイン(gh・beatcode setup rank)と Cloudflare のトンネルのトークンは自分で入れるよう案内します。トークンはあるかどうかを見るだけで、中身は読みません。",
+        ],
+        file: {
+          name: "コーディングエージェントに渡すプロンプト",
+          copy: true,
+          lines: [
+            "ターミナルで動く音ゲー beatcode のランキングサーバーを立てて、私の beatcode の記録をそこへ送るようにしてください。",
+            "",
+            `1. まず ${llmsFull} を読んでください。beatcode のサイト全部です。その中のランキングサーバーのページに従ってください。`,
+            "2. どこで動かすかを聞いてください: このマシンの Docker・Raspberry Pi と Cloudflare Tunnel・ホスティングのサービス。人が開く https のアドレス(PUBLIC_URL)があれば、それも聞いてください。",
+            "3. 何も変えずに見てください: docker と docker compose が動くか、gh が read:packages の権限付きでサインインしているか(gh auth status)、~/.config/beatcode/config.toml の中身。",
+            "4. image の ghcr.io/yukihirop/beatcode-ranking は private です。権限が足りなければ gh auth refresh -s read:packages を私が打つよう教え、そのあと docker を GHCR にサインインさせてください(トークンは出さない)。",
+            "5. ページのとおりに compose.yaml を書いてください。/data は volume に(Raspberry Pi なら USB の SSD に)。Cloudflare Tunnel なら .env を私だけが読めるように作り(chmod 600)、トンネルのトークンは私が貼ります。ファイルを見せて、起動する前に聞いてください。起動したら /healthz が {\"ok\":true} を返すか確かめてください。",
+            "6. config.toml の [share] に ranking_server_url を足してください(先に中身を読み、[share] があればそこに足す)。足したら beatcode --help で読めるか確かめてください。",
+            "7. beatcode setup rank は私が打つよう教えてください。github.com でサインインします。",
+            "8. トークン(gh・トンネル・beatcode のもの)の中身は読まない・出さないでください。あるかどうかだけを見てください。",
+            "9. 最後に、ページのアドレス・ranking.db の場所とバックアップの取り方・済んでいないことを教えてください。",
+          ],
+        },
+        shots: [],
       },
       {
         id: "login",
