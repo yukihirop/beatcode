@@ -130,10 +130,10 @@ export const strings: Record<Lang, Strings> = {
     },
     demo: {
       heading: "The real thing, with the song.",
-      body: "Thirty seconds from the middle of シャイニングスター (Shining Star, ♩=158), played on the bundled Rust charts. The code on the right lights up token by token as it’s hit.",
+      body: "Thirty seconds of the last chorus of Heroes Tonight by Janji (feat. Johnning), played on a TypeScript chart shared as a gist. The code on the right lights up token by token as it’s hit.",
       play: "Play with sound",
-      label: "Thirty seconds of beatcode with シャイニングスター playing: tokens fall down four lanes and are hit on the judgment line while the combo climbs and the code on the right lights up.",
-      caption: "Recorded with beatcode record through YouTube Music (Pear Desktop), from 2:30 to 3:00; the sound is the song file laid over the recording in time. A small bot that reads the screen did the hitting, so the score isn’t a person’s. Music: 魔王魂 (maou.audio).",
+      label: "Thirty seconds of beatcode with Heroes Tonight playing: tokens fall down four lanes and are hit on the judgment line while the combo climbs and the code on the right lights up.",
+      caption: "Recorded with beatcode record through Spotify, from 2:38 to 3:08; the sound is the song file laid over the recording in time. A small bot that reads the screen did the hitting, so the score isn’t a person’s. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
     },
     lanes: {
       heading: "Every token has a lane.",
