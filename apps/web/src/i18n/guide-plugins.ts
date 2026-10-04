@@ -9,7 +9,7 @@ export const guidePlugins: Record<Lang, Guide> = {
     title: "Plugins — beatcode",
     description: `Add ${codeLangs.length} programming languages, ${proseLangs.en.length} written languages, two AI providers and beatcode record to beatcode with one command.`,
     heading: "Plugins",
-    lede: `Plugins add what beatcode doesn’t ship with: ${codeLangs.length} programming languages, ${proseLangs.en.length} written languages, two more AI providers and a recorder. Each is a small program that beatcode starts when it needs it.`,
+    lede: `Plugins add what beatcode doesn’t ship with: ${codeLangs.length} programming languages, ${proseLangs.en.length} written languages, two more AI providers, a recorder and a gist previewer. Each is a small program that beatcode starts when it needs it.`,
     recorded:
       "The command output was taken against a local copy of the release, in an empty home folder. The screenshot was recorded with beatcode record after installing C.",
     menuLabel: "Topics",
@@ -91,6 +91,17 @@ export const guidePlugins: Record<Lang, Guide> = {
         shots: [],
       },
       {
+        id: "gist",
+        menu: "beatcode gist preview",
+        title: "beatcode gist preview",
+        body: [
+          "beatcode gist preview takes a beatmap gist’s URL or ID and opens a page in your browser, the same as a board on the ranking: the song’s card, and its notes playing themselves without sound. Play this song copies the gist’s URL to paste after G on the song select.",
+          "It fetches the gist with gh, so it shows your secret gists too. -o <file.html> writes the page where you say; --no-open only writes it.",
+        ],
+        cmd: ["beatcode plugins install gist", "beatcode gist preview <gist URL or ID>"],
+        shots: [],
+      },
+      {
         id: "own",
         menu: "Make your own",
         title: "Make your own",
@@ -115,7 +126,7 @@ export const guidePlugins: Record<Lang, Guide> = {
     title: "プラグイン — beatcode",
     description: `コードの言語 ${codeLangs.length}・文章の言語 ${proseLangs.ja.length}・AI の頼む先 2 つ・beatcode record を、コマンド 1 つで beatcode に足せます。`,
     heading: "プラグイン",
-    lede: `beatcode に入っていないものを足します。コードの言語 ${codeLangs.length}、文章の言語 ${proseLangs.ja.length}、AI の頼む先 2 つ、録画のコマンド。どれも小さなプログラムで、beatcode が要るときに起動します。`,
+    lede: `beatcode に入っていないものを足します。コードの言語 ${codeLangs.length}、文章の言語 ${proseLangs.ja.length}、AI の頼む先 2 つ、録画のコマンド、gist のプレビューのコマンド。どれも小さなプログラムで、beatcode が要るときに起動します。`,
     recorded:
       "コマンドの出力は、Release の写しを手元に置き、空のホームで取りました。画面は C を入れてから beatcode record で撮ったものです。",
     menuLabel: "項目",
@@ -194,6 +205,17 @@ export const guidePlugins: Record<Lang, Guide> = {
           "曲が入るので、録ったものは配らないでください。macOS 14.2 以降では、初めてのときに「beatcode record」に音の収録を許すか聞かれます。Linux ではまだ音なしの動画です。",
         ],
         cmd: ["beatcode plugins install record", "beatcode record"],
+        shots: [],
+      },
+      {
+        id: "gist",
+        menu: "beatcode gist preview",
+        title: "beatcode gist preview",
+        body: [
+          "beatcode gist preview に譜面の gist の URL か ID を渡すと、ランキングのボードと同じ、曲のカードと、ノーツを音なしで自動で落とすページがブラウザで開きます。「この曲で遊ぶ」で gist の URL がコピーされるので、曲選びの G で貼って遊べます。",
+          "gist は gh で取るので、自分の secret の gist も見られます。-o <ファイル.html> で書く場所を決められ、--no-open なら書くだけです。",
+        ],
+        cmd: ["beatcode plugins install gist", "beatcode gist preview <gist の URL か ID>"],
         shots: [],
       },
       {
