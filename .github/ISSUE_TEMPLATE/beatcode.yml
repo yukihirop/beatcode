@@ -1,0 +1,89 @@
+name: beatcode (the game)
+description: A bug, an idea or a question about the beatcode command itself.
+title: "[beatcode] "
+labels: ["beatcode"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for playing. The source isn't public, so the details below are what we have to go on.
+        日本語で書いても大丈夫です。
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - Bug (something doesn't work)
+        - Idea (something you'd like)
+        - Question
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, or what you'd like
+      description: For a bug, what you expected and what you saw instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: For a bug. The command you ran, the screen you were on, and the keys you pressed.
+      placeholder: |
+        1. beatcode path/to/file.rs
+        2. HARD, 8 lanes
+        3. ...
+
+  - type: input
+    id: version
+    attributes:
+      label: beatcode version
+      description: The output of `beatcode --version`.
+      placeholder: beatcode 0.1.0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: Installed with
+      options:
+        - Homebrew
+        - npm / npx
+        - install.sh
+        - Other
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: macOS 15.3 (Apple silicon) / Ubuntu 24.04 (x86_64)
+    validations:
+      required: true
+
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal
+      description: The terminal app, and whether you are inside tmux. For pictures or key release, add the output of `beatcode logo check`.
+      placeholder: Ghostty 1.1 in cmux / iTerm2 3.5, inside tmux
+
+  - type: dropdown
+    id: music
+    attributes:
+      label: Where songs play
+      options:
+        - Spotify
+        - YouTube Music (Pear Desktop)
+        - Silent
+        - Doesn't matter
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots, a recording, the relevant part of `~/.config/beatcode/config.toml`. Leave out tokens and API keys.

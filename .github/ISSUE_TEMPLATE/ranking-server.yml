@@ -1,0 +1,75 @@
+name: Ranking server
+description: A bug, an idea or a question about the ranking, sending plays, or running the ranking server image.
+title: "[ranking-server] "
+labels: ["ranking-server"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For the ranking pages, plays sent from the result screen, and the `ghcr.io/yukihirop/beatcode-ranking` image.
+        Never paste your GitHub token (`~/.config/beatcode/github.token`) or other secrets here.
+        日本語で書いても大丈夫です。
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - Bug (something doesn't work)
+        - Idea (something you'd like)
+        - Question
+    validations:
+      required: true
+
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - Sending a play from beatcode (the result screen)
+        - The ranking page in the browser
+        - Signing in (beatcode setup rank)
+        - Running the server image myself
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, or what you'd like
+      description: For a send that failed, copy what the top row of the result screen said.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: For a bug.
+
+  - type: input
+    id: server
+    attributes:
+      label: Ranking server
+      description: The `ranking_server_url` you use, or say it's one you run yourself.
+      placeholder: https://ranking.example.com / my own, on localhost
+
+  - type: input
+    id: version
+    attributes:
+      label: beatcode version
+      description: The output of `beatcode --version`.
+      placeholder: beatcode 0.1.0
+
+  - type: textarea
+    id: server-env
+    attributes:
+      label: Running it yourself
+      description: If you run the image. The image tag, how you run it (docker run / compose, with PUBLIC_URL and the rest; leave out secrets), and the logs from `docker logs`.
+      render: shell
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots, the board's address.

@@ -1,0 +1,61 @@
+name: Website
+description: A bug, a typo or an idea about the beatcode website and its guides.
+title: "[website] "
+labels: ["website"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For the site and its guides (How to play, Requirements, Config, Plugins and the rest). For the game itself, use the beatcode form.
+        日本語で書いても大丈夫です。
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - Bug (broken layout, link or page)
+        - Wrong or unclear text
+        - Idea (something you'd like)
+        - Question
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Page
+      description: The address of the page, with the section if there is one.
+      placeholder: https://…/guide/environment/#terminal
+    validations:
+      required: true
+
+  - type: dropdown
+    id: lang
+    attributes:
+      label: Language of the page
+      options:
+        - English
+        - 日本語
+        - Both
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What you saw, and what you expected
+      description: For text, quote the sentence and say what you think it should say.
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      description: For a bug in how the page looks or works.
+      placeholder: Safari 18 on iPhone / Chrome 130 on macOS, dark mode
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: Screenshots help most.
