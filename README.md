@@ -62,7 +62,7 @@ with a Japanese IME on, the keys never reach the game.
 
 - **Any code is a chart.** Play the bundled songs, the git repos on your machine, your own GitHub repos,
   or a chart an AI writes for you on the spot. Long files are cut into one chart per function
-- **Six languages.** Rust, Python, Go, TypeScript / JavaScript, Ruby and PHP (comments are not notes).
+- **Seven languages.** Rust, Python, Go, TypeScript, JavaScript, Ruby and PHP (comments are not notes).
   Plain text works too: Japanese and English `.md` / `.txt`
 - **Play along to Spotify.** Your liked songs play inside beatcode, and the tempo and note positions come
   from analyzing the song's audio on your machine. Nothing is sent anywhere. YouTube Music works too (by driving the Pear Desktop app)

@@ -60,7 +60,7 @@ curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh 
 
 - **どんなコードも譜面になります。**同梱の曲、手元の git repo、自分の GitHub の repo、
   その場で AI に書いてもらった譜面で遊べます。長いファイルは関数ごとに 1 つの譜面に切ります
-- **6 つの言語。**Rust・Python・Go・TypeScript / JavaScript・Ruby・PHP(コメントはノーツになりません)。
+- **7 つの言語。**Rust・Python・Go・TypeScript・JavaScript・Ruby・PHP(コメントはノーツになりません)。
   日本語と英語の文章(`.md` / `.txt`)も遊べます
 - **Spotify の曲に合わせて。**お気に入りの曲を beatcode の中で流し、テンポとノーツの位置は
   曲の音を手元で解析して決めます。外へは何も送りません。YouTube Music(デスクトップアプリ Pear Desktop を操る)でも遊べます

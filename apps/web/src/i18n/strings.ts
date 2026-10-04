@@ -159,7 +159,7 @@ export const strings: Record<Lang, Strings> = {
         },
         {
           label: "Languages",
-          body: "Rust, Python, Go, TypeScript / JavaScript, Ruby and PHP. Plain .md / .txt in English or Japanese. C, C#, CSS, HTML, JSON, Shell, TOML, YAML, Zig and Chinese prose come as plugins.",
+          body: "Rust, Python, Go, TypeScript, JavaScript, Ruby and PHP. Plain .md / .txt in English or Japanese. C, C#, CSS, HTML, JSON, Shell, TOML, YAML, Zig and Chinese prose come as plugins.",
         },
         {
           label: "Music",
@@ -278,7 +278,7 @@ export const strings: Record<Lang, Strings> = {
         },
         {
           label: "言語",
-          body: "Rust・Python・Go・TypeScript / JavaScript・Ruby・PHP。日本語と英語の文章(.md / .txt)も遊べます。C・C#・CSS・HTML・JSON・Shell・TOML・YAML・Zig・中国語の文章はプラグインで足せます。",
+          body: "Rust・Python・Go・TypeScript・JavaScript・Ruby・PHP。日本語と英語の文章(.md / .txt)も遊べます。C・C#・CSS・HTML・JSON・Shell・TOML・YAML・Zig・中国語の文章はプラグインで足せます。",
         },
         {
           label: "曲",

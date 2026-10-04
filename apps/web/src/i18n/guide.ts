@@ -57,7 +57,7 @@ export const guide: Record<Lang, Guide> = {
         title: "Pick a song and a chart",
         body: [
           "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of Spotify (or YouTube Music).",
-          "The bundled source has three songs in each of Rust, Python, Go, TypeScript, Ruby and PHP. Your local git repos and GitHub repos are other sources; switch with [ and ].",
+          "The bundled source has three songs in each of Rust, Python, Go, TypeScript, JavaScript, Ruby and PHP. Your local git repos and GitHub repos are other sources; switch with [ and ].",
         ],
         cmd: "beatcode",
         keys: [
@@ -259,7 +259,7 @@ export const guide: Record<Lang, Guide> = {
         title: "曲と譜面を選ぶ",
         body: [
           "引数なしで beatcode を打ちます。左上が曲、左下が譜面、右が選んだ譜面のコードです。曲は / で探せます。字を打つと曲名・アーティストで絞り込み、最後の行で YouTube Music(Spotify)全体を探します。",
-          "同梱の譜面は Rust・Python・Go・TypeScript・Ruby・PHP に 3 曲ずつ。手元の git repo や GitHub の repo も譜面になります。出どころは [ と ] で替えます。",
+          "同梱の譜面は Rust・Python・Go・TypeScript・JavaScript・Ruby・PHP に 3 曲ずつ。手元の git repo や GitHub の repo も譜面になります。出どころは [ と ] で替えます。",
         ],
         cmd: "beatcode",
         keys: [
