@@ -11,6 +11,10 @@ const { t, path = "" } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 const home = `${base}${t.htmlLang === "ja" ? "ja/" : ""}`;
 const repo = t.footer.links[0].href;
+// The website form gets this page's address in its "Page" field (id: url)
+const page = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+const issue = (template: string) =>
+  `${repo}/issues/new?${new URLSearchParams(template === "website.yml" ? { template, url: page } : { template })}`;
 ---
 
 <header class="nav">
@@ -51,6 +55,23 @@ const repo = t.footer.links[0].href;
       </svg>
       {t.otherLang.label}
     </a>
+    <details class="report" data-menu>
+      <summary class="nav__icon report__toggle" aria-label={t.report.label} title={t.report.label}>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20v-9" /><path d="M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z" /><path d="M14.12 3.88 16 2" /><path d="M21 21a4 4 0 0 0-3.81-4" /><path d="M21 5a4 4 0 0 1-3.55 3.97" /><path d="M22 13h-4" /><path d="M3 21a4 4 0 0 1 3.81-4" /><path d="M3 5a4 4 0 0 0 3.55 3.97" /><path d="M6 13H2" /><path d="m8 2 1.88 1.88" /><path d="M9 7.13V6a3 3 0 1 1 6 0v1.13" />
+        </svg>
+      </summary>
+      <ul class="llms__menu report__menu">
+        {t.report.items.map((item) => (
+          <li>
+            <a class="report__item" href={issue(item.template)} rel="noopener" target="_blank">
+              <span class="report__title">{item.title}</span>
+              <span class="llms__note">{item.note}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
     <a class="nav__icon" href={repo} aria-label={t.github} title={t.github}>
       <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" focusable="false">
         <path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z" />
@@ -60,7 +81,7 @@ const repo = t.footer.links[0].href;
 </header>
 
 <script>
-  // llms.txt menu: copy a file's whole text, close on Esc or a click outside
+  // llms.txt menu: copy a file's whole text
   for (const menu of document.querySelectorAll<HTMLDetailsElement>("[data-llms]")) {
     for (const btn of menu.querySelectorAll<HTMLButtonElement>("[data-copy-file]")) {
       const label = btn.querySelector<HTMLElement>("[data-label]")!;
@@ -79,6 +100,9 @@ const repo = t.footer.links[0].href;
         timer = window.setTimeout(() => (label.textContent = idle), 1600);
       });
     }
+  }
+  // The llms.txt and report menus: close on Esc or a click outside
+  for (const menu of document.querySelectorAll<HTMLDetailsElement>("[data-llms], [data-menu]")) {
     document.addEventListener("click", (e) => {
       if (menu.open && !menu.contains(e.target as Node)) menu.open = false;
     });

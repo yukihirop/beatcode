@@ -356,6 +356,44 @@ body::before {
   color: var(--color-accent);
 }
 
+/* Report menu: the bug mark at the end of the nav, opening the llms.txt menu's panel with a link to each issue form */
+.report {
+  position: relative;
+}
+
+.report__toggle {
+  cursor: pointer;
+  list-style: none;
+}
+
+.report__toggle::-webkit-details-marker {
+  display: none;
+}
+
+.report__menu {
+  width: min(19rem, calc(100vw - 2 * var(--page-gutter)));
+}
+
+.report__menu li + li {
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+
+.report__item {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.report__item:hover .report__title {
+  color: var(--color-accent);
+}
+
+.report__title {
+  font-size: var(--text-sm);
+}
+
 /* Demo · the real screen, full width under the hero ---------------------------- */
 
 .demo {

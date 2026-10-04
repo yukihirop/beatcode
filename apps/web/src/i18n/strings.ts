@@ -10,6 +10,8 @@ export type Strings = {
   otherLang: { label: string; href: string };
   nav: { environment: string; guide: string; config: string; plugins: string; rankingServer: string; philosophy: string };
   github: string;
+  /** The report menu at the end of the nav: each item opens one of the repo's issue forms (.github/ISSUE_TEMPLATE) */
+  report: { label: string; items: { template: string; title: string; note: string }[] };
   /** The llms.txt menu at the end of the nav: each file can be downloaded or copied whole, to hand to an AI */
   llms: { label: string; download: string; copy: string; copied: string; failed: string; files: { file: string; note: string }[] };
   hero: {
@@ -97,6 +99,13 @@ export const strings: Record<Lang, Strings> = {
     otherLang: { label: "日本語", href: "ja/" },
     nav: { environment: "Requirements", guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server", philosophy: "Philosophy" },
     github: "GitHub",
+    report: {
+      label: "Report a problem",
+      items: [
+        { template: "beatcode.yml", title: "The game", note: "A bug, an idea or a question about beatcode" },
+        { template: "website.yml", title: "This page", note: "Something broken or wrong on this page" },
+      ],
+    },
     llms: {
       label: "llms.txt",
       download: "Download",
@@ -209,6 +218,13 @@ export const strings: Record<Lang, Strings> = {
     otherLang: { label: "English", href: "" },
     nav: { environment: "推奨環境", guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー", philosophy: "フィロソフィー" },
     github: "GitHub",
+    report: {
+      label: "不具合を報告する",
+      items: [
+        { template: "beatcode.yml", title: "ゲーム", note: "beatcode のバグ・要望・質問" },
+        { template: "website.yml", title: "このページ", note: "このページの壊れている所や誤り" },
+      ],
+    },
     llms: {
       label: "llms.txt",
       download: "ダウンロード",
