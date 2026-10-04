@@ -46,7 +46,7 @@ export const guide: Record<Lang, Guide> = {
     heading: "How to play",
     lede: "From song select to the results screen, then the settings worth knowing. Each step shows the screen you’ll see.",
     recorded:
-      "Recorded with beatcode record, playing シャイニングスター (Shining Star, ♩=158, 4:36) by 魔王魂 through YouTube Music in the Pear Desktop app, with the bundled Rust charts. A small bot that reads the screen did the hitting, so the scores aren’t a person’s. Music: 魔王魂 (maou.audio).",
+      "Recorded with beatcode record, playing Heroes Tonight (♩=128, 3:28) by Janji (feat. Johnning) through Spotify, with the bundled Rust charts. A small bot that reads the screen did the hitting, so the scores aren’t a person’s. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
     menuLabel: "Steps",
     keysLabel: "Keys on this screen",
     next: { href: "guide/more/", label: "More: AI charts, gists, config.toml and languages →" },
@@ -56,7 +56,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "Pick a song",
         title: "Pick a song and a chart",
         body: [
-          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of YouTube Music (or Spotify).",
+          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of Spotify (or YouTube Music).",
           "The bundled source has three songs in each of Rust, Python, Go, TypeScript, Ruby and PHP. Your local git repos and GitHub repos are other sources; switch with [ and ].",
         ],
         cmd: "beatcode",
@@ -72,8 +72,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "select",
-            alt: "The song select screen: the songs are filtered by シャイニング, leaving one, シャイニングスター by 魔王魂 and 森田交一 (4:36). NORMAL and 4 lanes are highlighted, and the code of fizzbuzz.rs is on the right.",
-            caption: "Songs filtered with / and シャイニング. The chart is fizzbuzz.rs, the first bundled Rust chart.",
+            alt: "The song select screen: the songs are filtered by Heroes, leaving one, Heroes Tonight by Janji and Johnning (3:28), and a last row that searches all of Spotify. NORMAL and 4 lanes are highlighted, and the code of fizzbuzz.rs is on the right.",
+            caption: "Songs filtered with / and Heroes. The chart is fizzbuzz.rs, the first bundled Rust chart.",
           },
         ],
       },
@@ -94,8 +94,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready",
-            alt: "The ready screen: シャイニングスター — 魔王魂, 森田交一 and 0:00 / 4:36 at the top, the glowing beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start. The panel shows NOTES 0/1240 and BPM 158.",
-            caption: "The lanes are labelled KW, ID, OP and LIT across the top. The chart repeats until the song ends, so the 15-line fizzbuzz.rs comes to 1240 notes.",
+            alt: "The ready screen: Heroes Tonight — Janji, Johnning and 0:00 / 3:28 at the top, the glowing beatcode logo over the lanes, the key legend D keyword, F identifier, J operators and brackets, K literals, and Space / Enter to start. The panel shows NOTES 0/519 and BPM 128.",
+            caption: "The lanes are labelled KW, ID, OP and LIT across the top. The bundled Rust charts follow one another until the song ends ([1/3] at the top), so starting from the 15-line fizzbuzz.rs the song comes to 519 notes.",
           },
         ],
       },
@@ -111,12 +111,12 @@ export const guide: Record<Lang, Guide> = {
           ["D F J K", "Hit"],
           ["Esc", "Pause"],
         ],
-        video: { label: "A 12-second recording of the play screen with シャイニングスター playing: tokens fall and are hit on the judgment line while the combo climbs." },
+        video: { label: "A 12-second recording of the play screen with Heroes Tonight playing: tokens fall and are hit on the judgment line while the combo climbs." },
         shots: [
           {
             file: "play",
-            alt: "Twelve seconds into the song (0:12 / 4:36): a combo of 3 in the lanes, the score panel showing PERFECT 27 and MISS 8, and the played tokens highlighted in the code.",
-            caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. Music: 魔王魂.",
+            alt: "Twelve seconds into the song (0:12 / 3:28): a combo of 13 in the lanes, the score panel showing PERFECT 13 and MISS 0, and the played tokens highlighted in the code.",
+            caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. The sound is the song file laid over the recording in time. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
           },
         ],
       },
@@ -137,8 +137,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "The results screen for シャイニングスター: rank AA, score 2000 of 2458 (81.4%), PERFECT 1000, MISS 229, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
-            caption: "AA at 81.4%. Each slice of the strip stacks its judgments by share, MISS at the bottom, then GREAT, then PERFECT, so the red rises where the misses pile up.",
+            alt: "The results screen for Heroes Tonight: rank AAA and ALL PERFECT, score 1038 of 1038 (100.0%), PERFECT 519, MISS 0, combo 519 of 519, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
+            caption: "AAA at 100% — the bot doesn’t miss. Each slice of the strip stacks its judgments by share, MISS at the bottom, then GREAT, then PERFECT, so the red rises where the misses pile up.",
           },
         ],
       },
@@ -158,8 +158,8 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "A preview of the post from beatcode: Got AA (86.0% 2064/2398) on \"シャイニングスター\", the beatcode URL and #beatcode, with the result card attached showing the cover art, シャイニングスター by 魔王魂 and 森田交一, YouTube Music, NORMAL, 4 lanes, AA, 86.0%, PERFECT 1032, MISS 167, max combo 31 and the score graph.",
-            caption: "The card is the one beatcode made for this play of シャイニングスター through YouTube Music; the post around it is a preview, not a screenshot of X. The chart came from a local repo, so there’s no chart link, and the ranking line is turned off. Music: 魔王魂 (maou.audio).",
+            alt: "A preview of the post from beatcode: Got AAA (100.0% 1038/1038) on \"Heroes Tonight\", the beatcode URL and #beatcode, with the result card attached showing the cover art, Heroes Tonight by Janji and Johnning, Spotify, NORMAL, 4 lanes, Rust, AAA, 100.0%, ALL PERFECT, PERFECT 519, MISS 0, max combo 519 and the score graph.",
+            caption: "The card is the one beatcode made for this play of Heroes Tonight through Spotify; the post around it is a preview, not a screenshot of X. The chart came from a local repo, so there’s no chart link, and no ranking server was set, so there’s no ranking line. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
           },
         ],
       },
@@ -181,8 +181,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready8",
-            alt: "The ready screen on HARD with 8 lanes labelled KW, ID, TY, OP, brackets, STR, NUM and separators: A keyword, S identifier, D type, F operator, J bracket, K string, L numbers and booleans, ; separator. NOTES 0/2858.",
-            caption: "HARD with 8 lanes: the same song now has 2858 notes instead of 1240.",
+            alt: "The ready screen on HARD with 8 lanes labelled KW, ID, TY, OP, brackets, STR, NUM and separators: A keyword, S identifier, D type, F operator, J bracket, K string, L numbers and booleans, ; separator. NOTES 0/1255.",
+            caption: "HARD with 8 lanes: the same song now has 1255 notes instead of 519.",
           },
           {
             file: "play8",
@@ -208,7 +208,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "The history screen with one row: just now, AA 81.4%, N4, ★ ♫ シャイニング, Rust fizzbuzz.rs, with its code on the right.",
+            alt: "The history screen with one row: just now, AAA 100.0%, N4, ★ ○ ♫ Heroes Toni, Rust fizzbuzz.rs, with its code on the right.",
             caption: "One play so far.",
           },
           {
