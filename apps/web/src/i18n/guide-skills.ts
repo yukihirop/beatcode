@@ -64,8 +64,9 @@ export const guideSkills: Record<Lang, Guide> = {
           "Hand Claude Code some work and keep playing. /beatcode-work <task> does the work as usual, and when it’s done, a kaomoji walks “<folder>: <what was done>” across the crowd panel, in play and under the jacket or code on the song select. It says so when the work failed, too.",
           "If Claude Code stops partway, you see that as well: “has a question — <the first question>” before it asks you something, and “is waiting for permission — <Claude Code’s notification>” when it needs your OK. These only show while the work is going, so ordinary chats stay quiet.",
           "Where the crowd isn’t shown (the results screen, a terminal shorter than 30 rows, or [effects] crowd = false), notices wait and the song select shows how many in its title. To turn them off, set [effects] notices = false in config.toml.",
+          "/beatcode-work is long to type every time, so we recommend giving it a short name: link it as bcw in ~/.claude/skills/ and Claude Code also calls it as /bcw. beatcode skills doesn’t make this link, so when you stop using beatcode, remove ~/.claude/skills/bcw yourself.",
         ],
-        cmd: "/beatcode-work fix the failing tests",
+        cmd: ["ln -s ~/.agents/skills/beatcode-work ~/.claude/skills/bcw", "/bcw fix the failing tests"],
         shots: [],
       },
       {
@@ -141,8 +142,9 @@ export const guideSkills: Record<Lang, Guide> = {
           "Claude Code に仕事を頼んで、そのまま遊んでいられます。/beatcode-work <仕事> はいつもどおり仕事をこなし、終わると、顔文字が「<ディレクトリの名前>: <何が終わったか>」を引いてわっしょいの枠を流れます。プレイ中にも、曲選びのジャケットやコードの下にも出ます。うまくいかなかったときも、そう知らせます。",
           "途中で止まったときも分かります。何かを聞く前に「質問があります — <1 問目>」、許可が要るときに「許可を待っています — <Claude Code の知らせの文>」。どちらも仕事の間だけなので、普段のやり取りでは流れません。",
           "わっしょいが出ていない画面(結果の画面・高さ 30 行より低い端末・[effects] crowd = false)では溜めておき、曲選びの見出しの右に件数を出します。知らせを止めるときは config.toml の [effects] notices = false。",
+          "/beatcode-work は毎回打つには長いので、短い名前を付けておくのがおすすめです。~/.claude/skills/ に bcw という名前でリンクを張ると、Claude Code から /bcw でも呼べます。このリンクは beatcode skills では張らないので、beatcode をやめるときは ~/.claude/skills/bcw を自分で消してください。",
         ],
-        cmd: "/beatcode-work 落ちているテストを直して",
+        cmd: ["ln -s ~/.agents/skills/beatcode-work ~/.claude/skills/bcw", "/bcw 落ちているテストを直して"],
         shots: [],
       },
       {
