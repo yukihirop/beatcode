@@ -83,7 +83,14 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
             </div>
             {s.file && (
               <figure class="step__file">
-                <figcaption>{s.file.name}</figcaption>
+                <figcaption>
+                  <span>{s.file.name}</span>
+                  {s.file.copy && (
+                    <button type="button" class="btn btn--ghost step__copy" data-copy={s.file.lines.join("\n")} data-copied={t.llms.copied}>
+                      <span data-label>{t.llms.copy}</span>
+                    </button>
+                  )}
+                </figcaption>
                 <pre class="step__cmd"><code>{s.file.lines.map((l) => <span class="step__out step__out--file">{l || " "}</span>)}</code></pre>
               </figure>
             )}
@@ -167,6 +174,27 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
     { rootMargin: "-30% 0px -60% 0px" },
   );
   document.querySelectorAll<HTMLElement>("[data-step]").forEach((s) => seen.observe(s));
+
+  // Copy a file's lines (the prompt for a coding agent)
+  for (const btn of document.querySelectorAll<HTMLButtonElement>(".step__copy[data-copy]")) {
+    const label = btn.querySelector<HTMLElement>("[data-label]")!;
+    const idle = label.textContent;
+    let timer = 0;
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy!);
+      } catch {
+        return;
+      }
+      label.textContent = btn.dataset.copied!;
+      btn.dataset.state = "success";
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        label.textContent = idle;
+        delete btn.dataset.state;
+      }, 1600);
+    });
+  }
 
   // Play the recording only while it's on screen, and never under reduced motion.
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {

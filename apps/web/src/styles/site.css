@@ -1197,6 +1197,10 @@ kbd {
 }
 
 .step__file figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
   margin-bottom: var(--space-xs);
   color: var(--color-muted);
   font-size: var(--text-sm);

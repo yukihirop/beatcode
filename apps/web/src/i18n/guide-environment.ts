@@ -1,6 +1,9 @@
 import type { Guide } from "./guide";
 import type { Lang } from "./strings";
 
+// The whole site in one file, for the agent to read first
+const llmsFull = `${(import.meta.env.SITE ?? "https://stg-ngk7v9hb.vercel.app").replace(/\/?$/, "/")}llms-full.txt`;
+
 // What to have before playing: the OS, where songs play, which terminal, fonts and the extras.
 // What beatcode itself checks is in beatcode-private (src/logo.rs for images, the ready screen for key releases).
 // Only the author's terminal (Ghostty inside cmux) has been used for real play; the rest of the terminal table says so.
@@ -10,11 +13,36 @@ export const guideEnvironment: Record<Lang, Guide> = {
     title: "Requirements — beatcode",
     description: "What you need to play beatcode, and what makes it nicer: the OS, where songs play, which terminal, fonts and the extras.",
     heading: "Requirements",
-    lede: "What you need before the first song, and what makes playing nicer. Only the first two steps are must-haves; everything else adds pictures, sound or speed.",
+    lede: "What you need before the first song, and what makes playing nicer. A coding agent can do it all for you; otherwise, only what you need and where songs play are must-haves, and the rest adds pictures, sound or speed.",
     menuLabel: "Topics",
     keysLabel: "Keys on this screen",
     next: { href: "guide/", label: "How to play: one song from start to finish →" },
     steps: [
+      {
+        id: "agent",
+        menu: "Let an agent do it",
+        title: "Let a coding agent set it up",
+        body: [
+          "The quickest way: copy this prompt into a coding agent (Claude Code, Codex and the like) on the machine you’ll play on. It reads this site, looks at your machine and terminal, and walks you through the rest of this page.",
+          "It asks before installing anything, and leaves the logins that need a browser (Spotify, gh) for you to type. API keys are only checked for, never read.",
+        ],
+        file: {
+          name: "Prompt for your coding agent",
+          copy: true,
+          lines: [
+            "Set up beatcode, a rhythm game that runs in the terminal, on this machine so I can play it comfortably.",
+            "",
+            `1. Read ${llmsFull} first. It is the whole beatcode site, including the Requirements page.`,
+            "2. Look at this machine without changing anything: the OS and CPU, whether beatcode is installed (beatcode --version), which terminal I'm in ($TERM_PROGRAM, and $TMUX for tmux), and whether ffmpeg and gh are installed.",
+            "3. If beatcode isn't installed, show me the install command that fits (Homebrew, npm or curl, from the site) and ask before running it.",
+            "4. Run beatcode skills, then read ~/.agents/skills/beatcode-setup/SKILL.md and follow it. It asks what to connect: Spotify or YouTube Music, AI charts, the combo voice, icons and shell completion.",
+            "5. Anything that needs a browser or my typing (beatcode setup music, gh auth login): give me the command to run myself.",
+            "6. Never read or print API keys or credentials. Only check whether they exist.",
+            "7. At the end, tell me what is set up, what isn't, and what the Requirements page says about my terminal (pictures, key release, tmux), with what I could change.",
+          ],
+        },
+        shots: [],
+      },
       {
         id: "needs",
         menu: "What you need",
@@ -123,11 +151,36 @@ export const guideEnvironment: Record<Lang, Guide> = {
     title: "推奨環境 — beatcode",
     description: "beatcode を遊ぶのに要るものと、あると快適なもの。OS・曲を流す先・端末・フォント・あると楽しいもの。",
     heading: "推奨環境",
-    lede: "最初の 1 曲の前に要るものと、あると快適になるもの。要るのは最初の 2 つだけで、ほかは画像・音・遊びやすさを足すものです。",
+    lede: "最初の 1 曲の前に要るものと、あると快適になるもの。コーディングエージェントに全部任せることもできます。自分でやるなら、要るのは「要るもの」と「曲を流す先」だけで、ほかは画像・音・遊びやすさを足すものです。",
     menuLabel: "項目",
     keysLabel: "この画面のキー",
     next: { href: "guide/", label: "使い方: 1 曲を最初から最後まで →" },
     steps: [
+      {
+        id: "agent",
+        menu: "エージェントに任せる",
+        title: "コーディングエージェントに任せる",
+        body: [
+          "いちばん早いのは、遊ぶマシンのコーディングエージェント(Claude Code・Codex など)にこのプロンプトを渡すことです。このサイトを読み、マシンと端末を見て、このページの残りを案内してくれます。",
+          "何かを入れる前には聞きます。ブラウザでのログイン(Spotify・gh)は自分で打つよう案内します。API キーはあるかどうかを見るだけで、中身は読みません。",
+        ],
+        file: {
+          name: "コーディングエージェントに渡すプロンプト",
+          copy: true,
+          lines: [
+            "ターミナルで動く音ゲー beatcode を、このマシンで快適に遊べるようにセットアップしてください。",
+            "",
+            `1. まず ${llmsFull} を読んでください。推奨環境のページも含めた beatcode のサイト全部です。`,
+            "2. 何も変えずに、このマシンを見てください: OS と CPU、beatcode が入っているか(beatcode --version)、今の端末($TERM_PROGRAM、tmux の中かは $TMUX)、ffmpeg と gh が入っているか。",
+            "3. beatcode が入っていなければ、合う入れ方(サイトにある Homebrew・npm・curl)のコマンドを見せて、実行する前に聞いてください。",
+            "4. beatcode skills を実行し、~/.agents/skills/beatcode-setup/SKILL.md を読んでその手順に従ってください。Spotify か YouTube Music・AI の譜面・コンボの声・アイコン・シェルの補完の、どれをつなぐかを聞いてくれます。",
+            "5. ブラウザや私の入力が要るもの(beatcode setup music・gh auth login)は、私が打つコマンドを教えてください。",
+            "6. API キーや資格情報の中身は読まない・出さないでください。あるかどうかだけを見てください。",
+            "7. 最後に、済んだこと・済んでいないこと、推奨環境のページから見た私の端末のこと(画像・キーを離したこと・tmux)と、変えるならどうするかを教えてください。",
+          ],
+        },
+        shots: [],
+      },
       {
         id: "needs",
         menu: "要るもの",

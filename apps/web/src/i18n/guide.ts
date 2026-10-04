@@ -13,8 +13,8 @@ type Step = {
   cmd?: string | string[];
   /** What the command prints, shown under it. */
   out?: string[];
-  /** A file to write (like compose.yaml), shown under its name without the prompt. */
-  file?: { name: string; lines: string[] };
+  /** A file to write (like compose.yaml), shown under its name without the prompt. `copy` adds a button that copies the lines. */
+  file?: { name: string; lines: string[]; copy?: boolean };
   keys?: [string, string][];
   /** A link to a real example (like a published chart), under the body. */
   example?: { label: string; href: string; note: string };
