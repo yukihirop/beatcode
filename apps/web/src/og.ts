@@ -5,6 +5,7 @@ import { Resvg } from "@resvg/resvg-js";
 import type { Guide } from "./i18n/guide";
 import { guide } from "./i18n/guide";
 import { guideConfig } from "./i18n/guide-config";
+import { guideEnvironment } from "./i18n/guide-environment";
 import { guideMore } from "./i18n/guide-more";
 import { guidePlugins } from "./i18n/guide-plugins";
 import { guideRankingServer } from "./i18n/guide-ranking-server";
@@ -26,6 +27,7 @@ export type OgCard = {
 export const ogCards: Record<string, OgCard> = {};
 
 const guides: [string, Record<Lang, Guide>][] = [
+  ["guide/environment", guideEnvironment],
   ["guide", guide],
   ["guide/more", guideMore],
   ["guide/config", guideConfig],

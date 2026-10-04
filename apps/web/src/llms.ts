@@ -1,6 +1,7 @@
 import type { Guide } from "./i18n/guide";
 import { guide } from "./i18n/guide";
 import { guideConfig } from "./i18n/guide-config";
+import { guideEnvironment } from "./i18n/guide-environment";
 import { guideMore } from "./i18n/guide-more";
 import { guidePlugins } from "./i18n/guide-plugins";
 import { guideRankingServer } from "./i18n/guide-ranking-server";
@@ -14,6 +15,7 @@ type Page = { path: string; g: Record<Lang, Guide> };
 
 /** The guide pages in the header's order */
 const pages: Page[] = [
+  { path: "guide/environment/", g: guideEnvironment },
   { path: "guide/", g: guide },
   { path: "guide/more/", g: guideMore },
   { path: "guide/config/", g: guideConfig },

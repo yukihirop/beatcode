@@ -16,6 +16,7 @@ const repo = t.footer.links[0].href;
 <header class="nav">
   <a class="wordmark" href={home}><Wordmark /></a>
   <nav class="nav__pages" aria-label="Site">
+    <a class="nav__link" href={`${home}guide/environment/`} aria-current={path === "guide/environment/" ? "page" : undefined}>{t.nav.environment}</a>
     <a class="nav__link" href={`${home}guide/`} aria-current={path === "guide/" ? "page" : path === "guide/more/" ? "true" : undefined}>{t.nav.guide}</a>
     <a class="nav__link" href={`${home}guide/config/`} aria-current={path === "guide/config/" ? "page" : undefined}>{t.nav.config}</a>
     <a class="nav__link" href={`${home}guide/plugins/`} aria-current={path === "guide/plugins/" ? "page" : undefined}>{t.nav.plugins}</a>

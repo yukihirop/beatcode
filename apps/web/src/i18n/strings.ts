@@ -8,7 +8,7 @@ export type Strings = {
   title: string;
   description: string;
   otherLang: { label: string; href: string };
-  nav: { guide: string; config: string; plugins: string; rankingServer: string; philosophy: string };
+  nav: { environment: string; guide: string; config: string; plugins: string; rankingServer: string; philosophy: string };
   github: string;
   /** The llms.txt menu at the end of the nav: each file can be downloaded or copied whole, to hand to an AI */
   llms: { label: string; download: string; copy: string; copied: string; failed: string; files: { file: string; note: string }[] };
@@ -95,7 +95,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "A rhythm game for the terminal. The notes are the tokens of real source code, and clearing a song types out a function.",
     otherLang: { label: "日本語", href: "ja/" },
-    nav: { guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server", philosophy: "Philosophy" },
+    nav: { environment: "Requirements", guide: "Guide", config: "Settings", plugins: "Plugins", rankingServer: "Ranking server", philosophy: "Philosophy" },
     github: "GitHub",
     llms: {
       label: "llms.txt",
@@ -207,7 +207,7 @@ export const strings: Record<Lang, Strings> = {
     description:
       "ターミナルで遊ぶ音ゲー。落ちてくるノーツは本物のソースコードのトークンで、1 曲叩き切ると関数が 1 つ書き上がります。",
     otherLang: { label: "English", href: "" },
-    nav: { guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー", philosophy: "フィロソフィー" },
+    nav: { environment: "推奨環境", guide: "使い方", config: "設定", plugins: "プラグイン", rankingServer: "ランキングサーバー", philosophy: "フィロソフィー" },
     github: "GitHub",
     llms: {
       label: "llms.txt",
