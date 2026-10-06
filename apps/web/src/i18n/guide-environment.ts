@@ -89,8 +89,10 @@ export const guideEnvironment: Record<Lang, Guide> = {
           "Any terminal plays the game. Two things depend on it: pictures (the logo, cover art, the camera) and whether beatcode hears a key being let go (needed to hold HARD’s long notes; without it a long note only needs the press).",
           "The author plays in Ghostty (inside cmux), so that’s the one we recommend. The others are listed by what beatcode does with them; we haven’t played on them, so treat their rows as expected, not checked.",
           "You can check your own: beatcode logo check prints whether the terminal answered and how pictures will be drawn, and the ready screen before a song says “key release: supported” or “not supported”.",
+          "Inside herdr, pictures are off until you turn on its experimental kitty graphics: add the lines below to herdr’s config.toml and run herdr server reload-config. The terminal outside herdr also has to draw kitty graphics. Until then, beatcode logo check says “text logo” even though the terminal answered.",
         ],
         cmd: "beatcode logo check",
+        file: { name: "~/.config/herdr/config.toml", lines: ["[experimental]", "kitty_graphics = true"], copy: true },
         table: {
           head: ["Terminal", "Pictures", "Key release", "Checked"],
           rows: [
@@ -100,6 +102,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
             ["iTerm2", "Expected (its own image format)", "Not known", "No"],
             ["Terminal.app", "No: a logo in letters, the camera in ▀ blocks", "Not known", "No"],
             ["Inside tmux", "No: beatcode doesn’t ask", "Not known", "No"],
+            ["Inside herdr", "Yes, once kitty_graphics is on (see above)", "Not known", "Pictures: yes, with herdr 0.8.2"],
           ],
         },
         shots: [],
@@ -227,8 +230,10 @@ export const guideEnvironment: Record<Lang, Guide> = {
           "どの端末でも遊べます。端末で変わるのは 2 つ。画像(ロゴ・ジャケット・インカメ)と、キーを離したことが beatcode に届くか(HARD の長押しを押し続けるのに要ります。届かない端末では押すだけで取れます)。",
           "作者は Ghostty(cmux の中)で遊んでいるので、おすすめは Ghostty です。ほかは beatcode の作りから見込みを書いたもので、実際に遊んで確かめてはいません。",
           "自分の端末は確かめられます。beatcode logo check で端末が答えたか・画像をどう描くかが出ます。曲の前の待機画面には「キーを離したこと: 取れる / 取れない」が出ます。",
+          "herdr の中では、herdr の試験的な kitty の画像を入れるまで画像が出ません。herdr の config.toml に下の 2 行を足して herdr server reload-config を打ちます。herdr の外側の端末も kitty の画像を描ける必要があります。入れるまでは、端末が答えていても beatcode logo check は「text logo」と出ます。",
         ],
         cmd: "beatcode logo check",
+        file: { name: "~/.config/herdr/config.toml", lines: ["[experimental]", "kitty_graphics = true"], copy: true },
         table: {
           head: ["端末", "画像", "キーを離したこと", "確かめたか"],
           rows: [
@@ -238,6 +243,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
             ["iTerm2", "出る見込み(iTerm2 の画像)", "分からない", "まだ"],
             ["Terminal.app", "出ない(ロゴは字、インカメは ▀ の字)", "分からない", "まだ"],
             ["tmux の中", "出ない(beatcode が聞かない)", "分からない", "まだ"],
+            ["herdr の中", "kitty_graphics を入れれば出る(上を参照)", "分からない", "画像は herdr 0.8.2 で確かめた"],
           ],
         },
         shots: [],
