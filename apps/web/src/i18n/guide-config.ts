@@ -45,7 +45,7 @@ const sample = [
   "external = false",
   "",
   "[repos]",
-  'ignore = ["~/Karakuri", "venv"]',
+  'ignore = ["~/xxxx", "venv"]',
 ];
 const configFile = "~/.config/beatcode/config.toml";
 const providerCmds = ["beatcode provider", "beatcode provider music youtube-music", "beatcode provider ai openai", "beatcode provider voice aivisspeech"];
@@ -54,7 +54,7 @@ const voiceFile = ["[voice]", 'provider = "voicevox"', "speaker = 3", "every = 5
 const lanesFile = ["[keys]", 'lanes = [["d", "Left"], "f", "j", ["k", "Right"]]', 'lanes6 = ["q", "w", "e", "i", "o", "p"]'];
 const actionsFile = ["[keys.select]", 'history = "H"', 'ai = ["i", "F2"]', "", "[keys.result]", 'retry = "Backspace"'];
 const themeFile = ["[theme]", 'name = "nord"', 'keyword = "#ff79c6"', 'string = "lightgreen"', 'number = "208"', "lanes = true"];
-const reposFile = ["[repos]", 'ignore = ["~/Karakuri", "~/go/pkg", "venv"]'];
+const reposFile = ["[repos]", 'ignore = ["~/xxxx", "~/go/pkg", "venv"]'];
 const shareFile = ["[share]", 'ranking_server_url = "https://ranking.example.com"'];
 
 // [keys.select] etc.: action, table, default key
