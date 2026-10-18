@@ -12,6 +12,7 @@ import { guideMore } from "./i18n/guide-more";
 import { guidePlugins } from "./i18n/guide-plugins";
 import { guideRankingServer } from "./i18n/guide-ranking-server";
 import { guideSkills } from "./i18n/guide-skills";
+import { guidePrompts } from "./i18n/guide-prompts";
 import { philosophy } from "./i18n/philosophy";
 import { strings, type Lang } from "./i18n/strings";
 
@@ -38,6 +39,7 @@ const guides: [string, Record<Lang, Guide>][] = [
   ["guide/config", guideConfig],
   ["guide/plugins", guidePlugins],
   ["guide/skills", guideSkills],
+  ["guide/prompts", guidePrompts],
   ["guide/ranking-server", guideRankingServer],
 ];
 for (const lang of ["en", "ja"] as const) {

@@ -439,6 +439,7 @@ export const guideConfig: Record<Lang, Guide> = {
           "When a new beatcode bundles a new prompt, only that one is added. Prompts you deleted don’t come back, and files you edited aren’t overwritten.",
           "{lang}, {topic} and {lines} in the body are replaced (for prose, {lines} is the number of sentences). {difficulty} becomes how tokens are placed at the selected difficulty, and {lanes} the token kinds in each lane. {title}, {artist}, {bpm} and {duration} come from the selected song (empty when unknown), {ui_lang} is Japanese or English (the UI language), and {date} is today's date. If the body has {topic}, only the body is sent; otherwise the body becomes the instructions and the topic, language and length go separately.",
           "beatcode adds one instruction to every prompt: write 2–4 sentences about the feelings behind the code. They show under the graph on the result screen.",
+          "{xray} puts the song X-ray (the song’s sections and how many tokens to write in each) where you write it. The page “Writing prompts” (guide/prompts/) covers it, what beatcode adds after your text, and how to print the exact text that is sent.",
         ],
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFile },
         table: {
@@ -752,6 +753,7 @@ export const guideConfig: Record<Lang, Guide> = {
           "beatcode の新しい版で同梱のプロンプトが増えたときは、増えたものだけを書き足します。消したプロンプトは戻さず、書き換えたファイルは上書きしません。",
           "本文の {lang} {topic} {lines}(文章は文の数)は置き換えます。{difficulty} は選んでいる難しさでトークンがどう並ぶかに、{lanes} は列ごとに落ちるトークンの種類になります。{title} {artist} {bpm} {duration} は選んでいる曲の名前・アーティスト・BPM・長さ(分からなければ空)、{ui_lang} は画面の言葉(Japanese / English)、{date} は今日の日付です。本文に {topic} があれば本文だけを送り、無ければ本文を指示にしてお題・言語・長さを別に送ります。",
           "どのプロンプトにも、どんな思いで書いたかを 2〜4 文で書いてもらう指示を beatcode が足します。結果の画面のグラフの下に出ます。",
+          "{xray} は、曲のレントゲン(曲の区切りと、区切りごとに書くトークン数)を、書いた場所に入れます。これと、書いた文の後ろに beatcode が足すもの、実際に送る文の出し方は、「プロンプトの書き方」のページ(guide/prompts/)にあります。",
         ],
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFileJa },
         table: {

@@ -6,6 +6,7 @@ import { guideMore } from "./i18n/guide-more";
 import { guidePlugins } from "./i18n/guide-plugins";
 import { guideRankingServer } from "./i18n/guide-ranking-server";
 import { guideSkills } from "./i18n/guide-skills";
+import { guidePrompts } from "./i18n/guide-prompts";
 import { philosophy } from "./i18n/philosophy";
 import { installs, strings, type Lang } from "./i18n/strings";
 
@@ -22,6 +23,7 @@ const pages: Page[] = [
   { path: "guide/config/", g: guideConfig },
   { path: "guide/plugins/", g: guidePlugins },
   { path: "guide/skills/", g: guideSkills },
+  { path: "guide/prompts/", g: guidePrompts },
   { path: "guide/ranking-server/", g: guideRankingServer },
 ];
 
