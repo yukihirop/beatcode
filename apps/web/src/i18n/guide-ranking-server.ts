@@ -23,7 +23,6 @@ const compose = [
   "  ranking-data:",
 ];
 const run = `docker run -d --name beatcode-ranking --restart unless-stopped -p 8080:8787 -v beatcode-ranking:/data ${image}:latest`;
-const login = "gh auth token | docker login ghcr.io -u <your GitHub login> --password-stdin";
 const config = ["[share]", 'ranking_server_url = "https://ranking.example.com"'];
 // A Raspberry Pi at home, reached only through a Cloudflare Tunnel: no ports published, on the Pi or the router
 const piCompose = [
@@ -44,7 +43,6 @@ const piCompose = [
 ];
 const piCmds = [
   "curl -fsSL https://get.docker.com | sh",
-  "echo <token with read:packages> | docker login ghcr.io -u <your GitHub login> --password-stdin",
   "echo 'TUNNEL_TOKEN=<the tunnel token>' > .env && chmod 600 .env",
   "docker compose up -d",
   "curl https://ranking.example.com/healthz",
@@ -93,26 +91,14 @@ export const guideRankingServer: Record<Lang, Guide> = {
             "",
             `1. Read ${llmsFull} first. It is the whole beatcode site; follow its Ranking server page.`,
             "2. Ask me where to run it: on this machine with Docker, on a Raspberry Pi with Cloudflare Tunnel, or on a hosting service. Ask for the https address people will open (PUBLIC_URL) too, if there is one.",
-            "3. Look without changing anything: whether docker and docker compose work, whether gh is signed in with the read:packages scope (gh auth status), and my ~/.config/beatcode/config.toml.",
-            "4. The image ghcr.io/yukihirop/beatcode-ranking is private. If the scope is missing, give me gh auth refresh -s read:packages to run myself, then sign docker in to GHCR without printing the token.",
-            "5. Write compose.yaml as the page shows, with /data on a volume (on a Raspberry Pi, on a USB SSD). For Cloudflare Tunnel, make .env readable only by me (chmod 600) and let me paste the tunnel token into it myself. Show me the file and ask before starting it, then check that /healthz answers {\"ok\":true}.",
-            "6. Add ranking_server_url under [share] in my config.toml (read it first and add to [share] if it is there), then run beatcode --help to check it still loads.",
-            "7. Give me beatcode setup rank to run myself. It signs in on github.com.",
-            "8. Never read or print tokens: gh's, the tunnel's or beatcode's. Only check whether they exist.",
-            "9. At the end, tell me the page's address, where ranking.db is and how to back it up, and anything left undone.",
+            "3. Look without changing anything: whether docker and docker compose work, and my ~/.config/beatcode/config.toml.",
+            "4. Write compose.yaml as the page shows, with /data on a volume (on a Raspberry Pi, on a USB SSD). For Cloudflare Tunnel, make .env readable only by me (chmod 600) and let me paste the tunnel token into it myself. Show me the file and ask before starting it, then check that /healthz answers {\"ok\":true}.",
+            "5. Add ranking_server_url under [share] in my config.toml (read it first and add to [share] if it is there), then run beatcode --help to check it still loads.",
+            "6. Give me beatcode setup rank to run myself. It signs in on github.com.",
+            "7. Never read or print tokens: gh's, the tunnel's or beatcode's. Only check whether they exist.",
+            "8. At the end, tell me the page's address, where ranking.db is and how to back it up, and anything left undone.",
           ],
         },
-        shots: [],
-      },
-      {
-        id: "login",
-        menu: "Sign in to GHCR",
-        title: "Sign in to GHCR",
-        body: [
-          `The image is ${image} on GitHub’s container registry. It is private for now, so pulling it needs access to the package and a sign-in with a token that can read packages.`,
-          "With gh, add the read:packages scope once (gh auth refresh -s read:packages), then hand its token to docker.",
-        ],
-        cmd: ["gh auth refresh -s read:packages", login],
         shots: [],
       },
       {
@@ -170,7 +156,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         menu: "On a hosting service",
         title: "On a hosting service",
         body: [
-          `A host that runs a Docker image can run it as is: the image ${image}, a volume (a persistent disk) at /data, and PUBLIC_URL. While the image is private, the host needs a sign-in to GHCR too.`,
+          `A host that runs a Docker image can run it as is: the image ${image}, a volume (a persistent disk) at /data, and PUBLIC_URL.`,
           "SQLite is one file on that one disk, so run one copy, not several.",
         ],
         shots: [],
@@ -243,26 +229,14 @@ export const guideRankingServer: Record<Lang, Guide> = {
             "",
             `1. まず ${llmsFull} を読んでください。beatcode のサイト全部です。その中のランキングサーバーのページに従ってください。`,
             "2. どこで動かすかを聞いてください: このマシンの Docker・Raspberry Pi と Cloudflare Tunnel・ホスティングのサービス。人が開く https のアドレス(PUBLIC_URL)があれば、それも聞いてください。",
-            "3. 何も変えずに見てください: docker と docker compose が動くか、gh が read:packages の権限付きでサインインしているか(gh auth status)、~/.config/beatcode/config.toml の中身。",
-            "4. image の ghcr.io/yukihirop/beatcode-ranking は private です。権限が足りなければ gh auth refresh -s read:packages を私が打つよう教え、そのあと docker を GHCR にサインインさせてください(トークンは出さない)。",
-            "5. ページのとおりに compose.yaml を書いてください。/data は volume に(Raspberry Pi なら USB の SSD に)。Cloudflare Tunnel なら .env を私だけが読めるように作り(chmod 600)、トンネルのトークンは私が貼ります。ファイルを見せて、起動する前に聞いてください。起動したら /healthz が {\"ok\":true} を返すか確かめてください。",
-            "6. config.toml の [share] に ranking_server_url を足してください(先に中身を読み、[share] があればそこに足す)。足したら beatcode --help で読めるか確かめてください。",
-            "7. beatcode setup rank は私が打つよう教えてください。github.com でサインインします。",
-            "8. トークン(gh・トンネル・beatcode のもの)の中身は読まない・出さないでください。あるかどうかだけを見てください。",
-            "9. 最後に、ページのアドレス・ranking.db の場所とバックアップの取り方・済んでいないことを教えてください。",
+            "3. 何も変えずに見てください: docker と docker compose が動くか、~/.config/beatcode/config.toml の中身。",
+            "4. ページのとおりに compose.yaml を書いてください。/data は volume に(Raspberry Pi なら USB の SSD に)。Cloudflare Tunnel なら .env を私だけが読めるように作り(chmod 600)、トンネルのトークンは私が貼ります。ファイルを見せて、起動する前に聞いてください。起動したら /healthz が {\"ok\":true} を返すか確かめてください。",
+            "5. config.toml の [share] に ranking_server_url を足してください(先に中身を読み、[share] があればそこに足す)。足したら beatcode --help で読めるか確かめてください。",
+            "6. beatcode setup rank は私が打つよう教えてください。github.com でサインインします。",
+            "7. トークン(gh・トンネル・beatcode のもの)の中身は読まない・出さないでください。あるかどうかだけを見てください。",
+            "8. 最後に、ページのアドレス・ranking.db の場所とバックアップの取り方・済んでいないことを教えてください。",
           ],
         },
-        shots: [],
-      },
-      {
-        id: "login",
-        menu: "GHCR にサインイン",
-        title: "GHCR にサインイン",
-        body: [
-          `image は GitHub のコンテナレジストリの ${image} です。いまは private なので、取ってくるにはパッケージを読める権限と、packages を読めるトークンでのサインインが要ります。`,
-          "gh なら、一度 read:packages の権限を足して(gh auth refresh -s read:packages)、そのトークンを docker に渡します。",
-        ],
-        cmd: ["gh auth refresh -s read:packages", "gh auth token | docker login ghcr.io -u <GitHub の login> --password-stdin"],
         shots: [],
       },
       {
@@ -320,7 +294,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         menu: "ホスティング",
         title: "ホスティングのサービスで",
         body: [
-          `Docker の image を動かせるサービスなら、そのまま動きます。image に ${image}、/data に volume(消えないディスク)、それに PUBLIC_URL。image が private の間は、サービスにも GHCR へのサインインが要ります。`,
+          `Docker の image を動かせるサービスなら、そのまま動きます。image に ${image}、/data に volume(消えないディスク)、それに PUBLIC_URL。`,
           "SQLite はそのディスクの上の 1 つのファイルなので、動かすのは 1 つだけにして、複数にしないでください。",
         ],
         shots: [],
