@@ -5,7 +5,7 @@ import type { Lang } from "./strings";
 // The same as beatcode-private's docs/ranking-server.md; the image is built by beatcode-private-tools.
 const image = "ghcr.io/yukihirop/beatcode-ranking";
 // The whole site in one file, for the agent to read first
-const llmsFull = `${(import.meta.env.SITE ?? "https://stg-ngk7v9hb.vercel.app").replace(/\/?$/, "/")}llms-full.txt`;
+const llmsFull = `${(import.meta.env.SITE ?? "https://beatcode.run").replace(/\/?$/, "/")}llms-full.txt`;
 
 const compose = [
   "services:",

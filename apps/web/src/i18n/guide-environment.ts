@@ -2,7 +2,7 @@ import type { Guide } from "./guide";
 import type { Lang } from "./strings";
 
 // The whole site in one file, for the agent to read first
-const llmsFull = `${(import.meta.env.SITE ?? "https://stg-ngk7v9hb.vercel.app").replace(/\/?$/, "/")}llms-full.txt`;
+const llmsFull = `${(import.meta.env.SITE ?? "https://beatcode.run").replace(/\/?$/, "/")}llms-full.txt`;
 
 // What to have before playing: the OS, where songs play, which terminal, fonts and the extras.
 // What beatcode itself checks is in beatcode-private (src/logo.rs for images, the ready screen for key releases).
