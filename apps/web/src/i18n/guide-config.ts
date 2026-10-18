@@ -441,6 +441,7 @@ export const guideConfig: Record<Lang, Guide> = {
           "beatcode adds one instruction to every prompt: write 2–4 sentences about the feelings behind the code. They show under the graph on the result screen.",
           "{xray} puts the song X-ray (the song’s sections and how many tokens to write in each) where you write it. The page “Writing prompts” (guide/prompts/) covers it, what beatcode adds after your text, and how to print the exact text that is sent.",
         ],
+        see: { href: "guide/prompts/", label: "Writing prompts: where {xray} goes and what beatcode adds →" },
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFile },
         table: {
           head: ["Key", "What it does"],
@@ -755,6 +756,7 @@ export const guideConfig: Record<Lang, Guide> = {
           "どのプロンプトにも、どんな思いで書いたかを 2〜4 文で書いてもらう指示を beatcode が足します。結果の画面のグラフの下に出ます。",
           "{xray} は、曲のレントゲン(曲の区切りと、区切りごとに書くトークン数)を、書いた場所に入れます。これと、書いた文の後ろに beatcode が足すもの、実際に送る文の出し方は、「プロンプトの書き方」のページ(guide/prompts/)にあります。",
         ],
+        see: { href: "guide/prompts/", label: "プロンプトの書き方: {xray} を置く場所と、beatcode が足すもの →" },
         file: { name: "~/.config/beatcode/prompts/symbols.md", lines: promptFileJa },
         table: {
           head: ["キー", "中身"],

@@ -18,6 +18,8 @@ type Step = {
   keys?: [string, string][];
   /** A link to a real example (like a published chart), under the body. */
   example?: { label: string; href: string; note: string };
+  /** A link to another page of this site, under the body (href relative to the language root, like "guide/prompts/"). */
+  see?: { href: string; label: string };
   /** A small reference table under the keys. */
   table?: { head: string[]; rows: string[][] };
   shots: Shot[];

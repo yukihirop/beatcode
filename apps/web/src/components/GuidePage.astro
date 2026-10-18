@@ -80,6 +80,11 @@ const sizes = "(min-width: 60rem) 50rem, calc(100vw - 2rem)";
                   <span class="step__example-note">{s.example.note}</span>
                 </p>
               )}
+              {s.see && (
+                <p class="step__example">
+                  <a href={`${base}${home}${s.see.href}`}>{s.see.label}</a>
+                </p>
+              )}
             </div>
             {s.file && (
               <figure class="step__file">

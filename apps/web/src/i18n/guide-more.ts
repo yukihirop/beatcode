@@ -26,6 +26,7 @@ export const guideMore: Record<Lang, Guide> = {
           "Only the prompt, the topic, the language and a rough length are sent — never code from your repos. The cost shows on screen; with the default model it came to $0.0004 to $0.0005 a chart in these recordings. beatcode ai clean removes the charts the AI wrote.",
           "First, paste an API key with beatcode setup ai. beatcode checks that it works, then saves it readable only by you. Switch where it asks with beatcode provider ai <id>.",
         ],
+        see: { href: "guide/prompts/", label: "Writing prompts: where {xray} goes and what beatcode adds →" },
         cmd: ["beatcode setup ai", "beatcode prompts new --template mood"],
         keys: [
           ["a", "Ask the AI (on song select)"],
@@ -181,6 +182,7 @@ export const guideMore: Record<Lang, Guide> = {
           "送るのはプロンプト・お題・言語・長さの目安だけで、手元の repo のコードは送りません。かかったお金は画面に出ます。既定のモデルで、この撮影では 1 回 $0.0004〜$0.0005 でした。書いてもらった譜面は beatcode ai clean で消せます。",
           "初めに beatcode setup ai で API キーを貼ります。使えるか確かめてから、自分だけが読める権限で保存します。頼む先は beatcode provider ai <id> で替えます。",
         ],
+        see: { href: "guide/prompts/", label: "プロンプトの書き方: {xray} を置く場所と、beatcode が足すもの →" },
         cmd: ["beatcode setup ai", "beatcode prompts new --template mood"],
         keys: [
           ["a", "AI に書いてもらう(曲選びで)"],
