@@ -1,7 +1,7 @@
 #!/bin/sh
 # Install beatcode from GitHub Releases.
 #
-#   curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh | sh
+#   curl -fsSL https://beatcode.run/install.sh | sh
 #
 # Environment:
 #   BEATCODE_VERSION      version to install, e.g. 0.1.0 (default: the latest release)

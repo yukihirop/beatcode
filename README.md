@@ -40,7 +40,7 @@ in `~/.cache/beatcode/npm/<version>/`. Node.js 18 or later.
 **Install script**
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh | sh
+curl -fsSL https://beatcode.run/install.sh | sh
 ```
 
 It puts `beatcode` in `~/.local/bin`. Set `BEATCODE_INSTALL_DIR` to put it somewhere else, or

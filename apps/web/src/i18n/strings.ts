@@ -86,7 +86,7 @@ export const installs = [
   {
     id: "curl",
     label: "curl",
-    lines: ["curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh | sh"],
+    lines: ["curl -fsSL https://beatcode.run/install.sh | sh"],
   },
 ] as const;
 

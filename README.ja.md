@@ -40,7 +40,7 @@ npm install -g beatcode # コマンドとして入れる
 **入れるスクリプト**
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/yukihirop/beatcode/main/install.sh | sh
+curl -fsSL https://beatcode.run/install.sh | sh
 ```
 
 `~/.local/bin` に `beatcode` を置きます。置き場所は `BEATCODE_INSTALL_DIR`、版は `BEATCODE_VERSION=0.1.0` で選べます。
