@@ -9,7 +9,8 @@ export const guideSkills: Record<Lang, Guide> = {
     description: "Three skills for Claude Code and Codex: set beatcode up, tidy it away, and hear when work you handed off is done while you play.",
     heading: "Skills",
     lede: "beatcode comes with three skills for coding agents. They set beatcode up for you, remove it when you’re done, and tell you in the crowd panel when work you handed to Claude Code is finished.",
-    recorded: "The command output was taken in an empty home folder that had ~/.claude/skills.",
+    recorded:
+      "The command output was taken in an empty home folder that had ~/.claude/skills. The notice screenshot is a frame of a recording rendered by beatcode record render, playing the bundled fizzbuzz.rs without music; the notice was left with beatcode notify, and the keys were pressed by a script, not a person.",
     menuLabel: "Topics",
     keysLabel: "Keys on this screen",
     next: { href: "guide/plugins/", label: "← Plugins: more languages, AI providers and beatcode record" },
@@ -67,7 +68,13 @@ export const guideSkills: Record<Lang, Guide> = {
           "/beatcode-work is long to type every time, so we recommend giving it a short name: link it as bcw in ~/.claude/skills/ and Claude Code also calls it as /bcw. beatcode skills doesn’t make this link, so when you stop using beatcode, remove ~/.claude/skills/bcw yourself.",
         ],
         cmd: ["ln -s ~/.agents/skills/beatcode-work ~/.claude/skills/bcw", "/bcw fix the failing tests"],
-        shots: [],
+        shots: [
+          {
+            file: "notice",
+            alt: "The play screen, with the crowd panel at the bottom: a kaomoji walks the notice “api-server: fixed the failing tests” along the bottom row while the notes keep falling and the score shows PERFECT and GREAT.",
+            caption: "A notice walking across the crowd panel in the middle of a song",
+          },
+        ],
       },
       {
         id: "notify",
@@ -87,7 +94,8 @@ export const guideSkills: Record<Lang, Guide> = {
     description: "Claude Code と Codex のスキルが 3 つ。beatcode を整える・片付ける、頼んだ仕事が終わったら遊んでいる間に知らせる。",
     heading: "スキル",
     lede: "beatcode にはコーディングエージェント向けのスキルが 3 つ付いています。beatcode を遊べるように整える、やめるときに片付ける、Claude Code に頼んだ仕事が終わったらわっしょいの枠で知らせる、の 3 つです。",
-    recorded: "コマンドの出力は、~/.claude/skills だけがある空のホームで取りました。",
+    recorded:
+      "コマンドの出力は、~/.claude/skills だけがある空のホームで取りました。知らせの画面は、同梱の fizzbuzz.rs を音なしで遊んだ録画を beatcode record render で動画にして、そこから 1 コマ取ったものです。知らせは beatcode notify で置き、キーは人ではなくスクリプトが押しています。",
     menuLabel: "項目",
     keysLabel: "この画面のキー",
     next: { href: "guide/plugins/", label: "← プラグイン: 言語・AI の頼む先・beatcode record を足す" },
@@ -145,7 +153,13 @@ export const guideSkills: Record<Lang, Guide> = {
           "/beatcode-work は毎回打つには長いので、短い名前を付けておくのがおすすめです。~/.claude/skills/ に bcw という名前でリンクを張ると、Claude Code から /bcw でも呼べます。このリンクは beatcode skills では張らないので、beatcode をやめるときは ~/.claude/skills/bcw を自分で消してください。",
         ],
         cmd: ["ln -s ~/.agents/skills/beatcode-work ~/.claude/skills/bcw", "/bcw 落ちているテストを直して"],
-        shots: [],
+        shots: [
+          {
+            file: "notice",
+            alt: "プレイ中の画面。下のわっしょいの枠の下の行を、顔文字が「api-server: 落ちていたテストを直しました」と引いて歩いている。ノーツは落ち続け、スコアに PERFECT と GREAT が出ている。",
+            caption: "曲の途中、わっしょいの枠を流れる知らせ",
+          },
+        ],
       },
       {
         id: "notify",
