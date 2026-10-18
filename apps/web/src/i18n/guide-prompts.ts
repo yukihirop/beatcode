@@ -41,10 +41,10 @@ export const guidePrompts: Record<Lang, Guide> = {
         menu: "Read what is sent",
         title: "Read the text that is actually sent",
         body: [
-          "What you write is not all that is sent: beatcode adds instructions after it (the next topics). Before you try a prompt on a real song, print the whole thing. It takes a song you have already played (it needs the song’s analysis) and a language.",
+          "What you write is not all that is sent: beatcode adds instructions after it (the next topics). Before you try a prompt on a real song, print the whole thing. It needs a song beatcode has analyzed (a Spotify song you played, or asked the AI to write a chart for) and a language. Leave the song out, or give a name that doesn’t match, and beatcode lists your analyzed songs to pick from with ↑ ↓ and Enter (only in a terminal; in a script, give the name).",
           "The prompt is named by its file name, mood.md, not by its path. The output is the system message, then the user message, exactly as the model gets them.",
         ],
-        cmd: ['beatcode xray "Shining Star" --show mood.md typescript'],
+        cmd: ["beatcode xray --show mood.md typescript", 'beatcode xray "Shining Star" --show mood.md typescript'],
         shots: [],
       },
       {
@@ -110,10 +110,10 @@ export const guidePrompts: Record<Lang, Guide> = {
         menu: "送る文を読む",
         title: "本当に送られる文を読む",
         body: [
-          "書いたものだけが送られるわけではありません。beatcode が後ろに指示を足します(次の項目)。本物の曲で試す前に、全文を出して読めます。遊んだことのある曲(曲の解析が要ります)と言語を渡します。",
+          "書いたものだけが送られるわけではありません。beatcode が後ろに指示を足します(次の項目)。本物の曲で試す前に、全文を出して読めます。beatcode が解析した曲(Spotify で遊んだ曲、または AI に譜面を頼んだ曲)と言語が要ります。曲を省くか、合わない名前を渡すと、解析済みの曲の一覧が出て、↑↓ と Enter で選べます(端末だけ。スクリプトでは名前を渡します)。",
           "プロンプトはパスではなくファイル名(mood.md)で指します。出るのは system のメッセージと user のメッセージで、モデルに渡るままです。",
         ],
-        cmd: ['beatcode xray "Shining Star" --show mood.md typescript'],
+        cmd: ["beatcode xray --show mood.md typescript", 'beatcode xray "Shining Star" --show mood.md typescript'],
         shots: [],
       },
       {
