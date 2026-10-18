@@ -258,7 +258,7 @@ export const guideConfig: Record<Lang, Guide> = {
         table: {
           head: ["Option", "Default", "What it does"],
           rows: [
-            ["icons", '"nerd"', 'Icons for repos, files and places. "text" uses letters like gh / 1st, "none" shows none'],
+            ["icons", '"nerd"', 'Icons for repos, files and ranks. "text" uses letters like gh / 1st, "none" shows none'],
             ["language", '"auto"', 'Screen language: "auto" / "ja" / "en". auto picks Japanese when LC_ALL / LC_MESSAGES / LANG starts with ja, English otherwise'],
             ["note_text", "true", "Write the token on each falling note. false draws plain colored bars; the big next token and the code pane stay as they are"],
             ["next_token", "true", "Show the next token to hit large in the middle of the lanes. false hides it; the text on notes and the code pane stay as they are"],
@@ -318,7 +318,7 @@ export const guideConfig: Record<Lang, Guide> = {
           head: ["Option", "Default", "What it does"],
           rows: [
             ["provider", "none", '"voicevox" or "aivisspeech"'],
-            ["speaker", "voicevox: 3 / aivisspeech: \"zonoko\"", "Speaker ID or name"],
+            ["speaker", "voicevox: 3 (Zundamon) / aivisspeech: \"zonoko\"", "Speaker ID or name"],
             ["style", "the first (normal)", 'The style when the speaker is a name ("A" and so on)'],
             ["url", "voicevox: http://127.0.0.1:50021 / aivisspeech: http://127.0.0.1:10101", "Where the engine is"],
             ["every", "10", "Speak at every multiple of this. 0 for none"],

@@ -112,7 +112,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
         menu: "Font",
         title: "A font with icons",
         body: [
-          "beatcode marks repos, files and places with Nerd Font icons. Without a Nerd Font they show as boxes; set icons = \"text\" in config.toml to use letters instead (or \"none\").",
+          "beatcode marks repos, files and ranks with Nerd Font icons. Without a Nerd Font they show as boxes; set icons = \"text\" in config.toml to use letters instead (or \"none\").",
           "BEATCODE_ICONS=text beatcode tries it for one run without editing the file.",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: ["[display]", 'icons = "text"'] },
@@ -253,7 +253,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
         menu: "フォント",
         title: "アイコンの入ったフォント",
         body: [
-          "beatcode は repo・ファイル・置き場所に Nerd Font のアイコンを付けます。Nerd Font が無いと四角になるので、config.toml に icons = \"text\" と書けば字(\"none\" なら出さない)になります。",
+          "beatcode は repo・ファイル・順位に Nerd Font のアイコンを付けます。Nerd Font が無いと四角になるので、config.toml に icons = \"text\" と書けば字(\"none\" なら出さない)になります。",
           "BEATCODE_ICONS=text beatcode なら、ファイルを書き換えずにその 1 回だけ試せます。",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: ["[display]", 'icons = "text"'] },
