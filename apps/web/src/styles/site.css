@@ -521,6 +521,13 @@ body::before {
   margin-top: var(--space-xs);
 }
 
+.install__heading {
+  margin: 0;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
 .install__tabs {
   display: flex;
   gap: var(--space-2xs);
@@ -591,6 +598,23 @@ body::before {
 
 .install__copy {
   flex: none;
+  width: 2.5rem;
+  padding: 0;
+}
+
+.install__icon--done,
+.install__copy[data-state="success"] .install__icon--copy {
+  display: none;
+}
+
+.install__copy[data-state="success"] .install__icon--done {
+  display: block;
+}
+
+@media (pointer: coarse) {
+  .install__copy {
+    width: 3rem;
+  }
 }
 
 .install__note {

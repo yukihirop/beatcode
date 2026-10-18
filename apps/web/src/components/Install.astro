@@ -8,7 +8,7 @@ const { t } = Astro.props;
 ---
 
 <section class="install" aria-labelledby="install-heading" data-install data-copied={t.copied}>
-  <h2 id="install-heading" class="visually-hidden">{t.installHeading}</h2>
+  <h2 id="install-heading" class="install__heading">{t.installHeading}</h2>
   <div class="install__tabs" role="tablist" aria-label={t.installHeading}>
     {installs.map((m, i) => (
       <button
@@ -31,8 +31,14 @@ const { t } = Astro.props;
       hidden={i !== 0}
     >
       <pre><code>{m.lines.map((l) => <span class="install__line">{l}</span>)}</code></pre>
-      <button type="button" class="btn btn--ghost install__copy" data-copy={m.lines.join("\n")}>
-        <span data-label>{t.copy}</span>
+      <button type="button" class="btn btn--ghost install__copy" data-copy={m.lines.join("\n")} aria-label={t.copy} title={t.copy}>
+        <svg class="install__icon install__icon--copy" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+          <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+        </svg>
+        <svg class="install__icon install__icon--done" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12.5l4.5 4.5L19 7.5"></path>
+        </svg>
       </button>
     </div>
   ))}
@@ -68,8 +74,7 @@ const { t } = Astro.props;
     });
 
     for (const btn of root.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
-      const label = btn.querySelector<HTMLElement>("[data-label]")!;
-      const idle = label.textContent;
+      const idle = btn.getAttribute("aria-label")!;
       let timer = 0;
       btn.addEventListener("click", async () => {
         try {
@@ -77,11 +82,13 @@ const { t } = Astro.props;
         } catch {
           return;
         }
-        label.textContent = root.dataset.copied!;
+        btn.setAttribute("aria-label", root.dataset.copied!);
+        btn.title = root.dataset.copied!;
         btn.dataset.state = "success";
         clearTimeout(timer);
         timer = window.setTimeout(() => {
-          label.textContent = idle;
+          btn.setAttribute("aria-label", idle);
+          btn.title = idle;
           delete btn.dataset.state;
         }, 1600);
       });

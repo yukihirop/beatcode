@@ -239,7 +239,7 @@ export const strings: Record<Lang, Strings> = {
     hero: {
       title: "コードを、音ゲーとして叩く。",
       lede: "beatcode はターミナルで遊ぶ音ゲーです。落ちてくるノーツは本物のソースコードのトークン。キーワード・識別子・演算子・リテラルが、それぞれの列を流れてきます。1 曲叩き切ると、関数が 1 つ書き上がります。",
-      installHeading: "入れる",
+      installHeading: "Install",
       copy: "コピー",
       copied: "コピーしました",
       npmNote: "入れずにそのまま動きます。Node.js 18 以降。",
