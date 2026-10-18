@@ -2,6 +2,8 @@
 // written when the site is built (pages/og/[...slug].png.ts). The SVG is put together here and made a PNG with resvg,
 // from the fonts on the machine that builds it, as the ranking's card is (ranking-server/src/card.ts in the ranking server's source).
 import { Resvg } from "@resvg/resvg-js";
+// The wordmark as the banner draws it (docs/images/banner.png), cut out with the dark ground made transparent, glow and all
+import wordmarkPng from "./assets/og-wordmark.png?inline";
 import type { Guide } from "./i18n/guide";
 import { guide } from "./i18n/guide";
 import { guideConfig } from "./i18n/guide-config";
@@ -22,6 +24,8 @@ export type OgCard = {
   kicker: string;
   heading: string;
   lede: string;
+  /** The site's tagline: set small under the wordmark, in the banner's monospace, not as a page heading */
+  tagline?: boolean;
 };
 
 /** A page's card, by its slug under og/: "en/index", "ja/guide/config", … */
@@ -38,7 +42,7 @@ const guides: [string, Record<Lang, Guide>][] = [
 ];
 for (const lang of ["en", "ja"] as const) {
   const t = strings[lang];
-  ogCards[`${lang}/index`] = { kicker: "", heading: t.title.replace(/^beatcode\s*—\s*/, ""), lede: t.description };
+  ogCards[`${lang}/index`] = { kicker: "", heading: t.title.replace(/^beatcode\s*—\s*/, ""), lede: t.description, tagline: true };
   for (const [path, g] of guides) {
     ogCards[`${lang}/${path}`] = { kicker: lang === "ja" ? "ガイド" : "Guide", heading: g[lang].heading, lede: g[lang].description };
   }
@@ -103,35 +107,6 @@ export function wrap(text: string, size: number, width: number, max: number): st
   return kept;
 }
 
-// The beatcode wordmark on its pixel grid (components/Wordmark.astro): 11 rows, "#" a filled pixel
-const glyphs: Record<string, string[]> = {
-  b: ["##.....", "##.....", "##.....", "######.", "#######", "##...##", "##...##", "##...##", "##...##", "#######", "######."],
-  e: [".......", ".......", ".......", ".#####.", "#######", "##...##", "#######", "#######", "##.....", "#######", ".######"],
-  a: [".......", ".......", ".......", "######.", "#######", ".....##", ".######", "#######", "##...##", "#######", ".######"],
-  t: ["......", ".##...", ".##...", "######", "######", ".##...", ".##...", ".##...", ".##...", ".#####", "..####"],
-  c: [".......", ".......", ".......", ".######", "#######", "##.....", "##.....", "##.....", "##.....", "#######", ".######"],
-  o: [".......", ".......", ".......", ".#####.", "#######", "##...##", "##...##", "##...##", "##...##", "#######", ".#####."],
-  d: [".....##", ".....##", ".....##", ".######", "#######", "##...##", "##...##", "##...##", "##...##", "#######", ".######"],
-};
-
-/** The wordmark at (x, y), px per pixel; returns the markup and how wide it came out */
-function wordmark(x: number, y: number, px: number): { svg: string; width: number } {
-  let col = 0;
-  const rects: string[] = [];
-  for (const [word, fill] of [["beat", C.ink], ["code", C.accent]] as const) {
-    for (const ch of word) {
-      const rows = glyphs[ch]!;
-      rows.forEach((row, ry) => {
-        for (const m of row.matchAll(/#+/g)) {
-          rects.push(`<rect x="${x + (col + m.index!) * px}" y="${y + ry * px}" width="${m[0].length * px}" height="${px}" fill="${fill}"/>`);
-        }
-      });
-      col += rows[0]!.length + 1;
-    }
-  }
-  return { svg: `<g shape-rendering="crispEdges">${rects.join("")}</g>`, width: (col - 1) * px };
-}
-
 /** The four lanes on the right: tokens falling to the judgement line, the last ones lit as they're hit */
 function highway(x: number, w: number, top: number, bottom: number): string {
   const lane = w / 4;
@@ -192,19 +167,29 @@ export function ogSvg(card: OgCard): string {
   parts.push(`<rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>`);
 
   // The wordmark, then the kicker, the heading (up to 2 lines) and the lede (up to 4 lines)
-  const mark = wordmark(PAD, PAD - 4, 8);
-  parts.push(mark.svg);
+  parts.push(`<image x="${PAD - 12}" y="${PAD - 14}" width="540" height="${Math.round((540 * 198) / 935)}" href="${wordmarkPng}"/>`);
   let y = PAD + 88 + 66;
   if (card.kicker) {
     parts.push(`<text x="${PAD}" y="${y}" font-size="28" font-weight="700" letter-spacing="2" fill="${C.accent}">${esc(card.kicker)}</text>`);
     y += 70;
   }
-  const headSize = emsOf(card.heading) * 64 <= textW ? 64 : 52;
-  for (const line of wrap(card.heading, headSize, textW, 2)) {
-    parts.push(`<text x="${PAD}" y="${y}" font-size="${headSize}" font-weight="700" fill="${C.ink}">${esc(line)}</text>`);
-    y += headSize + 14;
+  const headSize = card.tagline ? 23.4 : emsOf(card.heading) * 64 <= textW ? 64 : 52;
+  const mono = card.tagline && /^[\x20-\x7e]*$/.test(card.heading);
+  if (card.tagline) y -= 26;
+  // The banner's tagline: monospace, a full stop, then a blinking cursor of its own after a space
+  const headText = mono ? `${card.heading}.` : card.heading;
+  const headLines = wrap(headText, headSize, textW, 2);
+  for (const [i, line] of headLines.entries()) {
+    const last = i === headLines.length - 1;
+    const cursor = card.tagline && last && !mono ? `<tspan fill="${C.accent}"> _</tspan>` : "";
+    parts.push(`<text x="${PAD}" y="${y}"${mono ? ` font-family="${MONO}"` : ""} font-size="${headSize}" font-weight="${card.tagline ? 500 : 700}" fill="${C.ink}">${esc(line)}${cursor}</text>`);
+    if (card.tagline && last && mono) {
+      const cw = headSize * 0.6;
+      parts.push(`<rect x="${PAD + (line.length + 1) * cw}" y="${y + 3}" width="${cw}" height="4" fill="${C.accent}"/>`);
+    }
+    y += headSize + (card.tagline ? 10 : 14);
   }
-  y += 18;
+  y += card.tagline ? 52 : 18;
   const ledeLines = Math.max(1, Math.min(4, Math.floor((H - 50 - y) / 42)));
   for (const line of wrap(card.lede, 28, textW, ledeLines)) {
     parts.push(`<text x="${PAD}" y="${y}" font-size="28" fill="${C.muted}">${esc(line)}</text>`);
