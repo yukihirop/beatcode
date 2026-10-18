@@ -5,7 +5,7 @@ import type { Lang } from "./strings";
 const llmsFull = `${(import.meta.env.SITE ?? "https://beatcode.run").replace(/\/?$/, "/")}llms-full.txt`;
 
 // What to have before playing: the OS, where songs play, which terminal, fonts and the extras.
-// What beatcode itself checks is in beatcode-private (src/logo.rs for images, the ready screen for key releases).
+// What beatcode itself checks is in its source (src/logo.rs for images, the ready screen for key releases).
 // Only the author's terminal (Ghostty inside cmux) has been used for real play; the rest of the terminal table says so.
 
 export const guideEnvironment: Record<Lang, Guide> = {

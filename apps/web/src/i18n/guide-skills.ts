@@ -2,7 +2,7 @@ import type { Guide } from "./guide";
 import type { Lang } from "./strings";
 
 // The skills page: the agent skills beatcode skills installs, for Claude Code and Codex.
-// The same as beatcode-private's skills/*/SKILL.md; the output was taken in an empty home folder with ~/.claude/skills.
+// The same as the source repository's skills/*/SKILL.md; the output was taken in an empty home folder with ~/.claude/skills.
 export const guideSkills: Record<Lang, Guide> = {
   en: {
     title: "Skills — beatcode",

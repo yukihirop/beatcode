@@ -2,7 +2,7 @@ import type { Guide } from "./guide";
 import type { Lang } from "./strings";
 
 // The settings page: every section of ~/.config/beatcode/config.toml.
-// The same as beatcode-private's docs/config.md (en) and docs/config.ja.md (ja); change them together.
+// The same as the source repository's docs/config.md (en) and docs/config.ja.md (ja); change them together.
 
 const sample = [
   'version = "1.0.0"',

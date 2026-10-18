@@ -2,7 +2,7 @@ import type { Guide } from "./guide";
 import type { Lang } from "./strings";
 
 // The fourth guide page: running the ranking server beatcode sends plays to, from its image on GHCR.
-// The same as beatcode-private's docs/ranking-server.md; the image is built by beatcode-private-tools.
+// The same as the source repository's docs/ranking-server.md; the image is built from the ranking server's source.
 const image = "ghcr.io/yukihirop/beatcode-ranking";
 // The whole site in one file, for the agent to read first
 const llmsFull = `${(import.meta.env.SITE ?? "https://beatcode.run").replace(/\/?$/, "/")}llms-full.txt`;

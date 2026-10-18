@@ -1,5 +1,5 @@
 BEATCODE ALL RIGHTS RESERVED LICENSE
-Version 1.1 — 2026-09-27
+Version 1.2 — 2026-10-18
 
 Copyright (c) 2026 yukihirop
 
@@ -18,8 +18,8 @@ You may download, install, and run the official binary releases of this
 software, including the official plugins, for your own personal,
 non-commercial use, provided that you obtain them only from an official
 distribution channel: the GitHub Releases of yukihirop/beatcode, the Homebrew
-formula in that repository, the npm package "beatcode", or the
-`beatcode plugins install` command.
+formula and the install script (install.sh) in that repository, the npm package
+"beatcode", or the `beatcode plugins install` command.
 
 This permission does not allow you to redistribute, share, mirror, publish,
 sell, rent, or sublicense the software; to modify, decompile, disassemble, or
@@ -30,6 +30,16 @@ releases at any time.
 
 No derivative work may be created or distributed without prior written
 permission from the copyright holder.
+
+PUBLIC REPOSITORY
+
+The repository yukihirop/beatcode is public so that the official binary
+releases, the install scripts, and the documentation can be reached. Viewing
+it, and forking it on GitHub as GitHub's Terms of Service allow for public
+repositories, is permitted. That is all: nothing in it, including the source
+code of the web site, the documentation, the images and videos, and the
+install scripts, is licensed for any other use, copying, modification, or
+distribution.
 
 This notice applies only to material copyrightable by the copyright holder in
 this repository. Third-party dependencies, assets, and trademarks remain

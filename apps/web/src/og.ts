@@ -1,6 +1,6 @@
 // The pictures X and others show under a link to the site (og:image): one 1200×630 PNG per page and language,
 // written when the site is built (pages/og/[...slug].png.ts). The SVG is put together here and made a PNG with resvg,
-// from the fonts on the machine that builds it, as the ranking's card is (beatcode-private-tools' ranking-server/src/card.ts).
+// from the fonts on the machine that builds it, as the ranking's card is (ranking-server/src/card.ts in the ranking server's source).
 import { Resvg } from "@resvg/resvg-js";
 import type { Guide } from "./i18n/guide";
 import { guide } from "./i18n/guide";

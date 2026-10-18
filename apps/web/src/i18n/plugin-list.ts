@@ -1,4 +1,4 @@
-// Generated from the plugin executables in beatcode-private-plugins (each answered {"method":"info"}); file names without an extension (Dockerfile, Makefile, vimrc) written as files, not ".dockerfile".
+// Generated from the plugin executables (each answered {"method":"info"}); file names without an extension (Dockerfile, Makefile, vimrc) written as files, not ".dockerfile".
 export const codeLangs: string[][] = [
   ["asm", "Assembly", ".s .asm"],
   ["batch", "Batch", ".bat .cmd"],
