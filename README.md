@@ -10,9 +10,9 @@
 down lanes by kind (keyword, identifier, operator, literal), and you hit them on the judgment line.
 Finish a song and you have typed out a function.
 
-https://github.com/user-attachments/assets/5e694914-460f-4a3f-a2e9-caf85bf29777
+https://github.com/user-attachments/assets/d8a5349a-f6c9-4c3b-8c0f-7e6246f5ab61
 
-<p align="center"><sub>30 seconds with sound: シャイニングスター (Shining Star, ♩=158) on the bundled Rust charts. A small bot that reads the screen did the hitting. Music: <a href="https://maou.audio/">魔王魂</a></sub></p>
+<p align="center"><sub>30 seconds with sound: the last chorus of Heroes Tonight by Janji (feat. Johnning), on a TypeScript chart shared as a gist. A small bot that reads the screen did the hitting. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/ht">http://ncs.io/ht</a> Watch: <a href="http://youtu.be/3nQNiWdeH2Q">http://youtu.be/3nQNiWdeH2Q</a></sub></p>
 
 This repository holds the install scripts and release binaries. The source code is not public.
 
