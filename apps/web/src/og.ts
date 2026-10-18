@@ -192,9 +192,9 @@ export function ogSvg(card: OgCard): string {
   parts.push(`<rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>`);
 
   // The wordmark, then the kicker, the heading (up to 2 lines) and the lede (up to 4 lines)
-  const mark = wordmark(PAD, PAD - 4, 6);
+  const mark = wordmark(PAD, PAD - 4, 8);
   parts.push(mark.svg);
-  let y = PAD + 66 + 70;
+  let y = PAD + 88 + 66;
   if (card.kicker) {
     parts.push(`<text x="${PAD}" y="${y}" font-size="28" font-weight="700" letter-spacing="2" fill="${C.accent}">${esc(card.kicker)}</text>`);
     y += 70;
@@ -205,7 +205,7 @@ export function ogSvg(card: OgCard): string {
     y += headSize + 14;
   }
   y += 18;
-  const ledeLines = Math.max(1, Math.min(4, Math.floor((H - 70 - y) / 42)));
+  const ledeLines = Math.max(1, Math.min(4, Math.floor((H - 50 - y) / 42)));
   for (const line of wrap(card.lede, 28, textW, ledeLines)) {
     parts.push(`<text x="${PAD}" y="${y}" font-size="28" fill="${C.muted}">${esc(line)}</text>`);
     y += 42;
