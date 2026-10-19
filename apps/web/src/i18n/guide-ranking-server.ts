@@ -14,6 +14,8 @@ const compose = [
   "    restart: unless-stopped",
   "    environment:",
   "      PUBLIC_URL: https://ranking.example.com",
+  "      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}",
+  "      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}",
   "    ports:",
   '      - "8080:8787"',
   "    volumes:",
@@ -22,7 +24,7 @@ const compose = [
   "volumes:",
   "  ranking-data:",
 ];
-const run = `docker run -d --name beatcode-ranking --restart unless-stopped -p 8080:8787 -v beatcode-ranking:/data ${image}:latest`;
+const run = `docker run -d --name beatcode-ranking --restart unless-stopped -p 8080:8787 -v beatcode-ranking:/data -e GITHUB_CLIENT_ID=<client id> -e GITHUB_CLIENT_SECRET=<client secret> ${image}:latest`;
 const config = ["[share]", 'ranking_server_url = "https://ranking.example.com"'];
 // A Raspberry Pi at home, reached only through a Cloudflare Tunnel: no ports published, on the Pi or the router
 const piCompose = [
@@ -32,6 +34,8 @@ const piCompose = [
   "    restart: unless-stopped",
   "    environment:",
   "      PUBLIC_URL: https://ranking.example.com",
+  "      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}",
+  "      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}",
   "    volumes:",
   "      - /mnt/ssd/beatcode-ranking:/data",
   "  cloudflared:",
@@ -43,7 +47,7 @@ const piCompose = [
 ];
 const piCmds = [
   "curl -fsSL https://get.docker.com | sh",
-  "echo 'TUNNEL_TOKEN=<the tunnel token>' > .env && chmod 600 .env",
+  "printf 'TUNNEL_TOKEN=<the tunnel token>\\nGITHUB_CLIENT_ID=<client id>\\nGITHUB_CLIENT_SECRET=<client secret>\\n' > .env && chmod 600 .env",
   "docker compose up -d",
   "curl https://ranking.example.com/healthz",
 ];
@@ -81,7 +85,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "Let a coding agent set it up",
         body: [
           "Copy this prompt into a coding agent (Claude Code, Codex and the like) on the machine that will run the server, or the one you reach it from. It reads this site, asks where to run it, writes the compose file and points your beatcode at it.",
-          "It asks before starting anything, and leaves the sign-ins (gh, beatcode setup rank) and the Cloudflare tunnel token for you. Tokens are only checked for, never read.",
+          "It asks before starting anything, and leaves the GitHub App’s secret, the sign-ins (gh, beatcode setup rank) and the Cloudflare tunnel token for you. Tokens are only checked for, never read.",
         ],
         file: {
           name: "Prompt for your coding agent",
@@ -92,13 +96,23 @@ export const guideRankingServer: Record<Lang, Guide> = {
             `1. Read ${llmsFull} first. It is the whole beatcode site; follow its Ranking server page.`,
             "2. Ask me where to run it: on this machine with Docker, on a Raspberry Pi with Cloudflare Tunnel, or on a hosting service. Ask for the https address people will open (PUBLIC_URL) too, if there is one.",
             "3. Look without changing anything: whether docker and docker compose work, and my ~/.config/beatcode/config.toml.",
-            "4. Write compose.yaml as the page shows, with /data on a volume (on a Raspberry Pi, on a USB SSD). For Cloudflare Tunnel, make .env readable only by me (chmod 600) and let me paste the tunnel token into it myself. Show me the file and ask before starting it, then check that /healthz answers {\"ok\":true}.",
+            "4. Tell me how to make the server's GitHub OAuth App as the page shows (Device Flow on, token expiration opted out), and let me make it myself. Write compose.yaml as the page shows, with /data on a volume (on a Raspberry Pi, on a USB SSD). Make .env readable only by me (chmod 600) and let me paste GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET and, for Cloudflare Tunnel, the tunnel token into it myself. Show me the file and ask before starting it, then check that /healthz answers {\"ok\":true}.",
             "5. Add ranking_server_url under [share] in my config.toml (read it first and add to [share] if it is there), then run beatcode --help to check it still loads.",
             "6. Give me beatcode setup rank to run myself. It signs in on github.com.",
-            "7. Never read or print tokens: gh's, the tunnel's or beatcode's. Only check whether they exist.",
+            "7. Never read or print tokens or secrets: gh's, the GitHub App's, the tunnel's or beatcode's. Only check whether they exist.",
             "8. At the end, tell me the page's address, where ranking.db is and how to back it up, and anything left undone.",
           ],
         },
+        shots: [],
+      },
+      {
+        id: "app",
+        menu: "A GitHub App for it",
+        title: "A GitHub App for the server",
+        body: [
+          "Each ranking server signs its players in with its own GitHub OAuth App, so a token a player sends to one server can’t be used on another. Make one at GitHub → Settings → Developer settings → OAuth Apps → New OAuth App (any homepage and callback URL, such as the page’s address).",
+          "On the App’s page, tick Enable Device Flow, opt out of token expiration (Activate optional features → Token expiration; beatcode doesn’t refresh tokens, so they would stop after 8 hours) and generate a client secret. Give the server GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET, and keep the secret out of any repository. Without them the page shows but plays are turned down.",
+        ],
         shots: [],
       },
       {
@@ -116,7 +130,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         id: "compose",
         menu: "With Docker Compose",
         title: "With Docker Compose",
-        body: ["The same in a compose.yaml, with PUBLIC_URL set. Start it with docker compose up -d."],
+        body: ["The same in a compose.yaml, with PUBLIC_URL set. GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET come from a .env next to it, readable only by you. Start it with docker compose up -d."],
         file: { name: "compose.yaml", lines: compose },
         cmd: "docker compose up -d",
         shots: [],
@@ -127,14 +141,17 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "Settings",
         body: [
           "The server is plain HTTP. For HTTPS, put your own proxy (Caddy, nginx or a hosting service’s) in front of it and set PUBLIC_URL to the https address.",
-          "beatcode sends the player’s GitHub token (read:user only, from beatcode setup rank) with each play, so serve it over HTTPS anywhere but your own machine.",
+          "beatcode sends the player’s GitHub token (read:user only, from beatcode setup rank) with each play, so it sends only to https:// addresses, and to http:// only on your own machine (localhost, 127.0.0.1, [::1]).",
+          "Scores are self-reported, and the server limits how often one address or player can send. It logs sign-ins, turned-down plays and requests over the limits as JSON lines on its output (docker compose logs ranking).",
         ],
         table: {
           head: ["Variable", "Default", "Meaning"],
           rows: [
             ["PUBLIC_URL", "none", "Where people open the page. The links in a board’s card (the picture X shows under a shared board) start with it. Left out, the address the request came to is used, which is http:// behind an HTTPS proxy"],
+            ["GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET", "none", "The server’s GitHub OAuth App (see above). Without them the server takes no plays"],
+            ["TRUST_PROXY", "none", "1 only when a proxy in front sets X-Forwarded-For, -Proto and -Host itself. The limits then count each player’s address instead of the proxy’s"],
             ["PORT", "8787", "The port the server listens on inside the container. Most hosting services set it"],
-            ["GITHUB_API_URL", "https://api.github.com", "Where the server asks whose token a play came with, and reads gists"],
+            ["GITHUB_API_URL", "https://api.github.com", "Where the server asks whether a play’s token is its App’s, and reads gists"],
             ["SHOW_SECRET_GISTS", "none", "1 links a board to the beatmap gist its play preview comes from even when the gist is secret (beatcode makes a secret one when it sends a play). Anyone who opens the board can then open the gist, so set it only for a ranking only people you know open"],
           ],
         },
@@ -146,7 +163,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "Send plays to it",
         body: [
           "Put the page’s address in config.toml. Each time you finish a song, the results screen sends the play and says how it went; R there opens the board it went on.",
-          "Then sign in once with beatcode setup rank (a code to enter on github.com). The token it gets can only read your profile (read:user), but it goes to that server, so only put in a server you trust.",
+          "Then sign in once with beatcode setup rank (a code to enter on github.com). beatcode signs in with that server’s GitHub App and keeps the token for that server only. It can only read your profile (read:user) and works only on that server, but still only put in a server you trust. The address has to be https:// (http:// only for localhost).",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: config },
         shots: [],
@@ -156,7 +173,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         menu: "On a hosting service",
         title: "On a hosting service",
         body: [
-          `A host that runs a Docker image can run it as is: the image ${image}, a volume (a persistent disk) at /data, and PUBLIC_URL.`,
+          `A host that runs a Docker image can run it as is: the image ${image}, a volume (a persistent disk) at /data, PUBLIC_URL, and GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET (the secret in the host’s secret settings). Set TRUST_PROXY=1 if the host’s proxy sets X-Forwarded-For itself.`,
           "SQLite is one file on that one disk, so run one copy, not several.",
         ],
         shots: [],
@@ -168,7 +185,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         body: [
           "A Raspberry Pi 4 or 5 with a 64-bit OS runs the image too: it is built for arm64. A Cloudflare Tunnel gives it an https address without opening a port on the Pi or your router, and keeps your home IP out of sight. It needs a domain on Cloudflare; a Quick Tunnel (trycloudflare.com) changes its address every time, so it doesn’t suit a ranking.",
           "In Cloudflare’s dashboard, create a tunnel under Networking → Tunnels, pick Docker and keep only the token from the command it shows. Then add a route: Published application, your subdomain and domain, and the service URL http://ranking:8787 — the service name and port inside the compose file below.",
-          "The compose file has no ports at all: the tunnel is the only way in. Keep the token in .env next to it, readable only by you. Put /data on a USB SSD rather than the SD card, which wears out under SQLite’s writes, and copy ranking.db somewhere else now and then (Update and back up, below). With restart: unless-stopped, both come back on their own after a power cut.",
+          "The compose file has no ports at all: the tunnel is the only way in. Keep the tokens in .env next to it, readable only by you. All requests come through cloudflared, so to count each player for the limits add TRUST_PROXY: \"1\" to ranking’s environment (Cloudflare adds the player’s address to X-Forwarded-For; not tried yet). Put /data on a USB SSD rather than the SD card, which wears out under SQLite’s writes, and copy ranking.db somewhere else now and then (Update and back up, below). With restart: unless-stopped, both come back on their own after a power cut.",
         ],
         cmd: piCmds,
         file: { name: "compose.yaml", lines: piCompose },
@@ -219,7 +236,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "コーディングエージェントに任せる",
         body: [
           "サーバーを動かすマシン(か、そこへつなぐマシン)のコーディングエージェント(Claude Code・Codex など)に、このプロンプトを渡します。このサイトを読み、どこで動かすかを聞き、compose を書いて、beatcode の送り先まで設定してくれます。",
-          "何かを起動する前には聞きます。サインイン(gh・beatcode setup rank)と Cloudflare のトンネルのトークンは自分で入れるよう案内します。トークンはあるかどうかを見るだけで、中身は読みません。",
+          "何かを起動する前には聞きます。GitHub の App の secret・サインイン(gh・beatcode setup rank)・Cloudflare のトンネルのトークンは自分で入れるよう案内します。トークンはあるかどうかを見るだけで、中身は読みません。",
         ],
         file: {
           name: "コーディングエージェントに渡すプロンプト",
@@ -230,13 +247,23 @@ export const guideRankingServer: Record<Lang, Guide> = {
             `1. まず ${llmsFull} を読んでください。beatcode のサイト全部です。その中のランキングサーバーのページに従ってください。`,
             "2. どこで動かすかを聞いてください: このマシンの Docker・Raspberry Pi と Cloudflare Tunnel・ホスティングのサービス。人が開く https のアドレス(PUBLIC_URL)があれば、それも聞いてください。",
             "3. 何も変えずに見てください: docker と docker compose が動くか、~/.config/beatcode/config.toml の中身。",
-            "4. ページのとおりに compose.yaml を書いてください。/data は volume に(Raspberry Pi なら USB の SSD に)。Cloudflare Tunnel なら .env を私だけが読めるように作り(chmod 600)、トンネルのトークンは私が貼ります。ファイルを見せて、起動する前に聞いてください。起動したら /healthz が {\"ok\":true} を返すか確かめてください。",
+            "4. サーバーの GitHub の OAuth App の作り方をページのとおりに教えてください(Device Flow を有効に・トークンの期限を外す)。作るのは私です。ページのとおりに compose.yaml を書いてください。/data は volume に(Raspberry Pi なら USB の SSD に)。.env は私だけが読めるように作り(chmod 600)、GITHUB_CLIENT_ID・GITHUB_CLIENT_SECRET と、Cloudflare Tunnel ならトンネルのトークンは私が貼ります。ファイルを見せて、起動する前に聞いてください。起動したら /healthz が {\"ok\":true} を返すか確かめてください。",
             "5. config.toml の [share] に ranking_server_url を足してください(先に中身を読み、[share] があればそこに足す)。足したら beatcode --help で読めるか確かめてください。",
             "6. beatcode setup rank は私が打つよう教えてください。github.com でサインインします。",
-            "7. トークン(gh・トンネル・beatcode のもの)の中身は読まない・出さないでください。あるかどうかだけを見てください。",
+            "7. トークンと secret(gh・GitHub の App・トンネル・beatcode のもの)の中身は読まない・出さないでください。あるかどうかだけを見てください。",
             "8. 最後に、ページのアドレス・ranking.db の場所とバックアップの取り方・済んでいないことを教えてください。",
           ],
         },
+        shots: [],
+      },
+      {
+        id: "app",
+        menu: "GitHub の App",
+        title: "サーバーの GitHub の App",
+        body: [
+          "ランキングのサーバーは、それぞれ自分の GitHub の OAuth App で遊ぶ人にサインインしてもらいます。あるサーバーに送ったトークンは、ほかのサーバーでは使えません。GitHub → Settings → Developer settings → OAuth Apps → New OAuth App で作ります(Homepage と Callback の URL はページのアドレスなどでかまいません)。",
+          "App のページで Enable Device Flow にチェックを入れ、トークンの期限を外し(Activate optional features → Token expiration。beatcode はトークンを更新しないので、外さないと 8 時間で使えなくなります)、client secret を作ります。サーバーに GITHUB_CLIENT_ID と GITHUB_CLIENT_SECRET を渡し、secret はどの repo にも入れないでください。無ければページは出ますが、記録は受け付けません。",
+        ],
         shots: [],
       },
       {
@@ -254,7 +281,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         id: "compose",
         menu: "Docker Compose で",
         title: "Docker Compose で",
-        body: ["同じものを compose.yaml に書き、PUBLIC_URL も付けた形です。docker compose up -d で起動します。"],
+        body: ["同じものを compose.yaml に書き、PUBLIC_URL も付けた形です。GITHUB_CLIENT_ID と GITHUB_CLIENT_SECRET は、同じ場所の自分だけ読める .env から読みます。docker compose up -d で起動します。"],
         file: { name: "compose.yaml", lines: compose },
         cmd: "docker compose up -d",
         shots: [],
@@ -265,14 +292,17 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "設定",
         body: [
           "サーバーは HTTP だけです。HTTPS にするには、前に自分のプロキシ(Caddy・nginx・ホスティングのサービスのもの)を置き、PUBLIC_URL を https のアドレスにします。",
-          "beatcode は遊んだ人の GitHub のトークン(beatcode setup rank で取った read:user だけのもの)を記録と一緒に送るので、自分のマシンの中以外では HTTPS で出してください。",
+          "beatcode は遊んだ人の GitHub のトークン(beatcode setup rank で取った read:user だけのもの)を記録と一緒に送るので、送るのは https:// のアドレスだけで、http:// は自分のマシン(localhost・127.0.0.1・[::1])にだけ送ります。",
+          "点は自己申告です。サーバーは 1 つのアドレス・1 人が送れる回数を制限し、サインイン・断った記録・制限を超えたリクエストを JSON の行で出力に残します(docker compose logs ranking)。",
         ],
         table: {
           head: ["環境変数", "既定", "意味"],
           rows: [
             ["PUBLIC_URL", "なし", "人がページを開くアドレス。ボードのカード(X で共有したボードの下に出る画像)のリンクはこれで始まる。書かなければ来たリクエストのアドレスを使い、HTTPS のプロキシの後ろでは http:// になる"],
+            ["GITHUB_CLIENT_ID / GITHUB_CLIENT_SECRET", "なし", "サーバーの GitHub の OAuth App(上を参照)。無ければ記録を受け付けない"],
+            ["TRUST_PROXY", "なし", "前のプロキシが X-Forwarded-For・-Proto・-Host を自分で付けるときだけ 1。回数の制限を、プロキシではなく遊んだ人のアドレスで数える"],
             ["PORT", "8787", "コンテナの中でサーバーが待つポート。ホスティングのサービスはたいてい自分で決める"],
-            ["GITHUB_API_URL", "https://api.github.com", "記録に付いてきたトークンが誰のものかを聞き、gist を読む先"],
+            ["GITHUB_API_URL", "https://api.github.com", "記録に付いてきたトークンがこのサーバーの App のものかを聞き、gist を読む先"],
             ["SHOW_SECRET_GISTS", "なし", "1 にすると、プレイプレビューの元の譜面の gist が secret でも、ボードに gist へのリンクと「この曲で遊ぶ」を出す(beatcode は記録を送るとき secret の gist を作る)。ボードを開いた人は誰でもその gist を開けるので、知り合いだけが開くランキングでだけ使う"],
           ],
         },
@@ -284,7 +314,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         title: "記録を送る",
         body: [
           "config.toml にページのアドレスを書きます。遊び終えるたびに結果の画面が記録を送り、どうなったかを出します。そこで R を押すと、記録が載ったボードのページが開きます。",
-          "そのあと一度 beatcode setup rank でサインインします(github.com でコードを打つ)。取ったトークンはプロフィールを読めるだけ(read:user)ですが、そのサーバーへ渡るので、書くのは信用できるサーバーだけにしてください。",
+          "そのあと一度 beatcode setup rank でサインインします(github.com でコードを打つ)。サインインはそのサーバーの GitHub の App で、トークンはそのサーバー用として置きます。プロフィールを読めるだけ(read:user)で、使えるのもそのサーバーだけですが、書くのは信用できるサーバーだけにしてください。アドレスは https:// にします(http:// は localhost だけ)。",
         ],
         file: { name: "~/.config/beatcode/config.toml", lines: config },
         shots: [],
@@ -294,7 +324,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         menu: "ホスティング",
         title: "ホスティングのサービスで",
         body: [
-          `Docker の image を動かせるサービスなら、そのまま動きます。image に ${image}、/data に volume(消えないディスク)、それに PUBLIC_URL。`,
+          `Docker の image を動かせるサービスなら、そのまま動きます。image に ${image}、/data に volume(消えないディスク)、それに PUBLIC_URL と GITHUB_CLIENT_ID・GITHUB_CLIENT_SECRET(secret はサービスの秘密の設定に)。サービスのプロキシが X-Forwarded-For を自分で付けるなら TRUST_PROXY=1。`,
           "SQLite はそのディスクの上の 1 つのファイルなので、動かすのは 1 つだけにして、複数にしないでください。",
         ],
         shots: [],
@@ -306,7 +336,7 @@ export const guideRankingServer: Record<Lang, Guide> = {
         body: [
           "64 ビットの OS の Raspberry Pi 4 / 5 でも、image はそのまま動きます(arm64 でも作っています)。Cloudflare Tunnel を使えば、Pi にもルーターにもポートを開けずに https のアドレスを持て、家の IP も表に出ません。Cloudflare に載せたドメインが要ります。ドメイン無しの Quick Tunnel(trycloudflare.com)は作るたびにアドレスが変わるので、ランキングには向きません。",
           "Cloudflare のダッシュボードの Networking → Tunnels でトンネルを作り、Docker を選んで、出てくるコマンドのトークンだけを控えます。続けて Route を足します。Published application で、サブドメインとドメイン、サービスの URL は http://ranking:8787(下の compose の中のサービス名とポート)です。",
-          "compose には ports を書きません。入口はトンネルだけです。トークンは同じ場所の .env に置き、自分だけが読めるようにします。/data は SD カードではなく USB の SSD に置いてください(SQLite の書き込みで SD カードは傷みます)。ranking.db はときどき別の場所へ写します(下の「新しくする・バックアップ」)。restart: unless-stopped なので、停電のあとも両方とも自分で戻ります。",
+          "compose には ports を書きません。入口はトンネルだけです。トークンと secret は同じ場所の .env に置き、自分だけが読めるようにします。リクエストはすべて cloudflared から来るので、回数の制限で人ごとに数えるには ranking の environment に TRUST_PROXY: \"1\" を足します(Cloudflare が遊んだ人のアドレスを X-Forwarded-For に足します。まだ試していません)。/data は SD カードではなく USB の SSD に置いてください(SQLite の書き込みで SD カードは傷みます)。ranking.db はときどき別の場所へ写します(下の「新しくする・バックアップ」)。restart: unless-stopped なので、停電のあとも両方とも自分で戻ります。",
         ],
         cmd: piCmds,
         file: { name: "compose.yaml", lines: piCompose },

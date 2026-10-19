@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         For the ranking pages, plays sent from the result screen, and the `ghcr.io/yukihirop/beatcode-ranking` image.
-        Never paste your GitHub token (`~/.config/beatcode/github.token`) or other secrets here.
+        Never paste your GitHub token (`~/.config/beatcode/rank/*.token`), the server's `GITHUB_CLIENT_SECRET` or other secrets here.
         日本語で書いても大丈夫です。
 
   - type: dropdown
