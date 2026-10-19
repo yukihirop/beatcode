@@ -426,7 +426,10 @@ export const guideConfig: Record<Lang, Guide> = {
         file: { name: configFile, lines: shareFile },
         table: {
           head: ["Option", "Default", "What it does"],
-          rows: [["ranking_server_url", "none", "The ranking server (https://…). Left out or empty, nothing is sent"]],
+          rows: [
+            ["ranking_server_url", "none", "The ranking server (https://…; http:// only on this machine). Left out or empty, nothing is sent"],
+            ["ranking_allow_http", "false", "true also sends to an http:// server on another machine, such as one in your home network. Your GitHub token travels unencrypted"],
+          ],
         },
         shots: [],
       },
@@ -741,7 +744,10 @@ export const guideConfig: Record<Lang, Guide> = {
         file: { name: configFile, lines: shareFile },
         table: {
           head: ["項目", "既定", "中身"],
-          rows: [["ranking_server_url", "なし", "ランキングのサーバー(https://…)。書かなければ(空でも)送らない"]],
+          rows: [
+            ["ranking_server_url", "なし", "ランキングのサーバー(https://…。http:// は手元のマシンだけ)。書かなければ(空でも)送らない"],
+            ["ranking_allow_http", "false", "true なら、ほかのマシンの http:// のサーバー(家の LAN の中など)にも送る。GitHub のトークンが暗号化されずに流れる"],
+          ],
         },
         shots: [],
       },
