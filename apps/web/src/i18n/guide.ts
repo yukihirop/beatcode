@@ -58,7 +58,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "Pick a song",
         title: "Pick a song and a chart",
         body: [
-          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of Spotify (or YouTube Music).",
+          "Run beatcode with no arguments. Songs are top left, charts bottom left, and the code of the selected chart is on the right. Press / on songs to find one: typing filters by title and artist, and the last row searches all of Spotify (or YouTube Music). Rest on a song for 0.4 seconds and a preview plays: its loudest 30 seconds with Spotify, from a third of the way in otherwise. A searches everywhere for the artist of the song under the cursor.",
           "The bundled source has three songs in each of Rust, Python, Go, TypeScript, JavaScript, Ruby and PHP. Your local git repos and GitHub repos are other sources; switch with [ and ].",
         ],
         cmd: "beatcode",
@@ -66,6 +66,7 @@ export const guide: Record<Lang, Guide> = {
           ["Tab", "Move between songs, charts and code"],
           ["↑ ↓", "Pick"],
           ["/", "Find a song (on songs)"],
+          ["A", "Find more by this artist (on songs)"],
           ["← →", "Language"],
           ["Space", "Play the selected pair now"],
           ["Enter", "On charts, choose what the lower right shows, then play"],
@@ -129,11 +130,16 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "The rank runs from AAA down to F, from your share of the maximum score. The graph shows the score over the song, the strip below it each judgment in time, and the box on the left the best five plays of the same song and chart.",
           "After 30 notes or more, the bottom line shows your average timing. Press o to shift judgment by that much and keep it.",
+          "e rates how the play felt (◎ ○ △) and y says why (S off the song, C dull chart, M my playing). They are kept with the play and shown in the history.",
         ],
         keys: [
           ["r", "Play it again"],
           ["f", "Favorite this combination"],
+          ["e", "How it felt: ◎ → ○ → △ → none"],
+          ["y", "Why: S → C → M → none"],
+          ["o", "Shift judgment by your average timing"],
           ["x", "Share a result card on X"],
+          ["R", "Open this chart’s ranking"],
           ["q", "Back to song select"],
         ],
         shots: [
@@ -172,8 +178,9 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "On song select, w switches between 4, 6 and 8 lanes, and d between NORMAL and HARD. More lanes split tokens into finer kinds.",
           "HARD packs the same tokens into 16th notes. Two tokens written with no space between them in different lanes come down together, and string literals of 12 characters or more become hold notes.",
+          "With no song playing, --bpm N sets the tempo (100 by default).",
         ],
-        cmd: "beatcode src/main.rs --lanes 8 --hard",
+        cmd: ["beatcode src/main.rs --lanes 8 --hard", "beatcode src/main.rs --bpm 140"],
         keys: [
           ["S D F J K L", "6 lanes: keyword, identifier and type, operator and punctuation, bracket, string, number and boolean"],
           ["A S D F J K L ;", "8 lanes: keyword, identifier, type, operator, bracket, string, number and boolean, punctuation"],
@@ -200,11 +207,17 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "Press p on song select to list finished plays, newest first. A ★ marks your best for that song and chart. Only plays on the current music provider (and silent ones) are listed.",
           "Enter asks what the lower right shows while you play, then starts the same song, chart, difficulty and lanes again. Plays of a file given on the command line aren’t kept.",
+          "Each row shows the feel you gave it (◎ ○ △) and its reason (S C M); e and y change them here too. g publishes that play’s chart to a gist, and x makes its result card again for X.",
         ],
         keys: [
           ["p", "Open the history (on song select)"],
           ["Enter", "Play the same song and chart"],
           ["f", "Favorite; Tab shows favorites only"],
+          ["/", "Filter"],
+          ["e", "How it felt: ◎ → ○ → △ → none"],
+          ["y", "Why: S → C → M → none"],
+          ["g", "Publish the chart to a gist"],
+          ["x", "Share the result card on X"],
           ["Esc", "Back"],
         ],
         shots: [
@@ -225,7 +238,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "Setup",
         title: "Connect music and more",
         body: [
-          "beatcode setup asks four things in turn: where songs play, which AI writes charts, the combo voice, and the display language. Pick with ↑ ↓ and Enter, or skip one with Esc.",
+          "beatcode setup asks in turn: where songs play, which AI writes charts, the combo voice, the display language, folders to skip when finding repos, and (with a ranking server set) the GitHub sign-in. Pick with ↑ ↓ and Enter, or skip one with Esc. beatcode setup music (or ai, voice, language, repos, rank) asks just that one.",
           "Spotify needs Premium. YouTube Music works through the Pear Desktop app. Not now keeps playing Silent.",
         ],
         cmd: "beatcode setup",
@@ -260,7 +273,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "曲を選ぶ",
         title: "曲と譜面を選ぶ",
         body: [
-          "引数なしで beatcode を打ちます。左上が曲、左下が譜面、右が選んだ譜面のコードです。曲は / で探せます。字を打つと曲名・アーティストで絞り込み、最後の行で YouTube Music(Spotify)全体を探します。",
+          "引数なしで beatcode を打ちます。左上が曲、左下が譜面、右が選んだ譜面のコードです。曲は / で探せます。字を打つと曲名・アーティストで絞り込み、最後の行で YouTube Music(Spotify)全体を探します。曲に 0.4 秒止まると試聴が流れます(Spotify はいちばん盛り上がる 30 秒、ほかは曲の 3 分の 1 から)。A でカーソルの曲のアーティスト名で全体を探します。",
           "同梱の譜面は Rust・Python・Go・TypeScript・JavaScript・Ruby・PHP に 3 曲ずつ。手元の git repo や GitHub の repo も譜面になります。出どころは [ と ] で替えます。",
         ],
         cmd: "beatcode",
@@ -268,6 +281,7 @@ export const guide: Record<Lang, Guide> = {
           ["Tab", "曲 → 譜面 → コードと移る"],
           ["↑ ↓", "選ぶ"],
           ["/", "曲を探す(曲の欄で)"],
+          ["A", "同じアーティストの曲を探す(曲の欄で)"],
           ["← →", "言語"],
           ["Space", "選んでいる組み合わせをすぐ遊ぶ"],
           ["Enter", "譜面の上では、右下に出すものを選んでから遊ぶ"],
@@ -331,11 +345,16 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "ランクは満点に対する割合で AAA から F まで。右のグラフは曲の流れに沿った点数、その下の帯は判定を時間順に並べたもの、左の枠は同じ曲と譜面の上位 5 回です。",
           "30 ノーツ以上叩くと、下の行にずれの平均が出ます。o を押すと、その分だけ判定をずらして覚えておきます。",
+          "e で叩き心地(◎ ○ △)を、y でその理由(S 曲とずれた・C 譜面がつまらない・M うまく叩けなかった)を付けられます。その回に残り、履歴に出ます。",
         ],
         keys: [
           ["r", "もう一度"],
           ["f", "この組み合わせをお気に入りに"],
+          ["e", "叩き心地: ◎ → ○ → △ → 付けない"],
+          ["y", "理由: S → C → M → 付けない"],
+          ["o", "ずれの平均だけ判定をずらす"],
           ["x", "結果のカードを X に"],
+          ["R", "この譜面のランキングを開く"],
           ["q", "曲選びに戻る"],
         ],
         shots: [
@@ -374,8 +393,9 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "曲選びで w を押すと 4 / 6 / 8 列、d で NORMAL / HARD が替わります。列が多いほど、トークンの種類が細かく分かれます。",
           "HARD は同じトークンを 16 分音符に詰めます。間に空白なしで書いた別の列のトークン 2 つは同時に落ち、12 文字以上の文字列は長押しになります。",
+          "曲を流さないときは --bpm N でテンポを決められます(既定 100)。",
         ],
-        cmd: "beatcode src/main.rs --lanes 8 --hard",
+        cmd: ["beatcode src/main.rs --lanes 8 --hard", "beatcode src/main.rs --bpm 140"],
         keys: [
           ["S D F J K L", "6 列。キーワード・識別子と型・演算子と区切り・括弧・文字列・数値と真偽"],
           ["A S D F J K L ;", "8 列。キーワード・識別子・型・演算子・括弧・文字列・数値と真偽・区切り"],
@@ -402,11 +422,17 @@ export const guide: Record<Lang, Guide> = {
         body: [
           "曲選びで p を押すと、遊び終えた回が新しい順に並びます。★ はその曲と譜面での自己ベストです。並ぶのは今の流す先の曲(と無音)の回だけです。",
           "Enter で右下に出すものを聞かれ、同じ曲・譜面・難しさ・列数でもう一度始まります。コマンドでファイルを指定して遊んだ回は残りません。",
+          "行には付けた叩き心地(◎ ○ △)と理由(S C M)が出て、ここでも e と y で替えられます。g でその回の譜面を gist に公開し、x でその回の結果のカードを作り直して X に見せびらかせます。",
         ],
         keys: [
           ["p", "履歴を開く(曲選びで)"],
           ["Enter", "同じ曲と譜面で遊ぶ"],
           ["f", "お気に入り。Tab でお気に入りだけに"],
+          ["/", "絞り込む"],
+          ["e", "叩き心地: ◎ → ○ → △ → 付けない"],
+          ["y", "理由: S → C → M → 付けない"],
+          ["g", "譜面を gist に公開"],
+          ["x", "結果のカードを X に"],
           ["Esc", "戻る"],
         ],
         shots: [
@@ -427,7 +453,7 @@ export const guide: Record<Lang, Guide> = {
         menu: "setup",
         title: "曲やほかの設定をつなぐ",
         body: [
-          "beatcode setup は、曲を流す先・譜面を書く AI・コンボの声・表示の言語を順に聞きます。↑ ↓ と Enter で選び、Esc で飛ばせます。",
+          "beatcode setup は、曲を流す先・譜面を書く AI・コンボの声・表示の言語・repo を探すときに飛ばすディレクトリ・(ランキングのサーバーを書いていれば)GitHub のサインインを順に聞きます。↑ ↓ と Enter で選び、Esc で飛ばせます。beatcode setup music(ai・voice・language・repos・rank)で 1 つだけ聞けます。",
           "Spotify は Premium が要ります。YouTube Music はアプリ Pear Desktop を操ります。今はつながないを選べば、無音のまま遊べます。",
         ],
         cmd: "beatcode setup",

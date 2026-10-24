@@ -69,6 +69,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
         body: [
           "Pick one with beatcode setup. You can also play with no song at all: Silent keeps a fixed tempo and lights the judgment line on the beat.",
           "With Spotify, beatcode analyzes the song’s sound on your machine to place notes on its beats. With YouTube Music it can’t read the sound, so you tap the tempo once per song.",
+          "beatcode ytmusic check tests the connection to Pear Desktop. beatcode spotify reset forgets the saved Spotify login and beatcode ytmusic reset the Pear Desktop token, so the next beatcode setup music signs in again.",
         ],
         cmd: "beatcode setup",
         table: {
@@ -210,6 +211,7 @@ export const guideEnvironment: Record<Lang, Guide> = {
         body: [
           "beatcode setup で選びます。曲を流さずにも遊べます。無音は決まったテンポで、判定ラインが拍の頭で光ります。",
           "Spotify は、曲の音を手元で解析して拍にノーツを置きます。YouTube Music は音を読めないので、曲ごとに 1 回テンポをタップします。",
+          "beatcode ytmusic check で Pear Desktop につながるか確かめられます。beatcode spotify reset は保存した Spotify のログインを、beatcode ytmusic reset は Pear Desktop のトークンを消し、次の beatcode setup music でつなぎ直します。",
         ],
         cmd: "beatcode setup",
         table: {
