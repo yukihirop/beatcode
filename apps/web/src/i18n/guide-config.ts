@@ -9,7 +9,7 @@ const sample = [
   "",
   "[effects]",
   "bomb = false",
-  "beam = false",
+  "beam = true",
   "crowd = false",
   "combo = false",
   "milestone = false",
@@ -243,7 +243,7 @@ export const guideConfig: Record<Lang, Guide> = {
           head: ["Option", "Default", "What it does"],
           rows: [
             ["bomb", "true", "A ring of light and sparks on the lane you hit"],
-            ["beam", "true", "Light up the whole lane while you press its key. The key label under the judgment line lights up either way"],
+            ["beam", "false", "Light up the whole lane while you press its key. The key label under the judgment line lights up either way. Off by default, because a whole lane flashing on every press tires the eyes"],
             ["crowd", "true", "A parade of kaomoji along the bottom of the right pane (4 rows). Hidden when the terminal is under 30 rows"],
             ["combo", "true", "The big combo count and COMBO above the lanes, while 2 or more are chained. Hidden when the lanes are under 16 rows tall"],
             ["milestone", "true", "Every 100 combo, the big count flashes gold (rainbow at 500 and every 500 from 1000) with sparks, and the lane dividers and the judgment line pulse on the beat. With combo = false the dividers and the line still pulse"],
@@ -568,7 +568,7 @@ export const guideConfig: Record<Lang, Guide> = {
           head: ["項目", "既定", "中身"],
           rows: [
             ["bomb", "true", "叩けた列に光の輪と火花を出す"],
-            ["beam", "true", "押した列を光らせる。判定ラインの下のキーの札は、これに関わらず光る"],
+            ["beam", "false", "押した列を光らせる。判定ラインの下のキーの札は、これに関わらず光る。押すたびに列いっぱいが光り目が疲れるので、既定では出さない"],
             ["crowd", "true", "プレイ中の右の欄のいちばん下(4 行)で顔文字の行列を流す。端末が 30 行より低いときは出さない"],
             ["combo", "true", "2 コンボ以上つながっているあいだ、列の上のほうに大きなコンボ数と COMBO を出す。列の欄が 16 行より低いときは出さない"],
             ["milestone", "true", "100 コンボごとに、大きなコンボ数を金(500 と、1000 からの 500 ごとは虹色)に光らせて火花を散らし、列の仕切りと判定ラインを拍に合わせて脈打たせる。combo = false でも仕切りと判定ラインは脈打つ"],
