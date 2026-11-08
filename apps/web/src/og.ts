@@ -70,7 +70,6 @@ const C = {
 // Unquoted, as card.ts does: resvg on Linux passed over Noto Sans CJK for Noto Serif CJK with the names in quotes
 const FONT = "Hiragino Sans, Noto Sans CJK JP, Noto Sans JP, Yu Gothic, sans-serif";
 const MONO = "JetBrains Mono, SF Mono, Menlo, DejaVu Sans Mono, monospace";
-const PAD = 72;
 
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -109,10 +108,10 @@ export function wrap(text: string, size: number, width: number, max: number): st
   return kept;
 }
 
-/** The four lanes on the right: tokens falling to the judgement line, the last ones lit as they're hit */
+/** The four lanes: tokens falling to the judgement line, the last ones lit as they're hit */
 function highway(x: number, w: number, top: number, bottom: number): string {
   const lane = w / 4;
-  const judge = bottom - 70;
+  const judge = bottom - 62;
   // KW / ID / OP / LIT, top to bottom; the last of each sits on the line
   const notes = [
     ["fn", "let", "match"],
@@ -120,6 +119,8 @@ function highway(x: number, w: number, top: number, bottom: number): string {
     ["=>", "{", "->"],
     ["42", "\"hi\"", "true"],
   ];
+  // The falling notes share what's above the line: two rows, the odd lanes a little lower
+  const gap = (judge - 24 - (top + 30) - 48 - 36) / 2;
   const parts: string[] = [];
   parts.push(`<rect x="${x}" y="${top}" width="${w}" height="${bottom - top}" rx="14" fill="#0a1222" stroke="${C.rule}" stroke-width="2"/>`);
   // The judgement line goes under the notes, so the ones sitting on it hide it
@@ -130,11 +131,11 @@ function highway(x: number, w: number, top: number, bottom: number): string {
     if (i > 0) parts.push(`<rect x="${lx}" y="${top + 2}" width="1" height="${bottom - top - 4}" fill="${C.rule}"/>`);
     parts.push(
       `<rect x="${lx + 1}" y="${top + 2}" width="${lane - 2}" height="${judge - top}" fill="url(#lane${i})"/>`,
-      `<rect x="${lx + 16}" y="${bottom - 40}" width="${lane - 32}" height="16" rx="3" fill="none" stroke="${color}" stroke-width="2"/>`,
+      `<rect x="${lx + 16}" y="${bottom - 34}" width="${lane - 32}" height="14" rx="3" fill="none" stroke="${color}" stroke-width="2"/>`,
     );
     col.forEach((tok, j) => {
       const hit = j === col.length - 1;
-      const ny = hit ? judge - 24 : top + 46 + j * 96 + (i % 2) * 40;
+      const ny = hit ? judge - 24 : top + 30 + j * gap + (i % 2) * 36;
       const nw = Math.min(lane - 16, Math.max(64, [...tok].length * 13.2 + 24));
       const nx = lx + (lane - nw) / 2;
       if (hit) parts.push(`<circle cx="${lx + lane / 2}" cy="${judge}" r="${lane * 0.42}" fill="url(#burst${i})"/>`);
@@ -148,17 +149,38 @@ function highway(x: number, w: number, top: number, bottom: number): string {
   return parts.join("");
 }
 
-/** The card's SVG: the wordmark, the page's heading and lede on the left, the note highway on the right */
+/** Faint notes drifting down either side, so the wide card isn't empty where a square crop cuts it off */
+function drift(x: number, w: number, side: 0 | 1): string {
+  const toks = side === 0 ? [["if", 0], ["for", 1], ["return", 0], ["self", 1], ["+=", 3], ["0", 3]] : [["impl", 0], ["}", 2], ["None", 3], ["vec", 1], ["::", 2], ["'a'", 3]];
+  const parts: string[] = [];
+  toks.forEach(([tok, lane], k) => {
+    const t = tok as string;
+    const color = C.lanes[lane as number]!;
+    const nw = Math.max(64, [...t].length * 13.2 + 24);
+    const col = k % 2;
+    const nx = x + (col === 0 ? 24 : w - nw - 24) + (side === 0 ? 0 : 0);
+    const ny = 70 + k * 86 + col * 22;
+    const o = (0.16 + 0.1 * ((k + side) % 3)).toFixed(2);
+    parts.push(
+      `<g opacity="${o}"><rect x="${nx}" y="${ny}" width="${nw}" height="48" rx="8" fill="none" stroke="${color}" stroke-width="2"/>` +
+        `<text x="${nx + nw / 2}" y="${ny + 31}" font-family="${MONO}" font-size="22" font-weight="700" text-anchor="middle" fill="${color}">${esc(t)}</text></g>`,
+    );
+  });
+  return parts.join("");
+}
+
+/** The card's SVG. Everything that matters sits in the middle 630×630 (wordmark, heading, the note highway), since Slack and
+ * others show only a square cut from the middle; the sides carry faint drifting notes for the wide previews (X, Discord) */
 export function ogSvg(card: OgCard): string {
   const W = OG_WIDTH;
   const H = OG_HEIGHT;
-  const hwW = 440;
-  const hwX = W - PAD - hwW + 24;
-  const textW = hwX - PAD - 56;
+  const side = (W - H) / 2;
+  const inner = H - 2 * 40;
+  const cx = W / 2;
   const parts: string[] = [];
 
   const defs = [
-    `<radialGradient id="bloom" cx="0.15" cy="0.05" r="0.75"><stop offset="0" stop-color="${C.accent}" stop-opacity="0.14"/><stop offset="1" stop-color="${C.accent}" stop-opacity="0"/></radialGradient>`,
+    `<radialGradient id="bloom" cx="0.5" cy="0.1" r="0.6"><stop offset="0" stop-color="${C.accent}" stop-opacity="0.14"/><stop offset="1" stop-color="${C.accent}" stop-opacity="0"/></radialGradient>`,
     ...C.lanes.map(
       (c, i) =>
         `<linearGradient id="lane${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}" stop-opacity="0"/><stop offset="1" stop-color="${c}" stop-opacity="0.18"/></linearGradient>` +
@@ -167,38 +189,40 @@ export function ogSvg(card: OgCard): string {
   ];
   parts.push(`<defs>${defs.join("")}</defs>`);
   parts.push(`<rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>`);
+  parts.push(drift(0, side, 0), drift(W - side, side, 1));
 
-  // The wordmark, then the kicker, the heading (up to 2 lines) and the lede (up to 4 lines)
-  parts.push(`<image x="${PAD - 12}" y="${PAD - 14}" width="540" height="${Math.round((540 * 198) / 935)}" href="${wordmarkPng}"/>`);
-  let y = PAD + 88 + 66;
-  if (card.kicker) {
-    parts.push(`<text x="${PAD}" y="${y}" font-size="28" font-weight="700" letter-spacing="2" fill="${C.accent}">${esc(card.kicker)}</text>`);
-    y += 70;
-  }
-  const headSize = card.tagline ? 23.4 : emsOf(card.heading) * 64 <= textW ? 64 : 52;
-  const mono = card.tagline && /^[\x20-\x7e]*$/.test(card.heading);
-  if (card.tagline) y -= 26;
-  // The banner's tagline: monospace, a full stop, then a blinking cursor of its own after a space
-  const headText = mono ? `${card.heading}.` : card.heading;
-  const headLines = wrap(headText, headSize, textW, 2);
-  for (const [i, line] of headLines.entries()) {
-    const last = i === headLines.length - 1;
-    const cursor = card.tagline && last && !mono ? `<tspan fill="${C.accent}"> _</tspan>` : "";
-    parts.push(`<text x="${PAD}" y="${y}"${mono ? ` font-family="${MONO}"` : ""} font-size="${headSize}" font-weight="${card.tagline ? 500 : 700}" fill="${C.ink}">${esc(line)}${cursor}</text>`);
-    if (card.tagline && last && mono) {
-      const cw = headSize * 0.6;
-      parts.push(`<rect x="${PAD + (line.length + 1) * cw}" y="${y + 3}" width="${cw}" height="4" fill="${C.accent}"/>`);
+  // The wordmark, centred
+  const wmW = 480;
+  const wmH = Math.round((wmW * 198) / 935);
+  parts.push(`<image x="${cx - wmW / 2}" y="26" width="${wmW}" height="${wmH}" href="${wordmarkPng}"/>`);
+  let y = 26 + wmH + 8;
+
+  // Under it: the site's tagline in the banner's monospace with its cursor, or a page's kicker and heading
+  if (card.tagline) {
+    const mono = /^[\x20-\x7e]*$/.test(card.heading);
+    const size = 24;
+    const text = mono ? `${card.heading}.` : card.heading;
+    const [line] = wrap(text, size, inner, 1);
+    y += size;
+    parts.push(`<text x="${cx}" y="${y}"${mono ? ` font-family="${MONO}"` : ""} font-size="${size}" font-weight="500" text-anchor="middle" fill="${C.ink}">${esc(line!)}<tspan fill="${C.accent}">\u00a0_</tspan></text>`);
+    y += 22;
+  } else {
+    const head = card.kicker ? `${card.kicker} · ${card.heading}` : card.heading;
+    const size = emsOf(head) * 34 <= inner ? 34 : 28;
+    const lines = wrap(head, size, inner, 2);
+    for (const line of lines) {
+      y += size;
+      const k = card.kicker && line.startsWith(card.kicker) ? card.kicker : "";
+      const body = k ? `<tspan fill="${C.accent}">${esc(k)}</tspan>${esc(line.slice(k.length))}` : esc(line);
+      parts.push(`<text x="${cx}" y="${y}" font-size="${size}" font-weight="700" text-anchor="middle" fill="${C.ink}">${body}</text>`);
+      y += 8;
     }
-    y += headSize + (card.tagline ? 10 : 14);
-  }
-  y += card.tagline ? 52 : 18;
-  const ledeLines = Math.max(1, Math.min(4, Math.floor((H - 50 - y) / 42)));
-  for (const line of wrap(card.lede, 28, textW, ledeLines)) {
-    parts.push(`<text x="${PAD}" y="${y}" font-size="28" fill="${C.muted}">${esc(line)}</text>`);
-    y += 42;
+    y += 16;
   }
 
-  parts.push(highway(hwX, hwW, PAD - 12, H - 52));
+  // The highway fills the rest of the middle square
+  const hwW = 470;
+  parts.push(highway(cx - hwW / 2, hwW, y, H - 24));
 
   // The equalizer's steps along the bottom edge, as on the site and the ranking's cards
   const step = W / C.eq.length;
