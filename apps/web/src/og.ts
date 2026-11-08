@@ -173,6 +173,9 @@ function drift(x: number, w: number, side: 0 | 1): string {
 }
 
 /** og-wordmark.png's size and where its letters are: the "b" starts at x=21, the last "e" spans 803–898 */
+/** The note highway's width, and the top page's command box over it */
+const HIGHWAY_W = 470;
+
 const WM = { w: 935, h: 198, left: 21, right: 898, lastE: (803 + 898) / 2 };
 
 /** Where a line of text's ink lies, measured by resvg with the fonts that will draw it: x from the text's x, and width */
@@ -206,7 +209,7 @@ export function ogSvg(card: OgCard): string {
   parts.push(drift(0, side, 0), drift(W - side, side, 1));
 
   // The wordmark, centred on its letters. On the top page the tagline is sized so its cursor ends under the middle of the
-  // wordmark's last "e", and the command's box spans the letters
+  // wordmark's last "e", and the command's box is as wide as the note highway under it
   const wmW = 480;
   const wmScale = wmW / WM.w;
   const wmH = Math.round(WM.h * wmScale);
@@ -240,7 +243,7 @@ export function ogSvg(card: OgCard): string {
 
   // The command in a box like a terminal line, as on the GitHub social preview (scripts/social-preview.mjs)
   if (card.command) {
-    const boxW = (WM.right - WM.left) * wmScale;
+    const boxW = HIGHWAY_W;
     const pad = 18;
     const text = `<tspan fill="${C.accent}">$</tspan>\u00a0${esc(card.command)}`;
     const at17 = inkOf(text, MONO, 17, 400);
@@ -254,8 +257,7 @@ export function ogSvg(card: OgCard): string {
   }
 
   // The highway fills the rest of the middle square
-  const hwW = 470;
-  parts.push(highway(cx - hwW / 2, hwW, y, H - 24));
+  parts.push(highway(cx - HIGHWAY_W / 2, HIGHWAY_W, y, H - 24));
 
   // The equalizer's steps along the bottom edge, as on the site and the ranking's cards
   const step = W / C.eq.length;
