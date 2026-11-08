@@ -176,8 +176,8 @@ function drift(x: number, w: number, side: 0 | 1): string {
 const WM = { w: 935, h: 198, left: 21, right: 898, lastE: (803 + 898) / 2 };
 
 /** Where a line of text's ink lies, measured by resvg with the fonts that will draw it: x from the text's x, and width */
-function inkOf(text: string, family: string, size: number): { x: number; width: number } {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="400"><text x="0" y="200" font-family="${family}" font-size="${size}" font-weight="500">${text}</text></svg>`;
+function inkOf(text: string, family: string, size: number, weight = 500): { x: number; width: number } {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="400"><text x="0" y="200" font-family="${family}" font-size="${size}" font-weight="${weight}">${text}</text></svg>`;
   const box = new Resvg(svg, { font: { loadSystemFonts: true } }).getBBox();
   if (!box) throw new Error(`og: no ink for ${text}`);
   return { x: box.x, width: box.width };
@@ -205,9 +205,9 @@ export function ogSvg(card: OgCard): string {
   parts.push(`<rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>`);
   parts.push(drift(0, side, 0), drift(W - side, side, 1));
 
-  // The wordmark, centred on its letters. On the top page it's bigger, and the tagline is sized so its cursor ends under
-  // the middle of the wordmark's last "e"
-  const wmW = card.tagline ? 600 : 480;
+  // The wordmark, centred on its letters. On the top page the tagline is sized so its cursor ends under the middle of the
+  // wordmark's last "e", and the command's box spans the letters
+  const wmW = 480;
   const wmScale = wmW / WM.w;
   const wmH = Math.round(WM.h * wmScale);
   parts.push(`<image x="${cx - ((WM.left + WM.right) / 2) * wmScale}" y="26" width="${wmW}" height="${wmH}" href="${wordmarkPng}"/>`);
@@ -240,14 +240,17 @@ export function ogSvg(card: OgCard): string {
 
   // The command in a box like a terminal line, as on the GitHub social preview (scripts/social-preview.mjs)
   if (card.command) {
-    const size = 17;
-    const text = `$\u00a0${card.command}`;
-    const boxW = [...text].length * size * 0.6 + 40;
+    const boxW = (WM.right - WM.left) * wmScale;
+    const pad = 18;
+    const text = `<tspan fill="${C.accent}">$</tspan>\u00a0${esc(card.command)}`;
+    const at17 = inkOf(text, MONO, 17, 400);
+    const k = (boxW - 2 * pad) / at17.width;
+    const size = 17 * k;
     parts.push(
-      `<rect x="${cx - boxW / 2}" y="${y}" width="${boxW}" height="46" rx="10" fill="#0a1222" stroke="${C.rule}" stroke-width="2"/>`,
-      `<text x="${cx - boxW / 2 + 20}" y="${y + 29}" font-family="${MONO}" font-size="${size}" fill="${C.ink}"><tspan fill="${C.accent}">$</tspan>${esc(text.slice(1))}</text>`,
+      `<rect x="${cx - boxW / 2}" y="${y}" width="${boxW}" height="42" rx="10" fill="#0a1222" stroke="${C.rule}" stroke-width="2"/>`,
+      `<text x="${cx - (at17.x + at17.width / 2) * k}" y="${y + 21 + size * 0.36}" font-family="${MONO}" font-size="${size.toFixed(2)}" fill="${C.ink}">${text}</text>`,
     );
-    y += 46 + 18;
+    y += 42 + 18;
   }
 
   // The highway fills the rest of the middle square
