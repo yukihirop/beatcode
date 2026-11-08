@@ -8,11 +8,11 @@ class Beatcode < Formula
   on_macos do
     on_arm do
       url "https://github.com/yukihirop/beatcode/releases/download/v#{version}/beatcode-aarch64-apple-darwin.tar.gz"
-      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+      sha256 "2516734122e1ebe702e7d4a34d18b8c59c91940d0c2a8f72db1243a91c4e2b3f"
     end
     on_intel do
       url "https://github.com/yukihirop/beatcode/releases/download/v#{version}/beatcode-x86_64-apple-darwin.tar.gz"
-      sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+      sha256 "809e126fd2bbed8dc005320a94eb26184ad704022a387ffee9fef8f530db2752"
     end
   end
 
