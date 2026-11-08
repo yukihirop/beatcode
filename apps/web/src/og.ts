@@ -14,7 +14,7 @@ import { guideRankingServer } from "./i18n/guide-ranking-server";
 import { guideSkills } from "./i18n/guide-skills";
 import { guidePrompts } from "./i18n/guide-prompts";
 import { philosophy } from "./i18n/philosophy";
-import { strings, type Lang } from "./i18n/strings";
+import { installs, strings, type Lang } from "./i18n/strings";
 
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
@@ -27,6 +27,8 @@ export type OgCard = {
   lede: string;
   /** The site's tagline: set small under the wordmark, in the banner's monospace, not as a page heading */
   tagline?: boolean;
+  /** A command set in a terminal-like box under the heading (the top page's curl install line) */
+  command?: string;
 };
 
 /** A page's card, by its slug under og/: "en/index", "ja/guide/config", … */
@@ -42,9 +44,10 @@ const guides: [string, Record<Lang, Guide>][] = [
   ["guide/prompts", guidePrompts],
   ["guide/ranking-server", guideRankingServer],
 ];
+const curlLine = installs.find((i) => i.id === "curl")!.lines[0];
 for (const lang of ["en", "ja"] as const) {
   const t = strings[lang];
-  ogCards[`${lang}/index`] = { kicker: "", heading: t.title.replace(/^beatcode\s*—\s*/, ""), lede: t.description, tagline: true };
+  ogCards[`${lang}/index`] = { kicker: "", heading: t.title.replace(/^beatcode\s*—\s*/, ""), lede: t.description, tagline: true, command: curlLine };
   for (const [path, g] of guides) {
     ogCards[`${lang}/${path}`] = { kicker: lang === "ja" ? "ガイド" : "Guide", heading: g[lang].heading, lede: g[lang].description };
   }
@@ -218,6 +221,18 @@ export function ogSvg(card: OgCard): string {
       y += 8;
     }
     y += 16;
+  }
+
+  // The command in a box like a terminal line, as on the GitHub social preview (scripts/social-preview.mjs)
+  if (card.command) {
+    const size = 17;
+    const text = `$\u00a0${card.command}`;
+    const boxW = [...text].length * size * 0.6 + 40;
+    parts.push(
+      `<rect x="${cx - boxW / 2}" y="${y}" width="${boxW}" height="46" rx="10" fill="#0a1222" stroke="${C.rule}" stroke-width="2"/>`,
+      `<text x="${cx - boxW / 2 + 20}" y="${y + 29}" font-family="${MONO}" font-size="${size}" fill="${C.ink}"><tspan fill="${C.accent}">$</tspan>${esc(text.slice(1))}</text>`,
+    );
+    y += 46 + 18;
   }
 
   // The highway fills the rest of the middle square
