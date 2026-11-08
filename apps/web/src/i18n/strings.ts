@@ -79,6 +79,7 @@ export const installs = [
     label: "Homebrew",
     lines: [
       "brew tap yukihirop/beatcode https://github.com/yukihirop/beatcode",
+      "brew trust --formula yukihirop/beatcode/beatcode",
       "brew install beatcode",
     ],
   },

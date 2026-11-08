@@ -24,8 +24,11 @@ macOS 11 or later (Apple silicon or Intel). Linux is not supported yet.
 
 ```sh
 brew tap yukihirop/beatcode https://github.com/yukihirop/beatcode
+brew trust --formula yukihirop/beatcode/beatcode
 brew install beatcode
 ```
+
+Recent Homebrew loads formulae from other taps only after you trust them ([Tap Trust](https://docs.brew.sh/Tap-Trust)); this trusts just the beatcode formula. If your Homebrew has no `brew trust`, skip that line.
 
 **npm**
 
@@ -93,7 +96,7 @@ They go to `~/.local/share/beatcode/plugins/`.
 
 | Installed with | Remove with |
 | --- | --- |
-| Homebrew | `brew uninstall beatcode && brew untap yukihirop/beatcode` |
+| Homebrew | `brew uninstall beatcode && brew untrust --formula yukihirop/beatcode/beatcode && brew untap yukihirop/beatcode` |
 | npm | `npm uninstall -g beatcode` (the downloaded binary is in `~/.cache/beatcode/npm/`) |
 | Install script | `rm ~/.local/bin/beatcode` |
 

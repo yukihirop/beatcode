@@ -24,8 +24,11 @@ macOS 11 以降(Apple シリコン・Intel)。Linux にはまだ対応してい�
 
 ```sh
 brew tap yukihirop/beatcode https://github.com/yukihirop/beatcode
+brew trust --formula yukihirop/beatcode/beatcode
 brew install beatcode
 ```
+
+最近の Homebrew は、よその tap の formula を信頼すると決めたものしか読みません([Tap Trust](https://docs.brew.sh/Tap-Trust))。2 行目で beatcode の formula だけを信頼します。お使いの Homebrew に `brew trust` が無ければ、その行は飛ばしてください。
 
 **npm**
 
@@ -91,7 +94,7 @@ Claude Code か Codex で `/beatcode-teardown` を打つと、beatcode が置い
 
 | 入れた方法 | 消し方 |
 | --- | --- |
-| Homebrew | `brew uninstall beatcode && brew untap yukihirop/beatcode` |
+| Homebrew | `brew uninstall beatcode && brew untrust --formula yukihirop/beatcode/beatcode && brew untap yukihirop/beatcode` |
 | npm | `npm uninstall -g beatcode`(落としたバイナリは `~/.cache/beatcode/npm/` にあります) |
 | 入れるスクリプト | `rm ~/.local/bin/beatcode` |
 
