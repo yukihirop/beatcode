@@ -45,15 +45,22 @@ C.lanes.forEach((c, i) => defs.push(
   `<radialGradient id="burst${i}"><stop offset="0" stop-color="${c}" stop-opacity="0.35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient>`));
 
 // Left: the wordmark, the tagline, the languages and the curl line. Right: the note lanes
-const L = 112, wmW = 560, wmH = Math.round(wmW * 198 / 935);
+const L = 112;
+const TAGLINE = "Play your code as a rhythm game.";
+// The wordmark is sized so the tagline (and its cursor) ends at the middle of the last "e": in og-wordmark.png (935×198)
+// the "b" starts at x=21 and the last "e" spans 803–898. Monospace advances are 0.6em
+const tagSize = 28;
+const tagEnd = L + (TAGLINE.length + 2) * tagSize * 0.6;
+const wmScale = (tagEnd - L) / ((803 + 898) / 2 - 21);
+const wmW = 935 * wmScale, wmH = 198 * wmScale, wmX = L - 21 * wmScale, wmY = 100;
 const cmd = "curl -fsSL https://beatcode.run/install.sh | sh";
 const cmdSize = 20, cw = cmdSize * 0.6, boxW = 24 + (cmd.length + 2) * cw + 24;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs>${defs.join("")}</defs>
 <rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>
-<image x="${L - 14}" y="118" width="${wmW}" height="${wmH}" href="${WM}"/>
-<text x="${L}" y="${118 + wmH + 46}" font-family="${MONO}" font-size="28" fill="${C.ink}">Play your code as a rhythm game.<tspan fill="${C.accent}"> _</tspan></text>
-<text x="${L}" y="${118 + wmH + 86}" font-family="${MONO}" font-size="18" fill="${C.muted}">Rust · Python · Go · TypeScript · Ruby · PHP</text>
+<image x="${wmX}" y="${wmY}" width="${wmW}" height="${wmH}" href="${WM}"/>
+<text x="${L}" y="${wmY + wmH + 42}" font-family="${MONO}" font-size="${tagSize}" fill="${C.ink}">${TAGLINE}<tspan fill="${C.accent}"> _</tspan></text>
+<text x="${L}" y="${wmY + wmH + 82}" font-family="${MONO}" font-size="18" fill="${C.muted}">Rust · Python · Go · TypeScript · Ruby · PHP</text>
 <rect x="${L}" y="388" width="${boxW}" height="64" rx="10" fill="#0a1222" stroke="${C.rule}" stroke-width="2"/>
 <text x="${L + 24}" y="427" font-family="${MONO}" font-size="${cmdSize}" fill="${C.ink}"><tspan fill="${C.accent}">$</tspan> ${esc(cmd)}</text>
 ${highway(860, 324, 92, 548)}
