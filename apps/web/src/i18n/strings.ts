@@ -139,10 +139,10 @@ export const strings: Record<Lang, Strings> = {
     },
     demo: {
       heading: "The real thing, with the song.",
-      body: "Thirty seconds of the last chorus of Heroes Tonight by Janji (feat. Johnning), played on a TypeScript chart shared as a gist. The code on the right lights up token by token as it’s hit.",
+      body: "Thirty seconds of the last chorus of Heroes Tonight by Janji (feat. Johnning), played on the bundled Rust charts. The code on the right lights up token by token as it’s hit.",
       play: "Play with sound",
       label: "Thirty seconds of beatcode with Heroes Tonight playing: tokens fall down four lanes and are hit on the judgment line while the combo climbs and the code on the right lights up.",
-      caption: "Recorded with beatcode record through Spotify, from 2:38 to 3:08; the sound is the song file laid over the recording in time. A small bot that reads the screen did the hitting, so the score isn’t a person’s. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
+      caption: "Recorded with beatcode record while Spotify played the song, from 2:38 to 3:08; the sound is what beatcode record captured as it played. A small bot that reads the screen did the hitting, so the score isn’t a person’s. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
     },
     lanes: {
       heading: "Every token has a lane.",
@@ -261,7 +261,7 @@ export const strings: Record<Lang, Strings> = {
       body: "魔王魂の「シャイニングスター」(♩=158)の途中 30 秒を、同梱の Rust の譜面で遊んだところです。叩いたトークンが、右のコードで順に光っていきます。",
       play: "音つきで再生",
       label: "シャイニングスターを流しながら beatcode を遊んだ 30 秒。トークンが 4 つの列を落ちてきて判定ラインで叩かれ、コンボが増え、右のコードが光っていく。",
-      caption: "beatcode record で撮りました。曲は YouTube Music(Pear Desktop)で流し、2:30 から 3:00 まで。音は曲のファイルを録画の時刻に合わせて重ねました。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
+      caption: "beatcode record で撮りました。曲は Spotify で流し、2:30 から 3:00 まで。音も beatcode record がそのとき録ったものです。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
     },
     lanes: {
       heading: "トークンには、列がある。",
