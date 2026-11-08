@@ -18,7 +18,7 @@ https://github.com/user-attachments/assets/080aa2af-de00-4f89-b1c4-124ac10cd027
 
 ## 入れ方
 
-macOS 11 以降(Apple シリコン・Intel)と、Linux の x86_64 / arm64(glibc 2.35 以降。Ubuntu 22.04・Debian 12 以降)。Linux では音に ALSA(`libasound2`。たいていのデスクトップには入っています)、HTTPS に OpenSSL 3(`libssl3`)が要ります。インカメは macOS だけです。
+macOS 11 以降(Apple シリコン・Intel)。Linux にはまだ対応していません。
 
 **Homebrew**
 

@@ -124,7 +124,7 @@ export const strings: Record<Lang, Strings> = {
       copy: "Copy",
       copied: "Copied",
       npmNote: "Runs without installing. Node.js 18 or later.",
-      platforms: "macOS 11+ · Linux x86_64 / arm64 (glibc 2.35+)",
+      platforms: "macOS 11+ · Apple silicon / Intel",
     },
     highway: {
       label: "A playable demo: tokens of a Rust function fall down four lanes toward the judgment line.",
@@ -195,7 +195,7 @@ export const strings: Record<Lang, Strings> = {
         { label: "macOS", body: "11 or later, Apple silicon or Intel." },
         {
           label: "Linux",
-          body: "x86_64 / arm64 with glibc 2.35 or later (Ubuntu 22.04, Debian 12 or newer). Sound needs ALSA, HTTPS needs OpenSSL 3. The front camera panel is macOS only.",
+          body: "Not supported yet.",
         },
       ],
     },
@@ -243,7 +243,7 @@ export const strings: Record<Lang, Strings> = {
       copy: "コピー",
       copied: "コピーしました",
       npmNote: "入れずにそのまま動きます。Node.js 18 以降。",
-      platforms: "macOS 11 以降 · Linux x86_64 / arm64(glibc 2.35 以降)",
+      platforms: "macOS 11 以降 · Apple シリコン / Intel",
     },
     highway: {
       label: "遊べるデモ。Rust の関数のトークンが 4 つの列を判定ラインへ落ちてきます。",
@@ -314,7 +314,7 @@ export const strings: Record<Lang, Strings> = {
         { label: "macOS", body: "11 以降。Apple シリコンと Intel。" },
         {
           label: "Linux",
-          body: "x86_64 / arm64、glibc 2.35 以降(Ubuntu 22.04・Debian 12 以降)。音に ALSA、HTTPS に OpenSSL 3 が要ります。インカメは macOS だけです。",
+          body: "まだ対応していません。",
         },
       ],
     },

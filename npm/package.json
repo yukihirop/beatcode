@@ -16,8 +16,7 @@
     "LICENSE"
   ],
   "os": [
-    "darwin",
-    "linux"
+    "darwin"
   ],
   "cpu": [
     "arm64",

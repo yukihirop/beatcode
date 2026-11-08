@@ -22,7 +22,7 @@ export const guidePlugins: Record<Lang, Guide> = {
         title: "Install and remove",
         body: [
           "beatcode plugins install with no name lists every plugin in the Releases of the same version as your beatcode. Give names to install them: the short form (c, zh, ollama, record) is enough when it means one plugin.",
-          "Each one is downloaded for your machine (macOS or Linux, Apple silicon / arm64 or Intel / x86_64), checked against its SHA-256 and put in ~/.local/share/beatcode/plugins/. beatcode looks there after PATH, so a plugin of the same name on PATH wins.",
+          "Each one is downloaded for your machine (Apple silicon or Intel), checked against its SHA-256 and put in ~/.local/share/beatcode/plugins/. beatcode looks there after PATH, so a plugin of the same name on PATH wins.",
           "A new language gets its own tab after the built-in ones, with two or three bundled charts, and is used for the files in your repos too. beatcode plugins uninstall zh removes one.",
         ],
         cmd: "beatcode plugins install c zh",
@@ -85,7 +85,7 @@ export const guidePlugins: Record<Lang, Guide> = {
         title: "beatcode record",
         body: [
           "A plugin can add a command. beatcode record starts beatcode, records the screen and the sound of beatcode and YouTube Music, and makes an .mp4 in the current folder when you quit. It needs ffmpeg. The videos on this site were made with it.",
-          "The song is in the video, so don’t share what you record. On macOS 14.2 and later, the first run asks to allow beatcode record to capture system audio. On Linux the video has no sound yet.",
+          "The song is in the video, so don’t share what you record. On macOS 14.2 and later, the first run asks to allow beatcode record to capture system audio.",
         ],
         cmd: ["beatcode plugins install record", "beatcode record"],
         shots: [],
@@ -139,7 +139,7 @@ export const guidePlugins: Record<Lang, Guide> = {
         title: "入れる・外す",
         body: [
           "beatcode plugins install を名前なしで打つと、beatcode と同じ版の Releases にあるプラグインが並びます。名前を付けると入ります。1 つに決まるなら短い名前(c・zh・ollama・record)で足ります。",
-          "手元の機械に合うもの(macOS か Linux、Apple シリコン / arm64 か Intel / x86_64)を落とし、SHA-256 を確かめて ~/.local/share/beatcode/plugins/ に置きます。beatcode は PATH の後ろにここを探すので、PATH に同じ名前があればそちらが使われます。",
+          "手元の機械に合うもの(Apple シリコンか Intel)を落とし、SHA-256 を確かめて ~/.local/share/beatcode/plugins/ に置きます。beatcode は PATH の後ろにここを探すので、PATH に同じ名前があればそちらが使われます。",
           "足した言語は同梱の言語のタブの後ろに並び、見本の譜面が 2〜3 つ付いてきます。手元の repo のファイルにも使われます。外すのは beatcode plugins uninstall zh。",
         ],
         cmd: "beatcode plugins install c zh",
@@ -202,7 +202,7 @@ export const guidePlugins: Record<Lang, Guide> = {
         title: "beatcode record",
         body: [
           "プラグインでコマンドも足せます。beatcode record は beatcode を起動して、画面と、beatcode と YouTube Music の音を録り、閉じると今いるディレクトリに .mp4 を作ります。ffmpeg が要ります。このサイトの動画もこれで撮りました。",
-          "曲が入るので、録ったものは配らないでください。macOS 14.2 以降では、初めてのときに「beatcode record」に音の収録を許すか聞かれます。Linux ではまだ音なしの動画です。",
+          "曲が入るので、録ったものは配らないでください。macOS 14.2 以降では、初めてのときに「beatcode record」に音の収録を許すか聞かれます。",
         ],
         cmd: ["beatcode plugins install record", "beatcode record"],
         shots: [],

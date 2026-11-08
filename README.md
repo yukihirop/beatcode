@@ -18,7 +18,7 @@ This repository holds the install scripts and release binaries. The source code 
 
 ## Install
 
-macOS 11 or later (Apple silicon or Intel), or Linux on x86_64 / arm64 with glibc 2.35 or later (Ubuntu 22.04, Debian 12 or newer). On Linux, sound needs ALSA (`libasound2`, present on most desktops) and HTTPS needs OpenSSL 3 (`libssl3`). The front camera panel is macOS only.
+macOS 11 or later (Apple silicon or Intel). Linux is not supported yet.
 
 **Homebrew**
 

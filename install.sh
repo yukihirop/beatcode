@@ -17,8 +17,7 @@ fail() { printf 'beatcode install: %s\n' "$*" >&2; exit 1; }
 
 case "$(uname -s)" in
   Darwin) os="apple-darwin" ;;
-  Linux) os="unknown-linux-gnu" ;;
-  *) fail "only macOS and Linux are supported (got $(uname -s))" ;;
+  *) fail "beatcode runs on macOS only for now (got $(uname -s))" ;;
 esac
 case "$(uname -m)" in
   arm64 | aarch64) target="aarch64-$os" ;;

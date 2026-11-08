@@ -48,14 +48,14 @@ export const guideEnvironment: Record<Lang, Guide> = {
         menu: "What you need",
         title: "What you need",
         body: [
-          "beatcode runs in a terminal on macOS 11 or later, or Linux on x86_64 or arm64 (glibc 2.35 or later). Windows isn’t built.",
+          "beatcode runs in a terminal on macOS 11 or later (Apple silicon or Intel). Linux and Windows aren’t supported yet.",
           "Give it room. The screenshots on this site were taken at 120 columns by 34 rows; song select puts the songs and charts in 62 columns on the left and the code on the right, and 8 lanes take about 80 columns before the score panel. A smaller window still works, with narrower lanes and less code.",
           "A keyboard you can hit quickly. Four lanes use D F J K, six S D F J K L, eight A S D F J K L ; (all can be changed in config.toml).",
         ],
         table: {
           head: ["", "Needed"],
           rows: [
-            ["OS", "macOS 11+ / Linux x86_64 or arm64 (glibc 2.35+)"],
+            ["OS", "macOS 11+ (Apple silicon or Intel)"],
             ["Terminal size", "120 × 34 or more is comfortable"],
             ["Keys", "D F J K (4 lanes), up to A S D F J K L ; (8 lanes)"],
           ],
@@ -190,14 +190,14 @@ export const guideEnvironment: Record<Lang, Guide> = {
         menu: "要るもの",
         title: "要るもの",
         body: [
-          "beatcode は端末で動きます。macOS 11 以降か、Linux の x86_64 / arm64(glibc 2.35 以降)。Windows 向けはありません。",
+          "beatcode は端末で動きます。macOS 11 以降(Apple シリコン・Intel)。Linux と Windows にはまだ対応していません。",
           "端末は広めに。このサイトの画面は 120 桁 × 34 行で撮りました。曲選びは左に曲と譜面(62 桁)、右にコード。8 列は点数の欄の手前までで 80 桁ほど使います。狭くても動きますが、列が細くなり、コードが短くなります。",
           "素早く叩けるキーボード。4 列は D F J K、6 列は S D F J K L、8 列は A S D F J K L ;(config.toml で替えられます)。",
         ],
         table: {
           head: ["", "要るもの"],
           rows: [
-            ["OS", "macOS 11 以降 / Linux x86_64・arm64(glibc 2.35 以降)"],
+            ["OS", "macOS 11 以降(Apple シリコン・Intel)"],
             ["端末の大きさ", "120 × 34 以上だと快適"],
             ["キー", "D F J K(4 列)から A S D F J K L ;(8 列)まで"],
           ],
