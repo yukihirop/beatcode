@@ -56,7 +56,7 @@ export const guideMore: Record<Lang, Guide> = {
           },
           {
             file: "ai-done",
-            alt: "The chart source switched to AI with one Rust chart of 444 notes, its code on the right under a header naming the model and the cost, and a line at the bottom: AI wrote a 444-note chart ($0.0004 · 178 in / 813 out tokens · 7.4 s), g publish to a gist.",
+            alt: "The chart source switched to AI with one Rust chart of 623 notes, its code on the right under a header naming the model and the cost, and a line at the bottom: AI wrote a 623-note chart ($0.0005 · 276 in / 969 out tokens · 10.3 s), g publish to a gist.",
             caption: "7.4 seconds and $0.0004 for 444 notes. The header at the top of the code keeps the model and the cost.",
           },
         ],
@@ -212,7 +212,7 @@ export const guideMore: Record<Lang, Guide> = {
           },
           {
             file: "ai-done",
-            alt: "譜面の出どころが AI に替わり、Rust の譜面が 1 つ(516 ノーツ)。右にそのコードと、モデルと金額の入った頭の書き込み。いちばん下に「AI が 516 ノーツの譜面を書きました($0.0005・入力 180 / 出力 942 トークン・8.3 秒)」と g gist に公開。",
+            alt: "譜面の出どころが AI に替わり、Rust の譜面が 1 つ(743 ノーツ)。右にそのコードと、モデルと金額の入った頭の書き込み。いちばん下に「AI が 743 ノーツの譜面を書きました($0.0006・入力 278 / 出力 1095 トークン・9.4 秒)」と g gist に公開。",
             caption: "8.3 秒・$0.0005 で 516 ノーツ。コードの頭に、モデルと金額が残ります。",
           },
         ],

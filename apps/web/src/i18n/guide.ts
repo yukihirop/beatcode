@@ -75,8 +75,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "select",
-            alt: "The song select screen: the songs are filtered by Heroes, leaving one, Heroes Tonight by Janji and Johnning (3:28), and a last row that searches all of Spotify. NORMAL and 4 lanes are highlighted, and the code of fizzbuzz.rs is on the right.",
-            caption: "Songs filtered with / and Heroes. The chart is fizzbuzz.rs, the first bundled Rust chart.",
+            alt: "The song select screen: the songs are filtered by Heroes, leaving one, Heroes Tonight by Janji and Johnning (3:28), and a last row that searches all of Spotify. NORMAL and 4 lanes are highlighted, and the cover art of Heroes Tonight is on the right.",
+            caption: "Songs filtered with / and Heroes. The right side shows the cover art of the song under the cursor. The chart is fizzbuzz.rs, the first bundled Rust chart.",
           },
         ],
       },
@@ -119,7 +119,7 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "play",
             alt: "Twelve seconds into the song (0:12 / 3:28): a combo of 13 in the lanes, the score panel showing PERFECT 13 and MISS 0, and the played tokens highlighted in the code.",
-            caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. The sound is the song file laid over the recording in time. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
+            caption: "Twelve seconds of play, with the song: turn the sound on with the speaker button. The code on the right lights up as each token is hit. The sound is what beatcode record recorded while the song played. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
           },
         ],
       },
@@ -145,8 +145,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "The results screen for Heroes Tonight: rank AAA and ALL PERFECT, score 1038 of 1038 (100.0%), PERFECT 519, MISS 0, combo 519 of 519, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
-            caption: "AAA at 100% — the bot doesn’t miss. Each slice of the strip stacks its judgments by share, MISS at the bottom, then GREAT, then PERFECT, so the red rises where the misses pile up.",
+            alt: "The results screen for Heroes Tonight: rank AAA, score 1036 of 1038 (99.8%), PERFECT 518, MISS 1, combo 502 of 519, with the score graph and a strip of judgments on the right and the ranking at the lower left.",
+            caption: "AAA at 99.8% — the bot missed one note. Each slice of the strip stacks its judgments by share, MISS at the bottom, then GREAT, then PERFECT, so the red rises where the misses pile up.",
           },
         ],
       },
@@ -166,8 +166,8 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "A preview of the post from beatcode: Got AAA (100.0% 1038/1038) on \"Heroes Tonight\", the beatcode URL and #beatcode, with the result card attached showing the cover art, Heroes Tonight by Janji and Johnning, Spotify, NORMAL, 4 lanes, Rust, AAA, 100.0%, ALL PERFECT, PERFECT 519, MISS 0, max combo 519 and the score graph.",
-            caption: "The card is the one beatcode made for this play of Heroes Tonight through Spotify; the post around it is a preview, not a screenshot of X. The chart came from a local repo, so there’s no chart link, and no ranking server was set, so there’s no ranking line. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
+            alt: "A preview of the post from beatcode: Got AAA (99.8% 1036/1038) on \"Heroes Tonight\", the beatcode URL and #beatcode, with the result card attached showing the cover art, Heroes Tonight by Janji and Johnning, Spotify, NORMAL, 4 lanes, Rust, AAA, 99.8%, PERFECT 518, MISS 1, max combo 502 and the score graph.",
+            caption: "The card is the one beatcode made for this play of Heroes Tonight through Spotify; the post around it is a preview, not a screenshot of X. This draft has no chart link, and no ranking server was set, so there’s no ranking line. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
           },
         ],
       },
@@ -223,7 +223,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "The history screen with one row: just now, AAA 100.0%, N4, ★ ○ ♫ Heroes Toni, Rust fizzbuzz.rs, with its code on the right.",
+            alt: "The history screen with one row: just now, AAA 99.8%, N4, ★ □ ♫ Heroes Tonight, 519 notes, Rust fizzbuzz.rs, with its code on the right.",
             caption: "One play so far.",
           },
           {
@@ -263,7 +263,7 @@ export const guide: Record<Lang, Guide> = {
     heading: "使い方",
     lede: "曲選びから結果の画面まで。そのあと、知っておくと便利な設定。手順ごとに、実際の画面を載せています。",
     recorded:
-      "画面は beatcode record で撮りました。曲は YouTube Music(アプリ Pear Desktop)で流した魔王魂の「シャイニングスター」(♩=158、4:36)、譜面は同梱の Rust です。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
+      "画面は beatcode record で撮りました。曲は Spotify で流した魔王魂の「シャイニングスター」(♩≈158、4:36)、譜面は同梱の Rust です。叩いたのは画面を読む小さな bot なので、点数は人の腕前ではありません。音楽：魔王魂(maou.audio)。",
     menuLabel: "手順",
     keysLabel: "この画面のキー",
     next: { href: "guide/more/", label: "詳しい使い方: AI の譜面・gist・config.toml・言語 →" },
@@ -290,8 +290,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "select",
-            alt: "曲選びの画面。曲の欄で「シャイニング」と絞り込み、シャイニングスター(魔王魂、森田交一、4:36)が 1 曲だけ出ている。NORMAL と 4 列が光り、右に fizzbuzz.rs のコード。",
-            caption: "/ で「シャイニング」と打って絞り込んだところ。譜面は同梱の Rust の 1 曲目、fizzbuzz.rs。",
+            alt: "曲選びの画面。曲の欄で「シャイニング」と絞り込み、シャイニングスター(魔王魂、森田交一、4:36)が 1 曲だけ出ている。NORMAL と 4 列が光り、右にシャイニングスターのジャケット。",
+            caption: "/ で「シャイニング」と打って絞り込んだところ。譜面は同梱の Rust の 1 曲目、fizzbuzz.rs。右にはカーソルの曲のジャケットが出ます。",
           },
         ],
       },
@@ -312,8 +312,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready",
-            alt: "始める前の画面。上にシャイニングスター — 魔王魂、森田交一 と 0:00 / 4:36。列の上に beatcode のロゴ、D=キーワード F=識別子 J=演算子・括弧 K=リテラル、Space / Enter で始める。右の欄に NOTES 0/1240、BPM 158。",
-            caption: "列の上に KW・ID・OP・LIT と種類が出ています。譜面は曲の終わりまでくり返すので、15 行の fizzbuzz.rs でも 1240 ノーツになります。",
+            alt: "始める前の画面。上にシャイニングスター — 魔王魂、森田交一 と 0:00 / 4:36。列の上に beatcode のロゴ、D=キーワード F=識別子 J=演算子・括弧 K=リテラル、Space / Enter で始める。右の欄に NOTES 0/758、BPM 157.6。",
+            caption: "列の上に KW・ID・OP・LIT と種類が出ています。譜面は曲の終わりまでくり返すので、15 行の fizzbuzz.rs でも 758 ノーツになります。",
           },
         ],
       },
@@ -333,8 +333,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "play",
-            alt: "プレイ中、0:12 / 4:36。列に 3 コンボ、右の欄に PERFECT 27・MISS 8、叩いたトークンがコードの中で光っている。",
-            caption: "プレイ中の 12 秒。曲の音つきです(スピーカーのボタンで鳴ります)。叩いたトークンが、右のコードで順に光っていきます。音楽：魔王魂。",
+            alt: "プレイ中、0:12 / 4:36。列に 10 コンボ、右の欄に PERFECT 10・MISS 0、叩いたトークンがコードの中で光っている。",
+            caption: "プレイ中の 12 秒。音は曲を流しながら beatcode record が録ったものです(スピーカーのボタンで鳴ります)。叩いたトークンが、右のコードで順に光っていきます。音楽：魔王魂。",
           },
         ],
       },
@@ -360,8 +360,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "result",
-            alt: "結果の画面。シャイニングスター、ランク AA、SCORE 2032 / 2458(82.7%)、PERFECT 1016・MISS 213。右に曲の流れのグラフと判定の帯、左下にランキング。",
-            caption: "82.7% で AA。帯は区切りごとの判定を割合で下から MISS・GREAT・PERFECT と積むので、MISS が多いところほど赤が高くなります。",
+            alt: "結果の画面。シャイニングスター、ランク AAA、★ ALL PERFECT ★、SCORE 1516 / 1516(100.0%)、PERFECT 758・MISS 0、COMBO 758 / 758。右に曲の流れのグラフと判定の帯、左下にランキング。",
+            caption: "bot が叩いたので 100.0% の ALL PERFECT。帯は区切りごとの判定を割合で下から MISS・GREAT・PERFECT と積むので、MISS が多いところほど赤が高くなります。",
           },
         ],
       },
@@ -381,8 +381,8 @@ export const guide: Record<Lang, Guide> = {
           {
             file: "share",
             narrow: true,
-            alt: "beatcode の投稿のプレビュー。「シャイニングスター」で AA (83.7% | 2008/2398)を取りました、beatcode の URL、#beatcode。添えたカードにはジャケット、シャイニングスター(魔王魂、森田交一)、YouTube Music・NORMAL・4 LANES、AA・83.7%・PERFECT 1004・MISS 195・最大コンボ 23 と点数のグラフ。",
-            caption: "カードは YouTube Music でシャイニングスターを流して遊んだときに beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。譜面は手元の repo のものなので譜面のリンクはなく、ランキングの印は外しています。音楽：魔王魂(maou.audio)。",
+            alt: "beatcode の投稿のプレビュー。「シャイニングスター」で AAA (100.0% | 1516/1516)を取りました、beatcode の URL、#beatcode。添えたカードにはジャケット、シャイニングスター(魔王魂、森田交一)、Spotify・NORMAL・4 LANES・Rust、AAA・100.0%・ALL PERFECT・PERFECT 758・MISS 0・最大コンボ 758 と点数のグラフ。",
+            caption: "カードは Spotify でシャイニングスターを流して遊んだときに beatcode が作ったもの。まわりの投稿は見え方のプレビューで、X の画面ではありません。この下書きには譜面のリンクがなく、ランキングのサーバーを設定していないのでランキングの印もありません。音楽：魔王魂(maou.audio)。",
           },
         ],
       },
@@ -405,8 +405,8 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "ready8",
-            alt: "HARD・8 列の始める前の画面。列は KW・ID・TY・OP・括弧・STR・NUM・区切り、A=キーワード S=識別子 D=型 F=演算子 J=括弧 K=文字列 L=数値・真偽 ;=区切り。NOTES 0/2858。",
-            caption: "HARD・8 列。同じ曲で、ノーツは 1240 から 2858 に増えます。",
+            alt: "HARD・8 列の始める前の画面。列は KW・ID・TY・OP・括弧・STR・NUM・区切り、A=キーワード S=識別子 D=型 F=演算子 J=括弧 K=文字列 L=数値・真偽 ;=区切り。NOTES 0/2205。",
+            caption: "HARD・8 列。同じ曲で、ノーツは 758 から 2205 に増えます。",
           },
           {
             file: "play8",
@@ -438,7 +438,7 @@ export const guide: Record<Lang, Guide> = {
         shots: [
           {
             file: "history",
-            alt: "遊んだ履歴の画面。1 行だけ:たった今、AA 82.7%、N4、★ ♫ シャイニング、Rust fizzbuzz.rs。右にそのコード。",
+            alt: "遊んだ履歴の画面。1 行だけ:たった今、AAA 100.0%、N4、★ □ ♫ シャイニングスター、758 ノーツ、Rust fizzbuzz.rs。右にそのコード。",
             caption: "まだ 1 回分。",
           },
           {
