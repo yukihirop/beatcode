@@ -172,6 +172,17 @@ function drift(x: number, w: number, side: 0 | 1): string {
   return parts.join("");
 }
 
+/** og-wordmark.png's size and where its letters are: the "b" starts at x=21, the last "e" spans 803–898 */
+const WM = { w: 935, h: 198, left: 21, right: 898, lastE: (803 + 898) / 2 };
+
+/** Where a line of text's ink lies, measured by resvg with the fonts that will draw it: x from the text's x, and width */
+function inkOf(text: string, family: string, size: number): { x: number; width: number } {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="4000" height="400"><text x="0" y="200" font-family="${family}" font-size="${size}" font-weight="500">${text}</text></svg>`;
+  const box = new Resvg(svg, { font: { loadSystemFonts: true } }).getBBox();
+  if (!box) throw new Error(`og: no ink for ${text}`);
+  return { x: box.x, width: box.width };
+}
+
 /** The card's SVG. Everything that matters sits in the middle 630×630 (wordmark, heading, the note highway), since Slack and
  * others show only a square cut from the middle; the sides carry faint drifting notes for the wide previews (X, Discord) */
 export function ogSvg(card: OgCard): string {
@@ -194,20 +205,24 @@ export function ogSvg(card: OgCard): string {
   parts.push(`<rect width="${W}" height="${H}" fill="${C.paper}"/><rect width="${W}" height="${H}" fill="url(#bloom)"/>`);
   parts.push(drift(0, side, 0), drift(W - side, side, 1));
 
-  // The wordmark, centred
-  const wmW = 480;
-  const wmH = Math.round((wmW * 198) / 935);
-  parts.push(`<image x="${cx - wmW / 2}" y="26" width="${wmW}" height="${wmH}" href="${wordmarkPng}"/>`);
+  // The wordmark, centred on its letters. On the top page it's bigger, and the tagline is sized so its cursor ends under
+  // the middle of the wordmark's last "e"
+  const wmW = card.tagline ? 600 : 480;
+  const wmScale = wmW / WM.w;
+  const wmH = Math.round(WM.h * wmScale);
+  parts.push(`<image x="${cx - ((WM.left + WM.right) / 2) * wmScale}" y="26" width="${wmW}" height="${wmH}" href="${wordmarkPng}"/>`);
   let y = 26 + wmH + 8;
 
   // Under it: the site's tagline in the banner's monospace with its cursor, or a page's kicker and heading
   if (card.tagline) {
     const mono = /^[\x20-\x7e]*$/.test(card.heading);
-    const size = 24;
-    const text = mono ? `${card.heading}.` : card.heading;
-    const [line] = wrap(text, size, inner, 1);
+    const family = mono ? MONO : FONT;
+    const text = `${esc(mono ? `${card.heading}.` : card.heading)}<tspan fill="${C.accent}">\u00a0_</tspan>`;
+    const at24 = inkOf(text, family, 24);
+    const size = 24 * ((WM.lastE - (WM.left + WM.right) / 2) * wmScale * 2) / at24.width;
+    const k = size / 24;
     y += size;
-    parts.push(`<text x="${cx}" y="${y}"${mono ? ` font-family="${MONO}"` : ""} font-size="${size}" font-weight="500" text-anchor="middle" fill="${C.ink}">${esc(line!)}<tspan fill="${C.accent}">\u00a0_</tspan></text>`);
+    parts.push(`<text x="${cx - (at24.x + at24.width / 2) * k}" y="${y}" font-family="${family}" font-size="${size.toFixed(2)}" font-weight="500" fill="${C.ink}">${text}</text>`);
     y += 22;
   } else {
     const head = card.kicker ? `${card.kicker} · ${card.heading}` : card.heading;
