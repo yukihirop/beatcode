@@ -9,7 +9,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "social-preview": "node scripts/social-preview.mjs"
+    "social-preview": "node scripts/social-preview.mjs",
+    "x-banner": "node scripts/x-banner.mjs"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.3.0",
