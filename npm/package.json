@@ -1,9 +1,9 @@
 {
   "name": "beatcode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A rhythm game for the terminal where the notes are the tokens of real source code",
   "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://github.com/yukihirop/beatcode",
+  "homepage": "https://beatcode.run",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yukihirop/beatcode.git"
