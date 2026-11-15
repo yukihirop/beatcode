@@ -10,6 +10,10 @@
 down lanes by kind (keyword, identifier, operator, literal), and you hit them on the judgment line.
 Finish a song and you have typed out a function.
 
+https://github.com/user-attachments/assets/c87de79b-29ef-4d32-a5c2-484e4f35e835
+
+<p align="center"><sub>The intro (93 seconds, with sound). Song: Elektronomia - Sky High [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/skyhigh">http://ncs.io/skyhigh</a> Watch: <a href="http://youtu.be/TW9d8vYrVFQ">http://youtu.be/TW9d8vYrVFQ</a>. In the play scenes: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/ht">http://ncs.io/ht</a> Watch: <a href="http://youtu.be/3nQNiWdeH2Q">http://youtu.be/3nQNiWdeH2Q</a></sub></p>
+
 https://github.com/user-attachments/assets/d8a5349a-f6c9-4c3b-8c0f-7e6246f5ab61
 
 <p align="center"><sub>30 seconds with sound: the last chorus of Heroes Tonight by Janji (feat. Johnning), on a TypeScript chart shared as a gist. A small bot that reads the screen did the hitting. Song: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/ht">http://ncs.io/ht</a> Watch: <a href="http://youtu.be/3nQNiWdeH2Q">http://youtu.be/3nQNiWdeH2Q</a></sub></p>
