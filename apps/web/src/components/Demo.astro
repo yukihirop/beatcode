@@ -6,27 +6,30 @@ import type { Lang, Strings } from "../i18n/strings";
 interface Props {
   t: Strings["demo"];
   lang: Lang;
+  // "demo": the 30-second untouched recording. "intro": the edited 93-second intro video (2026-11-15)
+  kind?: "demo" | "intro";
 }
-const { t, lang } = Astro.props;
+const { t, lang, kind = "demo" } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
-// The first frame of the clip, one per UI language
-const posters = import.meta.glob<{ default: ImageMetadata }>("../assets/demo/*.png", { eager: true });
-const poster = await getImage({ src: posters[`../assets/demo/${lang}.png`].default, format: "webp", width: 1320 });
+// The poster, one per UI language: the clip's first frame (demo) or the logo scene (intro)
+const posters = import.meta.glob<{ default: ImageMetadata }>("../assets/{demo,intro}/*.png", { eager: true });
+const poster = await getImage({ src: posters[`../assets/${kind}/${lang}.png`].default, format: "webp", width: 1320 });
+const size = kind === "intro" ? { width: 1920, height: 1080 } : { width: 1320, height: 850 };
 ---
 
-<section class="demo" aria-labelledby="demo-heading">
+<section class="demo" aria-labelledby={`${kind}-heading`}>
   <div class="demo__text">
-    <h2 id="demo-heading">{t.heading}</h2>
+    <h2 id={`${kind}-heading`}>{t.heading}</h2>
     <p>{t.body}</p>
   </div>
   <figure class="demo__figure">
     <div class="demo__frame">
       <video
         class="demo__video"
-        src={`${base}demo/${lang}.mp4`}
+        src={`${base}${kind}/${lang}.mp4`}
         poster={poster.src}
-        width="1320"
-        height="850"
+        width={size.width}
+        height={size.height}
         controls
         playsinline
         preload="none"

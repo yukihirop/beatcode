@@ -41,6 +41,14 @@ export type Strings = {
     label: string;
     caption: string;
   };
+  // The 93-second intro video above the demo (2026-11-15). Same fields as demo
+  intro: {
+    heading: string;
+    body: string;
+    play: string;
+    label: string;
+    caption: string;
+  };
   lanes: {
     heading: string;
     body: string;
@@ -137,6 +145,13 @@ export const strings: Record<Lang, Strings> = {
       codeLabel: "What you’ve typed",
       result: "Clear",
       maxCombo: "max combo",
+    },
+    intro: {
+      heading: "beatcode in 93 seconds.",
+      body: "What it plays like, where the charts come from (your repos, GitHub, an AI), sharing a chart as a gist, your result on X, your own leaderboard, and a song while your AI agent works.",
+      play: "Play with sound",
+      label: "The 93-second beatcode intro: play scenes with Heroes Tonight, local repos and GitHub as charts, 28 languages, an AI writing a chart, the song X-ray, 8 lanes on HARD, replay from history, sharing as a gist, a result card for X, a leaderboard, and a notice from an AI agent while you play.",
+      caption: "Edited from beatcode record recordings, with captions and zooms. A small bot that reads the screen did the hitting. Song: Elektronomia - Sky High [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/skyhigh Watch: http://youtu.be/TW9d8vYrVFQ. In the play scenes: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/ht Watch: http://youtu.be/3nQNiWdeH2Q",
     },
     demo: {
       heading: "The real thing, with the song.",
@@ -256,6 +271,13 @@ export const strings: Record<Lang, Strings> = {
       codeLabel: "叩いて書いたコード",
       result: "Clear",
       maxCombo: "最大コンボ",
+    },
+    intro: {
+      heading: "93 秒で、beatcode。",
+      body: "遊んでいるところ、譜面の出どころ(手元の repo・GitHub・AI)、gist で渡す、X に結果を出す、自分たちのランキング、AI エージェントを待つあいだの 1 曲まで。",
+      play: "音つきで再生",
+      label: "beatcode の 93 秒の紹介動画。シャイニングスターで遊ぶ場面、手元の repo と GitHub の譜面、28 の言語、AI が譜面を書くところ、曲のレントゲン、8 列の HARD、履歴から遊ぶ、gist で渡す、X 用の結果のカード、ランキング、遊んでいる間に流れる AI エージェントの知らせ。",
+      caption: "beatcode record で撮った画面を編集し、字幕と寄りを足しました。叩いたのは画面を読む小さな bot です。遊ぶ場面の曲は魔王魂の「シャイニングスター」。音楽：魔王魂(maou.audio)。BGM: Song: Elektronomia - Sky High [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: http://ncs.io/skyhigh Watch: http://youtu.be/TW9d8vYrVFQ",
     },
     demo: {
       heading: "本物の画面を、曲といっしょに。",
