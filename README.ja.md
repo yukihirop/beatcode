@@ -10,7 +10,7 @@
 種類ごと(キーワード・識別子・演算子・リテラル)の列を流れてきます。判定ラインで叩いて、
 1 曲叩き切ると関数が 1 つ書き上がります。
 
-https://github.com/user-attachments/assets/79ab993d-a142-4e19-a7a9-4f5a8c834f80
+[![beatcode の紹介動画を見る(93 秒・音あり)](https://raw.githubusercontent.com/yukihirop/beatcode/main/docs/images/intro-poster-ja.png)](https://github.com/user-attachments/assets/79ab993d-a142-4e19-a7a9-4f5a8c834f80)
 
 <p align="center"><sub>紹介動画(93 秒・音あり)。遊ぶ場面の曲は魔王魂の「シャイニングスター」。音楽: <a href="https://maou.audio/">魔王魂</a>。BGM: Song: Elektronomia - Sky High [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/skyhigh">http://ncs.io/skyhigh</a> Watch: <a href="http://youtu.be/TW9d8vYrVFQ">http://youtu.be/TW9d8vYrVFQ</a></sub></p>
 

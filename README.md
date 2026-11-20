@@ -10,7 +10,7 @@
 down lanes by kind (keyword, identifier, operator, literal), and you hit them on the judgment line.
 Finish a song and you have typed out a function.
 
-https://github.com/user-attachments/assets/c87de79b-29ef-4d32-a5c2-484e4f35e835
+[![Watch the beatcode intro video (93 seconds, with sound)](https://raw.githubusercontent.com/yukihirop/beatcode/main/docs/images/intro-poster-en.png)](https://github.com/user-attachments/assets/c87de79b-29ef-4d32-a5c2-484e4f35e835)
 
 <p align="center"><sub>The intro (93 seconds, with sound). Song: Elektronomia - Sky High [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/skyhigh">http://ncs.io/skyhigh</a> Watch: <a href="http://youtu.be/TW9d8vYrVFQ">http://youtu.be/TW9d8vYrVFQ</a>. In the play scenes: Janji - Heroes Tonight (feat. Johnning) [NCS Release]. Music provided by NoCopyrightSounds. Free Download/Stream: <a href="http://ncs.io/ht">http://ncs.io/ht</a> Watch: <a href="http://youtu.be/3nQNiWdeH2Q">http://youtu.be/3nQNiWdeH2Q</a></sub></p>
 
